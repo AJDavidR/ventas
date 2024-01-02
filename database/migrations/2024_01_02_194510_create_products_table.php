@@ -16,12 +16,12 @@ return new class extends Migration
             $table->string('name');
             $table->string('descripcion')->nullable();
             $table->decimal('precio_compra', 10, 2)->nullable();
-            $table->decimal('precio_venta', 10, 2)->nullable();
+            $table->decimal('precio_venta', 10, 2);
             $table->unsignedInteger('stock');
             $table->unsignedInteger('stock_minimo')->nullable();
             $table->string('codigo_barras')->nullable();
             $table->date('fecha_vencimiento')->nullable();
-            $table->boolean('active');
+            $table->boolean('active')->default(true);
             $table->foreignId('category_id')->constrained();
             $table->timestamps();
         });
