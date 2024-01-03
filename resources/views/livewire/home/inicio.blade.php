@@ -1,3 +1,5 @@
 <div>
-    {{-- Care about people's approval and you will be their prisoner. --}}
+    <p>
+    <h1>Componente inicio</h1>
+    </p>
 </div>
