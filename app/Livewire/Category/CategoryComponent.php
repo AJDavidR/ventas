@@ -7,7 +7,7 @@ use Livewire\Component;
 
 class CategoryComponent extends Component
 {
-    #[Title('Inicio test')]
+    #[Title('Categorias')]
     public function render()
     {
         return view('livewire.category.category-component');
