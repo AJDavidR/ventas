@@ -1,14 +1,15 @@
+@props(['cardTitle' => '', 'cardTools' => '', 'cardFooter' => ''])
 <div class="card">
     <div class="card-header">
-        <div class="card-title">Titulo</div>
+        <div class="card-title">{{ $cardTitle }}</div>
         <div class="card-tools">
-
+            {{ $cardTools }}
         </div>
-        <div class="card-body">
-
-        </div>
-        <div class="card-footer">
-
-        </div>
+    </div>
+    <div class="card-body">
+        {{ $slot }}
+    </div>
+    <div class="card-footer">
+        {{ $cardFooter }}
     </div>
 </div>
