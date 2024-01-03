@@ -1,9 +1,8 @@
 <?php
 
+use App\Livewire\Category\CategoryComponent;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Home\Inicio;
-use App\Models\Category;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,4 +24,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/inicio', Inicio::class)->name('inicio');
 
-Route::get('/Categories', Category::class)->name('Categories');
+Route::get('/categories', CategoryComponent::class)->name('categories');
