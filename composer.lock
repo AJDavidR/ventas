@@ -1989,6 +1989,7 @@
                 "orchestra/testbench-dusk": "^8.0|^9.0",
                 "phpunit/phpunit": "^10.4",
                 "psy/psysh": "^0.11.22|^0.12"
+
             },
             "type": "library",
             "extra": {
