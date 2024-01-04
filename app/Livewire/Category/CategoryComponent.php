@@ -15,8 +15,7 @@ class CategoryComponent extends Component
     // propiedades clase
     public $search = '', $totalRegistros = 0, $cant = 5;
     // propiedades modelo
-    public $name;
-
+    public $name, $Id;
     public function render()
     {
         $this->totalRegistros = Category::count();
@@ -36,7 +35,20 @@ class CategoryComponent extends Component
     public function mount()
     {
     }
+    public function resetInputFields()
+    {
+        $this->reset([
+            'name',
+        ]);
+        $this->resetErrorBag;
+    }
     // Crear la categoria
+    public function create()
+    {
+        $this->resetInputFields();
+        $this->dispatch('open-modal', 'modalCategory');
+    }
+    // guardar la nueva categoria
     public function store()
     {
         // dump('Crear category');
@@ -58,9 +70,38 @@ class CategoryComponent extends Component
         $category->save();
 
         $this->dispatch('close-modal', 'modalCategory');
-
         $this->dispatch('msg', 'Categoria creada correctamente');
 
-        $this->reset(['name']);
+        $this->resetInputFields();
+    }
+
+    // editar la categoria
+    public function edit(Category $category)
+    {
+        $this->Id = $category->id;
+        $this->name = $category->name;
+        $this->dispatch('open-modal', 'modalCategory');
+    }
+    // Actualizar la categoria
+    public function update(Category $category)
+    {
+        // dump($category);
+        $rules = [
+            'name' => 'required|min:5|max:255|unique:categories,id,' . $this->Id
+        ];
+        $messages = [
+            'name.required' => 'El nombre es requerido',
+            'name.min' => 'El nombre debe tener minimo 5 caracteres',
+            'name.max' => 'El nombre no debe superar los 255 caracteres',
+            'name.unique' => 'El nombre de la categoria ya esta en uso',
+        ];
+        $this->validate($rules, $messages);
+        $category->name = $this->name;
+        $category->update();
+
+        $this->dispatch('close-modal', 'modalCategory');
+        $this->dispatch('msg', 'Categoria editada correctamente');
+
+        $this->resetInputFields();
     }
 }

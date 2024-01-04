@@ -1,8 +1,8 @@
 <div>
     <x-card cardTitle="Listado categorias ({{ $totalRegistros }})">
         <x-slot:cardTools>
-            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modalCategory">Crear
-                categoria</a>
+            <a href="#" class="btn btn-primary" wire:click='create'>
+                <i class="fas fa-plus-circle"></i> Crear categoria</a>
         </x-slot:cardTools>
         <x-table>
             <x-slot:thead>
@@ -23,7 +23,8 @@
                         </a>
                     </td>
                     <td class="text-center">
-                        <a href="#" title="editar" class="btn btn-primary btn-xs">
+                        <a href="#" wire:click='edit({{ $category->id }})' title="editar"
+                            class="btn btn-primary btn-xs">
                             <i class="fas fa-edit"></i>
                         </a>
                     </td>
@@ -47,7 +48,7 @@
         </x-slot:cardFooter>
     </x-card>
     <x-modal modalId="modalCategory" modalTitle="Categorias">
-        <form wire:submit="store">
+        <form wire:submit={{ $Id == 0 ? 'store' : "update($Id)" }}>
             <div class="form-row">
                 <div class="form-group col-12">
                     <label for="name">Nombre: </label>
@@ -60,7 +61,7 @@
             </div>
 
             <hr>
-            <button class="btn btn-primary float-right">Guardar</button>
+            <button class="btn btn-primary float-right">{{ $Id == 0 ? 'Guardar' : 'Editar' }}</button>
         </form>
     </x-modal>
 </div>
