@@ -40,7 +40,7 @@ class CategoryComponent extends Component
         $this->reset([
             'name',
         ]);
-        $this->resetErrorBag;
+        $this->resetErrorBag();
     }
     // Crear la categoria
     public function create()
