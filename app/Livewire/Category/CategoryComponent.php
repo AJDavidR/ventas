@@ -78,6 +78,7 @@ class CategoryComponent extends Component
     // editar la categoria
     public function edit(Category $category)
     {
+        $this->resetInputFields();
         $this->Id = $category->id;
         $this->name = $category->name;
         $this->dispatch('open-modal', 'modalCategory');
