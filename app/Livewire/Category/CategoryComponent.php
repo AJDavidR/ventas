@@ -17,12 +17,13 @@ class CategoryComponent extends Component
 
     public function render()
     {
+        $this->totalRegistros = Category::count();
+
         return view('livewire.category.category-component');
     }
 
     public function mount()
     {
-        $this->totalRegistros = Category::count();
     }
     // Crear la categoria
     public function store()
@@ -46,5 +47,9 @@ class CategoryComponent extends Component
         $category->save();
 
         $this->dispatch('close-modal', 'modalCategory');
+
+        $this->dispatch('msg', 'Categoria creada correctamente');
+
+        $this->reset(['name']);
     }
 }
