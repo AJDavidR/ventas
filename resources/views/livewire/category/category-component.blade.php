@@ -1,7 +1,8 @@
 <div>
     <x-card cardTitle="Lista categorias" cardFooter="Card Footer">
         <x-slot:cardTools>
-            <a href="#" class="btn btn-primary">Crear categorias</a>
+            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Crear
+                categoria</a>
         </x-slot:cardTools>
 
         <x-table>
@@ -34,4 +35,5 @@
             </tr>
         </x-table>
     </x-card>
+    <x-modal />
 </div>
