@@ -36,7 +36,7 @@
 
                 <li class="nav-item">
                     <a href="{{ route('categories') }}" class="nav-link">
-                        <i class="nav-icon fas fa-store"></i>
+                        <i class="nav-icon fas fa-th-large"></i>
                         <p>
                             Categorias
                         </p>
