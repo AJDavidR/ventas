@@ -1,10 +1,9 @@
 <div>
-    <x-card cardTitle="Listado categorias (0)" cardFooter="Card Footer">
+    <x-card cardTitle="Listado categorias ({{ $totalRegistros }})" cardFooter="Card Footer">
         <x-slot:cardTools>
             <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modalCategory">Crear
                 categoria</a>
         </x-slot:cardTools>
-
         <x-table>
             <x-slot:thead>
                 <th>ID</th>
@@ -36,15 +35,18 @@
         </x-table>
     </x-card>
     <x-modal modalId="modalCategory" modalTitle="Categorias">
-        <form>
+        <form wire:submit="store">
             <div class="row">
                 <div class="col">
-                    <input type="text" class="form-control" placeholder="Nombre Categoria">
+                    <input wire:model="name" type="text" class="form-control" placeholder="Nombre Categoria">
+                    @error('name')
+                        <div class="alert alert-danger w-100 mt-2">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
 
             <hr>
-            <button type="button" class="btn btn-primary float-right">Save changes</button>
+            <button class="btn btn-primary float-right">Guardar</button>
         </form>
     </x-modal>
 </div>
