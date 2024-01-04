@@ -52,15 +52,41 @@
     @include('components.layouts.partials.scripts')
 
     <script>
+        // cerrar modal
         document.addEventListener('livewire:init', () => {
             Livewire.on('close-modal', (idModal) => {
                 $('#' + idModal).modal('hide');
             })
         })
-
+        // abrir modal
         document.addEventListener('livewire:init', () => {
             Livewire.on('open-modal', (idModal) => {
                 $('#' + idModal).modal('show');
+            })
+        })
+        // SweetAlert2
+        document.addEventListener('livewire:init', () => {
+            Livewire.on('delete', (e) => {
+                Swal.fire({
+                    title: "¿Estas seguro?",
+                    text: "No puedes revertir esto!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Si, Eliminar!",
+                    cancelButtonText: "Cancelar",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Livewire.dispatch(e.eventName, {
+                            id: e.id
+                        })
+                        Swal.fire({
+                            title: "Eliminado!",
+                            icon: "success"
+                        });
+                    }
+                });
             })
         })
     </script>

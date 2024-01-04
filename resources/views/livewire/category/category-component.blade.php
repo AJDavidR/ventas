@@ -24,13 +24,16 @@
                         </a>
                     </td>
                     <td class="text-center">
-                        <a href="#" wire:click='edit({{ $category->id }})' title="editar"
-                            class="btn btn-primary btn-xs">
+                        <a wire:click='edit({{ $category->id }})' title="editar" class="btn btn-primary btn-xs">
                             <i class="fas fa-edit"></i>
                         </a>
                     </td>
                     <td class="text-center">
-                        <a href="#" title="eliminar" class="btn btn-danger btn-xs">
+                        <a wire:click="$dispatch('delete',{
+                            id:{{ $category->id }},
+                            eventName: 'destroyCategory'
+                        })"
+                            title="eliminar" class="btn btn-danger btn-xs">
                             <i class="fas fa-trash-alt"></i>
                         </a>
                     </td>

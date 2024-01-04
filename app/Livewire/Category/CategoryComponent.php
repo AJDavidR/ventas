@@ -3,6 +3,7 @@
 namespace App\Livewire\Category;
 
 use App\Models\Category;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -104,5 +105,14 @@ class CategoryComponent extends Component
         $this->dispatch('msg', 'Categoria editada correctamente');
 
         $this->resetInputFields();
+    }
+    // eliminar categoria
+    #[On('destroyCategory')]
+    public function destroy($id)
+    {
+        // dump($id);
+        $category = Category::findOrFail($id);
+        $category->delete();
+        $this->dispatch('msg', 'Categoria eliminada correctamente');
     }
 }
