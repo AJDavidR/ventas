@@ -11,7 +11,7 @@
         <span>Entradas</span>
     </div>
     <div>
-        <input type="text" placeholder="Buscar" class="form-control">
+        <input type="text" wire:model.live='search' placeholder="Buscar" class="form-control">
     </div>
 </div>
 <div class="table-responsive">

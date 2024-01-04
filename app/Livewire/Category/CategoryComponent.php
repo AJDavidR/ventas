@@ -13,6 +13,7 @@ class CategoryComponent extends Component
 {
     use WithPagination;
     // propiedades clase
+    public $search = '';
     public $totalRegistros = 0;
     // propiedades modelo
     public $name;
@@ -21,7 +22,9 @@ class CategoryComponent extends Component
     {
         $this->totalRegistros = Category::count();
 
-        $categories = Category::orderby('id', 'desc')
+        $categories = Category::query()
+            ->where('name', 'like', "%{$this->search}%")
+            ->orderby('id', 'desc')
             ->paginate(5);
         // $categories = collect(); 
 

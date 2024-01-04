@@ -8,26 +8,26 @@
             <x-slot:thead>
                 <th>ID</th>
                 <th>Nombre</th>
-                <th width="3%">...</th>
-                <th width="3%">...</th>
-                <th width="3%">...</th>
+                <th width="3%">Ver</th>
+                <th width="3%">Editar</th>
+                <th width="3%">Borrar</th>
 
             </x-slot:thead>
             @forelse ($categories as $category)
                 <tr>
                     <td>{{ $category->id }}</td>
                     <td>{{ $category->name }}</td>
-                    <td>
+                    <td class="text-center">
                         <a href="#" title="ver" class="btn btn-success btn-xs">
                             <i class="fas fa-eye"></i>
                         </a>
                     </td>
-                    <td>
+                    <td class="text-center">
                         <a href="#" title="editar" class="btn btn-primary btn-xs">
                             <i class="fas fa-edit"></i>
                         </a>
                     </td>
-                    <td>
+                    <td class="text-center">
                         <a href="#" title="eliminar" class="btn btn-danger btn-xs">
                             <i class="fas fa-trash-alt"></i>
                         </a>
