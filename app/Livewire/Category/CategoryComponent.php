@@ -54,14 +54,7 @@ class CategoryComponent extends Component
     // guardar la nueva categoria
     public function store()
     {
-        $this->form->validate();
-
-        $category = new Category;
-
-        $category->name = $this->form->name;
-
-
-        $category->save();
+        Category::create($this->form->validate());
 
         $this->dispatch('close-modal', 'modalCategory');
         $this->dispatch('msg', 'Categoria creada correctamente');
@@ -74,27 +67,13 @@ class CategoryComponent extends Component
     {
         $this->resetInputFields();
         $this->Id = $category->id;
-        dd($category->name);
-        $this->form->name = $category->form->name;
+        $this->form->name = $category->name;
         $this->dispatch('open-modal', 'modalCategory');
     }
     // Actualizar la categoria
     public function update(Category $category)
     {
-        // dump($category);
-        // $rules = [
-        //     'name' => 'required|min:5|max:255|unique:categories,id,' . $this->Id
-        // ];
-        // $messages = [
-        //     'name.required' => 'El nombre es requerido',
-        //     'name.min' => 'El nombre debe tener minimo 5 caracteres',
-        //     'name.max' => 'El nombre no debe superar los 255 caracteres',
-        //     'name.unique' => 'El nombre de la categoria ya esta en uso',
-        // ];
-        // $this->validate($rules, $messages);
-        $this->form->validate();
-        $category->name = $this->name;
-        $category->update();
+        $category->update($this->form->validate());
 
         $this->dispatch('close-modal', 'modalCategory');
         $this->dispatch('msg', 'Categoria editada correctamente');
