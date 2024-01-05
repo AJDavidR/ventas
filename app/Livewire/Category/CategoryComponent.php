@@ -17,7 +17,7 @@ class CategoryComponent extends Component
     // propiedades clase
     public $search = '', $totalRegistros = 0, $cant = 5;
     // propiedades modelo
-    public  $Id;
+    public  $Id = 0;
     public CategoryForm $form;
     public function render()
     {
@@ -51,18 +51,8 @@ class CategoryComponent extends Component
         $this->resetInputFields();
         $this->dispatch('open-modal', 'modalCategory');
     }
-    // guardar la nueva categoria
-    public function store()
-    {
-        $this->form->store();
 
-        $this->dispatch('close-modal', 'modalCategory');
-        $this->dispatch('msg', 'Categoria creada correctamente');
-
-        $this->resetInputFields();
-    }
-
-    // editar la categoria
+    // Editar la categoria
     public function edit(Category $category)
     {
         $this->resetInputFields();
@@ -70,17 +60,7 @@ class CategoryComponent extends Component
         $this->form->name = $category->name;
         $this->dispatch('open-modal', 'modalCategory');
     }
-    // Actualizar la categoria
-    public function update(Category $category)
-    {
-        $this->form->update($category);
 
-        $this->dispatch('close-modal', 'modalCategory');
-        $this->dispatch('msg', 'Categoria editada correctamente');
-
-        $this->resetInputFields();
-    }
-    // eliminar categoria
     #[On('destroyCategory')]
     public function destroy($id)
     {
@@ -88,5 +68,23 @@ class CategoryComponent extends Component
         $category = Category::findOrFail($id);
         $category->delete();
         $this->dispatch('msg', 'Categoria eliminada correctamente');
+    }
+
+    public function save(Category $category)
+    {
+        // formType tipo de formulario creacion o edicion
+        $formType = $this->Id = $category->id;
+
+        if ($formType !== null) {
+            // dd('editar');
+            $this->form->update($category);
+            $this->dispatch('msg', 'Categoria editada correctamente');
+        } elseif ($formType === null) {
+            // dd('crear');
+            $this->form->store();
+            $this->dispatch('msg', 'Categoria creada correctamente');
+        }
+        $this->dispatch('close-modal', 'modalCategory');
+        $this->resetInputFields();
     }
 }
