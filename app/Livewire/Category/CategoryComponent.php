@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Category;
 
+use App\Livewire\Forms\Category\CategoryForm;
 use App\Models\Category;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Title;
@@ -16,7 +17,8 @@ class CategoryComponent extends Component
     // propiedades clase
     public $search = '', $totalRegistros = 0, $cant = 5;
     // propiedades modelo
-    public $name, $Id;
+    public  $Id;
+    public CategoryForm $form;
     public function render()
     {
         $this->totalRegistros = Category::count();
@@ -39,7 +41,7 @@ class CategoryComponent extends Component
     public function resetInputFields()
     {
         $this->reset([
-            'name',
+            'form.name',
         ]);
         $this->resetErrorBag();
     }
@@ -52,21 +54,12 @@ class CategoryComponent extends Component
     // guardar la nueva categoria
     public function store()
     {
-        // dump('Crear category');
-        $rules = [
-            'name' => 'required|min:5|max:255|unique:categories'
-        ];
-        $messages = [
-            'name.required' => 'El nombre es requerido',
-            'name.min' => 'El nombre debe tener minimo 5 caracteres',
-            'name.max' => 'El nombre no debe superar los 255 caracteres',
-            'name.unique' => 'El nombre de la categoria ya esta en uso',
-        ];
-        $this->validate($rules, $messages);
+        $this->form->validate();
 
         $category = new Category;
 
-        $category->name = $this->name;
+        $category->name = $this->form->name;
+
 
         $category->save();
 
@@ -81,23 +74,25 @@ class CategoryComponent extends Component
     {
         $this->resetInputFields();
         $this->Id = $category->id;
-        $this->name = $category->name;
+        dd($category->name);
+        $this->form->name = $category->form->name;
         $this->dispatch('open-modal', 'modalCategory');
     }
     // Actualizar la categoria
     public function update(Category $category)
     {
         // dump($category);
-        $rules = [
-            'name' => 'required|min:5|max:255|unique:categories,id,' . $this->Id
-        ];
-        $messages = [
-            'name.required' => 'El nombre es requerido',
-            'name.min' => 'El nombre debe tener minimo 5 caracteres',
-            'name.max' => 'El nombre no debe superar los 255 caracteres',
-            'name.unique' => 'El nombre de la categoria ya esta en uso',
-        ];
-        $this->validate($rules, $messages);
+        // $rules = [
+        //     'name' => 'required|min:5|max:255|unique:categories,id,' . $this->Id
+        // ];
+        // $messages = [
+        //     'name.required' => 'El nombre es requerido',
+        //     'name.min' => 'El nombre debe tener minimo 5 caracteres',
+        //     'name.max' => 'El nombre no debe superar los 255 caracteres',
+        //     'name.unique' => 'El nombre de la categoria ya esta en uso',
+        // ];
+        // $this->validate($rules, $messages);
+        $this->form->validate();
         $category->name = $this->name;
         $category->update();
 
