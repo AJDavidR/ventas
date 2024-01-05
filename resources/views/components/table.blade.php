@@ -1,3 +1,5 @@
+{{-- ----------------------> Tabla esquema general <---------------------- --}}
+
 <div class="mb-3 d-flex justify-content-between">
     <div>
         <span>Mostrar</span>

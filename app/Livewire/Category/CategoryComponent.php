@@ -36,6 +36,8 @@ class CategoryComponent extends Component
     public function mount()
     {
     }
+
+    // resetear campos
     public function resetInputFields()
     {
         $this->reset([

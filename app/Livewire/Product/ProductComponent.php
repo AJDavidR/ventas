@@ -31,6 +31,7 @@ class ProductComponent extends Component
     public function render()
     {
         $this->totalRegistros = Product::count();
+        $this->dispatch('open-modal', 'modalProduct');
 
         $products = Product::query()
             ->where('name', 'like', "%{$this->search}%")
@@ -40,5 +41,22 @@ class ProductComponent extends Component
         return view('livewire.product.product-component', [
             'products' => $products
         ]);
+    }
+
+    // resetear campos
+    public function resetInputFields()
+    {
+        $this->reset([
+            'name',
+        ]);
+        $this->resetErrorBag();
+    }
+
+    // Crear la categoria
+    public function create()
+    {
+        $this->Id = 0;
+        $this->resetInputFields();
+        $this->dispatch('open-modal', 'modalProduct');
     }
 }

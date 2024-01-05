@@ -1,3 +1,5 @@
+{{-- ----------------------> Modal para categorias <---------------------- --}}
+
 <x-modal modalId="modalCategory" modalTitle="Categorias">
     <form wire:submit={{ $Id == 0 ? 'store' : "update($Id)" }}>
         <div class="form-row">
