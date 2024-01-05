@@ -46,6 +46,7 @@ class CategoryComponent extends Component
     // Crear la categoria
     public function create()
     {
+        $this->Id = 0;
         $this->resetInputFields();
         $this->dispatch('open-modal', 'modalCategory');
     }
