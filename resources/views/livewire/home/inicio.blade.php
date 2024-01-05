@@ -17,4 +17,3 @@
             </tr>
         </x-table>
     </x-card>
-</div>
