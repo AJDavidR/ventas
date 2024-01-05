@@ -19,12 +19,12 @@
                     <td>{{ $category->name }}</td>
                     <td class="text-center">
                         <a href="{{ route('categories.show', $category) }}" title="ver"
-                            class="btn btn-success btn-xs">
+                            class="btn btn-success btn-sm">
                             <i class="fas fa-eye"></i>
                         </a>
                     </td>
                     <td class="text-center">
-                        <a wire:click='edit({{ $category->id }})' title="editar" class="btn btn-primary btn-xs">
+                        <a wire:click='edit({{ $category->id }})' title="editar" class="btn btn-primary btn-sm">
                             <i class="fas fa-edit"></i>
                         </a>
                     </td>
@@ -33,7 +33,7 @@
                             id:{{ $category->id }},
                             eventName: 'destroyCategory'
                         })"
-                            title="eliminar" class="btn btn-danger btn-xs">
+                            title="eliminar" class="btn btn-danger btn-sm">
                             <i class="fas fa-trash-alt"></i>
                         </a>
                     </td>
