@@ -65,7 +65,7 @@
             </div>
 
             <hr>
-            <button class="btn btn-primary float-right">{{ $Id == null ? 'Guardar' : 'Editar' }}</button>
+            <button class="btn btn-primary float-right">{{ $Id == 0 ? 'Guardar' : 'Editar' }}</button>
         </form>
     </x-modal>
 </div>
