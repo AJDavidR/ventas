@@ -54,7 +54,7 @@ class CategoryComponent extends Component
     // guardar la nueva categoria
     public function store()
     {
-        Category::create($this->form->validate());
+        $this->form->store();
 
         $this->dispatch('close-modal', 'modalCategory');
         $this->dispatch('msg', 'Categoria creada correctamente');
@@ -73,7 +73,7 @@ class CategoryComponent extends Component
     // Actualizar la categoria
     public function update(Category $category)
     {
-        $category->update($this->form->validate());
+        $this->form->update($category);
 
         $this->dispatch('close-modal', 'modalCategory');
         $this->dispatch('msg', 'Categoria editada correctamente');

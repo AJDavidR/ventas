@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Forms\Category;
 
+use App\Models\Category;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
 
@@ -24,4 +25,12 @@ class CategoryForm extends Form
         'unique' => 'El nombre de la categoria ya esta en uso'
     ])]
     public $name = '';
+    public function store()
+    {
+        Category::create($this->validate());
+    }
+    public function update(Category $category)
+    {
+        $category->update($this->validate());
+    }
 }
