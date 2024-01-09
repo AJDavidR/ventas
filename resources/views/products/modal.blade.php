@@ -19,7 +19,10 @@
             <div class="form-group col-md-5">
                 <label for="category_id">Categoria: </label>
                 <select wire:model='category_id' id="category_id" class="form-control">
-
+                    <option value="">Seleccionar</option>
+                    @foreach ($this->categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
                 </select>
 
                 @error('category_id')
@@ -40,8 +43,8 @@
             {{-- input Precio compra --}}
             <div class="form-group col-md-4">
                 <label for="precio_compra">Precio compra: </label>
-                <input wire:model="precio_compra" type="number" class="form-control" id="precio_compra"
-                    placeholder="Ej: 1000000">
+                <input wire:model="precio_compra" min="0" step="any" type="number" class="form-control"
+                    id="precio_compra" placeholder="Ej: 1000000">
 
                 @error('precio_compra')
                     <div class="alert alert-danger w-100 mt-2">{{ $message }}</div>
@@ -51,8 +54,8 @@
             {{-- input Precio venta --}}
             <div class="form-group col-md-4">
                 <label for="precio_venta">Precio venta: </label>
-                <input wire:model="precio_venta" type="number" class="form-control" id="precio_venta"
-                    placeholder="Ej: 1000000">
+                <input wire:model="precio_venta" min="0" step="any" type="number" class="form-control"
+                    id="precio_venta" placeholder="Ej: 1000000">
 
                 @error('precio_venta')
                     <div class="alert alert-danger w-100 mt-2">{{ $message }}</div>
@@ -73,7 +76,8 @@
             {{-- input Stock --}}
             <div class="form-group col-md-4">
                 <label for="stock">Stock: </label>
-                <input wire:model="stock" type="number" class="form-control" id="stock" placeholder="Ej: 100">
+                <input wire:model="stock" min="0" type="number" class="form-control" id="stock"
+                    placeholder="Ej: 100">
 
                 @error('stock')
                     <div class="alert alert-danger w-100 mt-2">{{ $message }}</div>
@@ -104,7 +108,7 @@
             {{-- Cheack box Active --}}
             <div class="form-group col-md-3">
                 <div class="icheck-primary">
-                    <input type="checkbox" wire:model='active' id="active">
+                    <input type="checkbox" wire:model='active' id="active" checked>
                     <label for="active">
                         ¿esta activo?
                     </label>
@@ -127,12 +131,15 @@
 
             {{-- Imagen --}}
             <div class="form-group col-md-6">
-                <img src="" alt="">
+                @if ($this->image)
+                    <img src="{{ $image->temporaryUrl() }}" class="rounded float-right" width="200">
+                @endif
             </div>
 
         </div>
 
         <hr>
-        <button class="btn btn-primary float-right">{{ $Id == 0 ? 'Guardar' : 'Editar' }}</button>
+        <button wire:loading.attr='disabled'
+            class="btn btn-primary float-right">{{ $Id == 0 ? 'Guardar' : 'Editar' }}</button>
     </form>
 </x-modal>

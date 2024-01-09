@@ -6,38 +6,42 @@
         </x-slot:cardTools>
         <x-table>
             <x-slot:thead>
-                <th>ID</th>
-                <th>Imagen</th>
-                <th>Nombre</th>
-                <th>Precio de Venta</th>
-                <th>Stock</th>
-                <th>Categoria</th>
-                <th>Estado</th>
-                <th width="3%">Ver</th>
-                <th width="3%">Editar</th>
-                <th width="3%">Borrar</th>
+                <tr>
+                    <th>ID</th>
+                    <th>Imagen</th>
+                    <th>Nombre</th>
+                    <th>Precio de Venta</th>
+                    <th>Stock</th>
+                    <th>Categoria</th>
+                    <th>Estado</th>
+                    <th width="3%">Ver</th>
+                    <th width="3%">Editar</th>
+                    <th width="3%">Borrar</th>
+                </tr>
 
             </x-slot:thead>
             @forelse ($products as $product)
                 <tr>
                     <td>{{ $product->id }}</td>
-                    <td>imagen</td>
+                    <td>
+                        <x-image :item="$product" />
+                    </td>
                     <td>{{ $product->name }}</td>
-                    <td>{{ $product->precio_venta }}</td>
-                    <td>{{ $product->stock }}</td>
+                    <td>{!! $product->precio !!}</td>
+                    <td>{!! $product->stockLabel !!}</td>
                     <td>{{ $product->category_id }}</td>
-                    <td>Active</td>
-                    <td class="text-center">
-                        <a href="{{ route('products.show', $product) }}" title="ver" class="btn btn-success btn-sm">
+                    <td>{!! $product->activeLabel !!}</td>
+                    <td>
+                        <a href="#" title="ver" class="btn btn-success btn-sm">
                             <i class="fas fa-eye"></i>
                         </a>
                     </td>
-                    <td class="text-center">
+                    <td>
                         <a wire:click='edit({{ $product->id }})' title="editar" class="btn btn-primary btn-sm">
                             <i class="fas fa-edit"></i>
                         </a>
                     </td>
-                    <td class="text-center">
+                    <td>
                         <a wire:click="$dispatch('delete',{
                             id:{{ $product->id }},
                             eventName: 'destroyProduct'
