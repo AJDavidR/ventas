@@ -10,6 +10,7 @@ use Livewire\Component;
 class CategoryShow extends Component
 {
     public Category $category;
+
     public function render()
     {
         return view('livewire.category.category-show');

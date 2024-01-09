@@ -13,10 +13,19 @@ use Livewire\WithPagination;
 class CategoryComponent extends Component
 {
     use WithPagination;
+
     // propiedades clase
-    public $search = '', $totalRegistros = 0, $cant = 5;
+    public $search = '';
+
+    public $totalRegistros = 0;
+
+    public $cant = 5;
+
     // propiedades modelo
-    public $name, $Id;
+    public $name;
+
+    public $Id;
+
     public function render()
     {
         $this->totalRegistros = Category::count();
@@ -25,11 +34,10 @@ class CategoryComponent extends Component
             ->where('name', 'like', "%{$this->search}%")
             ->orderby('id', 'desc')
             ->paginate($this->cant);
-        // $categories = collect(); 
-
+        // $categories = collect();
 
         return view('livewire.category.category-component', [
-            'categories' => $categories
+            'categories' => $categories,
         ]);
     }
 
@@ -45,6 +53,7 @@ class CategoryComponent extends Component
         ]);
         $this->resetErrorBag();
     }
+
     // Crear la categoria
     public function create()
     {
@@ -52,12 +61,13 @@ class CategoryComponent extends Component
         $this->resetInputFields();
         $this->dispatch('open-modal', 'modalCategory');
     }
+
     // guardar la nueva categoria
     public function store()
     {
         // dump('Crear category');
         $rules = [
-            'name' => 'required|min:5|max:255|unique:categories'
+            'name' => 'required|min:5|max:255|unique:categories',
         ];
         $messages = [
             'name.required' => 'El nombre es requerido',
@@ -87,12 +97,13 @@ class CategoryComponent extends Component
         $this->name = $category->name;
         $this->dispatch('open-modal', 'modalCategory');
     }
+
     // Actualizar la categoria
     public function update(Category $category)
     {
         // dump($category);
         $rules = [
-            'name' => 'required|min:5|max:255|unique:categories,id,' . $this->Id
+            'name' => 'required|min:5|max:255|unique:categories,id,'.$this->Id,
         ];
         $messages = [
             'name.required' => 'El nombre es requerido',
@@ -109,6 +120,7 @@ class CategoryComponent extends Component
 
         $this->resetInputFields();
     }
+
     // eliminar categoria
     #[On('destroyCategory')]
     public function destroy($id)

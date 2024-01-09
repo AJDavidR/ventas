@@ -11,6 +11,7 @@ class Messages extends Component
     {
         return view('livewire.messages');
     }
+
     #[On('msg')]
     public function msgs($msg)
     {

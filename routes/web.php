@@ -2,9 +2,9 @@
 
 use App\Livewire\Category\CategoryComponent;
 use App\Livewire\Category\CategoryShow;
+use App\Livewire\Home\Inicio;
 use App\Livewire\Product\ProductComponent;
 use Illuminate\Support\Facades\Route;
-use App\Livewire\Home\Inicio;
 
 /*
 |--------------------------------------------------------------------------

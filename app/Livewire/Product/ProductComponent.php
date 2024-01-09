@@ -13,23 +13,38 @@ use Livewire\WithPagination;
 #[Title('Productos')]
 class ProductComponent extends Component
 {
-    use WithPagination, WithFileUploads;
+    use WithFileUploads, WithPagination;
+
     // ----------> propiedades clase
     public $search = '';
+
     public $totalRegistros = 0;
+
     public $cant = 5;
+
     // ----------> propiedades modelo
-    public  $Id = 0;
+    public $Id = 0;
+
     public $name;
+
     public $descripcion;
+
     public $precio_compra;
+
     public $precio_venta;
+
     public $stock;
+
     public $stock_minimo = 10;
+
     public $codigo_barras;
+
     public $fecha_vencimiento;
+
     public $active = 1;
+
     public $category_id;
+
     public $image;
 
     public function render()
@@ -44,7 +59,7 @@ class ProductComponent extends Component
             ->paginate($this->cant);
 
         return view('livewire.product.product-component', [
-            'products' => $products
+            'products' => $products,
         ]);
     }
 
@@ -68,7 +83,7 @@ class ProductComponent extends Component
             'fecha_vencimiento',
             'active',
             'category_id',
-            'image'
+            'image',
         ]);
         $this->resetErrorBag();
     }
@@ -114,7 +129,7 @@ class ProductComponent extends Component
         $product->save();
 
         if ($this->image) {
-            $newName = 'product/' . uniqid() . '.' . $this->image->extension();
+            $newName = 'product/'.uniqid().'.'.$this->image->extension();
             $this->image->storeAs('public', $newName);
             $product->image()->create(['url' => $newName]);
         }
