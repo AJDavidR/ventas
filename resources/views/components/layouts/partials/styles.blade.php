@@ -11,3 +11,5 @@
 
 <!-- CSS de iCheck -->
 <link rel="stylesheet" href="{{ asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}" />
+
+<link rel="stylesheet" href="{{ asset('css/styles.css') }}" />
