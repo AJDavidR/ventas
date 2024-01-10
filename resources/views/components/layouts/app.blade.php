@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ $title ?? config('app.name') }}</title>
-    
+
     @include('components.layouts.partials.styles')
 </head>
 
@@ -15,7 +15,7 @@
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
             <img class="animation__wobble" src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTELogo" height="60"
-            <img class="animation__wobble" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60"
+                <img class="animation__wobble" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60"
                 width="60">
         </div>
 
@@ -84,7 +84,9 @@
                         })
                         Swal.fire({
                             title: "Eliminado!",
-                            icon: "success"
+                            icon: "success",
+                            timer: 700,
+                            showConfirmButton: false,
                         });
                     }
                 });

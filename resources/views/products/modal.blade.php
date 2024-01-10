@@ -87,8 +87,7 @@
             {{-- input Stock minimo --}}
             <div class="form-group col-md-4">
                 <label for="stock_minimo">Stock minimo: </label>
-                <input wire:model="stock_minimo" type="number" class="form-control" id="stock_minimo"
-                    placeholder="Ej: 10">
+                <input wire:model="stock_minimo" type="number" class="form-control" id="stock_minimo">
 
                 @error('stock_minimo')
                     <div class="alert alert-danger w-100 mt-2">{{ $message }}</div>
@@ -131,6 +130,12 @@
 
             {{-- Imagen --}}
             <div class="form-group col-md-6">
+
+                @if ($Id > 0)
+                    <label for="img_actual">Imagen actual</label>
+                    <x-image :item="$product = App\Models\Product::find($Id)" id="img_actual" size="200" float="float-right" />
+                @endif
+
                 @if ($this->image)
                     <img src="{{ $image->temporaryUrl() }}" class="rounded float-right" width="200">
                 @endif

@@ -13,7 +13,7 @@
         <span>Entradas</span>
     </div>
     <div>
-        <input type="text" wire:model.live='search' placeholder="Buscar" class="form-control">
+        <input type="text" wire:model.live.debounce.300ms='search' placeholder="Buscar" class="form-control">
     </div>
 </div>
 <div class="table-responsive">

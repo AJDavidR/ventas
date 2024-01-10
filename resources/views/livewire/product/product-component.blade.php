@@ -29,10 +29,13 @@
                     <td>{{ $product->name }}</td>
                     <td>{!! $product->precio !!}</td>
                     <td>{!! $product->stockLabel !!}</td>
-                    <td>{{ $product->category_id }}</td>
+                    <td>
+                        <a class="badge badge-secondary"
+                            href="{{ route('categories.show', $product->category->id) }}">{{ $product->category->name }}</a>
+                    </td>
                     <td>{!! $product->activeLabel !!}</td>
                     <td>
-                        <a href="#" title="ver" class="btn btn-success btn-sm">
+                        <a href="{{ route('products.show', $product) }}" title="ver" class="btn btn-success btn-sm">
                             <i class="fas fa-eye"></i>
                         </a>
                     </td>
