@@ -1,3 +1,5 @@
+{{-- ----------------------> Tabla esquema general <---------------------- --}}
+
 <div class="mb-3 d-flex justify-content-between">
     <div>
         <span>Mostrar</span>
@@ -11,11 +13,11 @@
         <span>Entradas</span>
     </div>
     <div>
-        <input type="text" wire:model.live='search' placeholder="Buscar" class="form-control">
+        <input type="text" wire:model.live.debounce.300ms='search' placeholder="Buscar" class="form-control">
     </div>
 </div>
 <div class="table-responsive">
-    <table class="table">
+    <table class="table table-striped table-hover text-center">
         <thead>
             <tr>
                 {{ $thead }}

@@ -1,3 +1,5 @@
+{{-- ----------------------> Tarjeta esquema general <---------------------- --}}
+
 @props(['cardTitle' => '', 'cardTools' => '', 'cardFooter' => ''])
 <div class="card">
     <div class="card-header">
