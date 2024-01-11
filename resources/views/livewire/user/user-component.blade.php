@@ -9,7 +9,11 @@
         <x-table>
             <x-slot:thead>
                 <th>ID</th>
+                <th>Imagen</th>
                 <th>Nombre</th>
+                <th>Email</th>
+                <th>Perfil</th>
+                <th>Estado</th>
                 <th width="3%">Ver</th>
                 <th width="3%">Editar</th>
                 <th width="3%">Borrar</th>
@@ -19,7 +23,25 @@
             @forelse ($users as $user)
                 <tr>
                     <td>{{ $user->id }}</td>
+                    <td>
+                        <x-image :item="$user" />
+                    </td>
                     <td>{{ $user->name }}</td>
+                    <td>{{ $user->email }}</td>
+                    <td>
+                        @if ($user->admin == 1)
+                            {{ 'Administrador' }}
+                        @else
+                            {{ 'Usuario' }}
+                        @endif
+                    </td>
+                    <td>
+                        @if ($user->active == 1)
+                            {{ 'En linea' }}
+                        @else
+                            {{ 'Desconectado' }}
+                        @endif
+                    </td>
                     <td>
                         <a href="#" title="ver" class="btn btn-success btn-sm">
                             <i class="fas fa-eye"></i>
@@ -44,7 +66,7 @@
             @empty
 
                 <tr class="text-center">
-                    <td colspan="5">Sin registros</td>
+                    <td colspan="9">Sin registros</td>
                 </tr>
             @endforelse
 
