@@ -19,19 +19,30 @@
 
         <li class="nav-item dropdown user-menu">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                <img src="{{ asset('dist/img/avatar5.png') }}" class="user-image img-circle elevation-2"
-                    alt="User Image">
-                <span class="d-none d-md-inline">Name</span>
+                <img src="{{ asset('Ashen-One.jpg') }}" class="user-image img-circle elevation-2"
+                    alt="{{ asset('no-image.png') }}">
+                <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
             </a>
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit; right: 0px;">
                 <!-- User image -->
-                <li class="user-header bg-lightblue">
-                    <img src="{{ asset('dist/img/avatar5.png') }}" class="img-circle elevation-2" alt="User Image">
+                <li class="user-header bg-gray">
+                    <img src="{{ asset('Ashen-One.jpg') }}" class="img-circle elevation-2"
+                        alt="{{ asset('no-image.png') }}">
 
-                    <p>
-                        Name
-                        <small>Cargo</small>
-                    </p>
+                    <div class="info">
+                        @auth
+                            <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+                            <small>
+                                @if (Auth::user()->admin == 1)
+                                    {{ 'Administrador' }}
+                                @else
+                                    {{ 'Usuario' }}
+                                @endif
+                            </small>
+                        @else
+                            <a href="#" class="d-block">Invitado</a>
+                        @endauth
+                    </div>
                 </li>
                 <!-- Menu Body -->
 
