@@ -132,7 +132,7 @@ class ProductComponent extends Component
         $product->save();
 
         if ($this->image) {
-            $newName = 'product/'.uniqid().'.'.$this->image->extension();
+            $newName = 'products/'.uniqid().'.'.$this->image->extension();
             $this->image->storeAs('public', $newName);
             $product->image()->create(['url' => $newName]);
         }
@@ -199,7 +199,7 @@ class ProductComponent extends Component
                 Storage::delete('public/'.$product->image->url);
                 $product->image()->delete();
             }
-            $newName = 'product/'.uniqid().'.'.$this->image->extension();
+            $newName = 'products/'.uniqid().'.'.$this->image->extension();
             $this->image->storeAs('public', $newName);
             $product->image()->create(['url' => $newName]);
         }
