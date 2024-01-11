@@ -105,7 +105,7 @@
             </div>
 
             {{-- Cheack box Active --}}
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-6">
                 <div class="icheck-primary">
                     <input type="checkbox" wire:model='active' id="active" checked>
                     <label for="active">
@@ -119,8 +119,8 @@
             </div>
 
             {{-- Input Imagen --}}
-            <div class="form-group col-md-3">
-                <label for="image">imagen</label>
+            <div class="form-group col-md-6">
+                <label for="image">imagen:</label>
                 <input type="file" wire:model='image' id="image" accept="image/*">
 
                 @error('image')
@@ -129,17 +129,28 @@
             </div>
 
             {{-- Imagen --}}
-            <div class="form-group col-md-6">
 
+            <div class="form-group col-12 col-md-12 d-flex">
                 @if ($Id > 0)
-                    <label for="img_actual">Imagen actual</label>
-                    <x-image :item="$product = App\Models\Product::find($Id)" id="img_actual" size="200" float="float-right" />
+                    <div class="form-group col-12 col-md-6">
+                        <label for="img_actual" class="d-block text-center">Imagen actual</label>
+                        <div class="text-center">
+                            <x-image :item="$Product = App\Models\Product::find($Id)" id="img_actual" size="200" />
+                        </div>
+                    </div>
                 @endif
 
                 @if ($this->image)
-                    <img src="{{ $image->temporaryUrl() }}" class="rounded float-right" width="200">
+                    <div class="form-group col-12 col-md-6">
+                        <label for="img_up" class="d-block text-center">Imagen subida</label>
+                        <div class="text-center">
+                            <img src="{{ $image->temporaryUrl() }}" id="img_up" class="rounded mx-auto d-block"
+                                width="200" style="position: relative;">
+                        </div>
+                    </div>
                 @endif
             </div>
+
 
         </div>
 
