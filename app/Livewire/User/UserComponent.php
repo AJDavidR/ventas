@@ -58,10 +58,11 @@ class UserComponent extends Component
             'image',
             'imageModel',
         ]);
+        $this->image = '';
         $this->resetErrorBag();
     }
 
-    // Crear la categoria
+    // Crear el usuario
     public function create()
     {
         $this->Id = 0;
@@ -102,5 +103,20 @@ class UserComponent extends Component
         $this->dispatch('msg', 'Usuario creado correctamente');
 
         $this->resetInputFields();
+    }
+
+    // Editar el usuario
+    public function edit(User $user)
+    {
+        $this->resetInputFields();
+
+        $this->Id = $user->id;
+        $this->name = $user->name;
+        $this->email = $user->email;
+        $this->password = $user->password;
+        $this->admin = $user->admin;
+        $this->active = $user->active;
+
+        $this->dispatch('open-modal', 'modalUser');
     }
 }

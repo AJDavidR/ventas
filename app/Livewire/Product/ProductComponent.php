@@ -91,7 +91,7 @@ class ProductComponent extends Component
         $this->resetErrorBag();
     }
 
-    // Crear la categoria
+    // Crear el producto
     public function create()
     {
         $this->Id = 0;
@@ -102,7 +102,7 @@ class ProductComponent extends Component
     // guardar el nuevo producto
     public function store()
     {
-        // dump('Crear category');
+        // dump('Crear product');
         $rules = [
             'name' => 'required|min:5|max:255|unique:products',
             'descripcion' => 'max:255',
@@ -132,7 +132,7 @@ class ProductComponent extends Component
         $product->save();
 
         if ($this->image) {
-            $newName = 'products/'.uniqid().'.'.$this->image->extension();
+            $newName = 'products/' . uniqid() . '.' . $this->image->extension();
             $this->image->storeAs('public', $newName);
             $product->image()->create(['url' => $newName]);
         }
@@ -168,7 +168,7 @@ class ProductComponent extends Component
     {
         // dump($product);
         $rules = [
-            'name' => 'required|min:5|max:255|unique:products,'.$this->Id,
+            'name' => 'required|min:5|max:255|unique:products,' . $this->Id,
             'descripcion' => 'max:255',
             'precio_compra' => 'numeric|nullable',
             'precio_venta' => 'required|numeric',
@@ -196,10 +196,10 @@ class ProductComponent extends Component
 
         if ($this->image) {
             if ($product->image != null) {
-                Storage::delete('public/'.$product->image->url);
+                Storage::delete('public/' . $product->image->url);
                 $product->image()->delete();
             }
-            $newName = 'products/'.uniqid().'.'.$this->image->extension();
+            $newName = 'products/' . uniqid() . '.' . $this->image->extension();
             $this->image->storeAs('public', $newName);
             $product->image()->create(['url' => $newName]);
         }
@@ -219,7 +219,7 @@ class ProductComponent extends Component
         $product->delete();
 
         if ($product->image != null) {
-            Storage::delete('public/'.$product->image->url);
+            Storage::delete('public/' . $product->image->url);
             $product->image()->delete();
         }
 

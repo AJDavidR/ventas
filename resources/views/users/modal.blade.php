@@ -72,7 +72,7 @@
             </div>
 
             {{-- Input Imagen --}}
-            <div class="form-group col-12 col-md-6">
+            <div class="form-group col-12 col-md-12">
                 <label for="image">imagen</label>
                 <input type="file" wire:model='image' id="image" accept="image/*">
 
@@ -82,15 +82,21 @@
             </div>
 
             {{-- Imagen --}}
-            <div class="form-group col-12 col-md-6">
+            <div class="form-group col-12 col-md-12 d-flex">
 
                 @if ($Id > 0)
-                    <label for="img_actual">Imagen actual</label>
-                    <x-image :item="$User = App\Models\User::find($Id)" id="img_actual" size="200" float="float-right" />
+                    <div class="form-group col-12 col-md-6 dx-2">
+                        <label for="img_actual">Imagen actual</label>
+                        <x-image :item="$User = App\Models\User::find($Id)" id="img_actual" size="200" float="float-right" />
+                    </div>
                 @endif
 
                 @if ($this->image)
-                    <img src="{{ $image->temporaryUrl() }}" class="rounded float-right" width="200">
+                    <div class="form-group col-12 col-md-6 dx-2">
+                        <label for="img_up">Imagen subida</label>
+                        <img src="{{ $image->temporaryUrl() }}" id="img_up" class="rounded float-right"
+                            width="200">
+                    </div>
                 @endif
             </div>
 
