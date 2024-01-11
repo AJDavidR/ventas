@@ -52,6 +52,7 @@ class UserComponent extends Component
             'name',
             'email',
             'password',
+            're_password',
             'admin',
             'active',
             'image',
@@ -66,5 +67,40 @@ class UserComponent extends Component
         $this->Id = 0;
         $this->resetInputFields();
         $this->dispatch('open-modal', 'modalUser');
+    }
+
+    // guardar el nuevo Usuario
+    public function store()
+    {
+        $rules = [
+            'name' => 'required|min:5|max:255',
+            'email' => 'required|Email|max:255|unique:users',
+            'password' => 'required|min:5',
+            're_password' => 'required|same:password',
+            'image' => 'image|max:1024|nullable',
+
+        ];
+        $this->validate($rules);
+
+        $User = new User();
+
+        $User->name = $this->name;
+        $User->email = $this->email;
+        $User->password = bcrypt($this->password);
+        $User->admin = $this->admin;
+        $User->active = $this->active;
+
+        $User->save();
+
+        if ($this->image) {
+            $newName = 'users/' . uniqid() . '.' . $this->image->extension();
+            $this->image->storeAs('public', $newName);
+            $User->image()->create(['url' => $newName]);
+        }
+
+        $this->dispatch('close-modal', 'modalUser');
+        $this->dispatch('msg', 'Usuario creado correctamente');
+
+        $this->resetInputFields();
     }
 }

@@ -30,16 +30,24 @@
                     <td>{{ $user->email }}</td>
                     <td>
                         @if ($user->admin == 1)
-                            {{ 'Administrador' }}
+                            <span class="badge badge-pill badge-success">
+                                {{ 'Administrador' }}
+                            </span>
                         @else
-                            {{ 'Usuario' }}
+                            <span class="badge badge-pill badge-secondary">
+                                {{ 'Invitado' }}
+                            </span>
                         @endif
                     </td>
                     <td>
                         @if ($user->active == 1)
-                            {{ 'En linea' }}
+                            <span class="badge badge-pill badge-success">
+                                {{ 'En linea' }}
+                            </span>
                         @else
-                            {{ 'Desconectado' }}
+                            <span class="badge badge-pill badge-secondary">
+                                {{ 'Desconectado' }}
+                            </span>
                         @endif
                     </td>
                     <td>

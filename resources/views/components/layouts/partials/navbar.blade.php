@@ -21,7 +21,13 @@
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                 <img src="{{ asset('Ashen-One.jpg') }}" class="user-image img-circle elevation-2"
                     alt="{{ asset('no-image.png') }}">
-                <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
+                <span class="d-none d-md-inline">
+                    @auth
+                        <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
+                    @else
+                        <span class="d-none d-md-inline">Invitado</span>
+                    @endauth
+                </span>
             </a>
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit; right: 0px;">
                 <!-- User image -->
@@ -29,9 +35,9 @@
                     <img src="{{ asset('Ashen-One.jpg') }}" class="img-circle elevation-2"
                         alt="{{ asset('no-image.png') }}">
 
-                    <div class="info">
-                        @auth
-                            <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+                    @auth
+                        <p>
+                            {{ Auth::user()->name }}
                             <small>
                                 @if (Auth::user()->admin == 1)
                                     {{ 'Administrador' }}
@@ -39,10 +45,10 @@
                                     {{ 'Usuario' }}
                                 @endif
                             </small>
-                        @else
-                            <a href="#" class="d-block">Invitado</a>
-                        @endauth
-                    </div>
+                        </p>
+                    @else
+                        <p class="d-block">Invitado</p>
+                    @endauth
                 </li>
                 <!-- Menu Body -->
 

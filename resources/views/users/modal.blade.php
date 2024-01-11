@@ -36,7 +36,7 @@
             {{-- Input re_password --}}
             <div class="form-group col-12 col-md-6">
                 <label for="re_password">Repetir contraseña:</label>
-                <input wire:model='re_password' type="re_password" class="form-control" placeholder="repetir contraseña"
+                <input wire:model='re_password' type="password" class="form-control" placeholder="repetir contraseña"
                     id="re_password">
                 @error('re_password')
                     <div class="alert alert-danger w-100 mt-2">{{ $message }}</div>
