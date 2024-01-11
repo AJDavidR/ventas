@@ -43,7 +43,7 @@ class ProductComponent extends Component
 
     public $fecha_vencimiento;
 
-    public $active;
+    public $active = 1;
 
     public $category_id;
 

@@ -31,9 +31,9 @@ class UserComponent extends Component
 
     public $re_password;
 
-    public $admin;
+    public $admin = 1;
 
-    public $active;
+    public $active = 1;
 
     public $image;
 
