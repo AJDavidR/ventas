@@ -66,7 +66,6 @@ class UserComponent extends Component
             'image',
             'imageModel',
         ]);
-        $this->image = '';
         $this->resetErrorBag();
     }
 
@@ -122,8 +121,9 @@ class UserComponent extends Component
         $this->name = $user->name;
         $this->email = $user->email;
         $this->password = $user->password;
-        $this->admin = $user->admin;
-        $this->active = $user->active;
+        $this->admin = $user->admin ? true : false;
+        $this->active = $user->active ? true : false;
+        $this->imageModel = $user->image ? $user->image->url : null;
 
         $this->dispatch('open-modal', 'modalUser');
     }
