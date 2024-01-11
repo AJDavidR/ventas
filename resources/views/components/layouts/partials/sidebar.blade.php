@@ -11,7 +11,11 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src={{ asset('Ashen-One.jpg') }} class="img-circle elevation-2" alt="{{ asset('no-image.png') }}">
+                @auth
+                    <img src={{ asset('storage/' . Auth::user()->image->url) }} class="img-circle elevation-2">
+                @else
+                    <img src={{ asset('no-image.png') }} class="img-circle elevation-2">
+                @endauth
             </div>
             <div class="info">
                 @auth

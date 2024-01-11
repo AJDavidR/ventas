@@ -32,8 +32,11 @@
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit; right: 0px;">
                 <!-- User image -->
                 <li class="user-header bg-gray">
-                    <img src="{{ asset('Ashen-One.jpg') }}" class="img-circle elevation-2"
-                        alt="{{ asset('no-image.png') }}">
+                    @auth
+                        <img src={{ asset('storage/' . Auth::user()->image->url) }} class="img-circle elevation-2">
+                    @else
+                        <img src={{ asset('no-image.png') }} class="img-circle elevation-2">
+                    @endauth
 
                     @auth
                         <p>
