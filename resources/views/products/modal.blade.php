@@ -120,7 +120,7 @@
 
             {{-- Input Imagen --}}
             <div class="form-group col-md-6">
-                <label for="image">imagen:</label>
+                <label for="image">imagen</label>
                 <input type="file" wire:model='image' id="image" accept="image/*">
 
                 @error('image')

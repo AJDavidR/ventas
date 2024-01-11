@@ -22,13 +22,21 @@ class UserComponent extends Component
 
     // ----------> propiedades modelo
     public $Id = 0;
+
     public $name;
+
     public $email;
+
     public $password;
+
     public $re_password;
+
     public $admin;
+
     public $active;
+
     public $image;
+
     public $imageModel;
 
     public function render()

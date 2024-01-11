@@ -8,6 +8,7 @@ use Livewire\Component;
 class Search extends Component
 {
     public $search;
+
     public function render()
     {
         if ($this->search) {
@@ -15,6 +16,7 @@ class Search extends Component
         } else {
             $products = collect();
         }
+
         return view('livewire.search', [
             'products' => $products,
         ]);

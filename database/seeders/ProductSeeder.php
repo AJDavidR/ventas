@@ -3,9 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Product;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
+use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
 
 class ProductSeeder extends Seeder
@@ -22,7 +21,7 @@ class ProductSeeder extends Seeder
 
             $faker = Faker::create();
 
-            $product->image()->create(['url' => 'products/' . $faker->image('public/storage/products', 640, 480, 'Product', false)]);
+            $product->image()->create(['url' => 'products/'.$faker->image('public/storage/products', 640, 480, 'Product', false)]);
         });
     }
 }
