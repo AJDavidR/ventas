@@ -22,6 +22,15 @@ class UserComponent extends Component
 
     // ----------> propiedades modelo
     public $Id = 0;
+    public $name;
+    public $email;
+    public $password;
+    public $re_password;
+    public $admin;
+    public $active;
+    public $image;
+    public $imageModel;
+
     public function render()
     {
         $this->totalRegistros = User::count();
@@ -34,5 +43,28 @@ class UserComponent extends Component
         return view('livewire.user.user-component', [
             'users' => $users,
         ]);
+    }
+
+    // resetear campos
+    public function resetInputFields()
+    {
+        $this->reset([
+            'name',
+            'email',
+            'password',
+            'admin',
+            'active',
+            'image',
+            'imageModel',
+        ]);
+        $this->resetErrorBag();
+    }
+
+    // Crear la categoria
+    public function create()
+    {
+        $this->Id = 0;
+        $this->resetInputFields();
+        $this->dispatch('open-modal', 'modalUser');
     }
 }
