@@ -21,7 +21,7 @@
 
             </x-slot:thead>
             @forelse ($products as $product)
-                <tr>
+                <tr class="tableCentrarY">
                     <td>{{ $product->id }}</td>
                     <td>
                         <x-image :item="$product" />

@@ -85,20 +85,21 @@
             <div class="form-group col-12 col-md-12 d-flex">
 
                 @if ($Id > 0)
-                    <div class="form-group col-12 col-md-6 dx-2">
+                    <div class="form-group col-12 col-md-6 dx-2 text-center">
                         <label for="img_actual">Imagen actual</label>
-                        <div class="text-center">
-                            <x-image :item="$User = App\Models\User::find($Id)" id="img_actual" size="200" />
+                        <div>
+                            <x-image :item="$User = App\Models\User::find($Id)" id="img_actual" float="float-left" size="200"
+                                sizeY="300" />
                         </div>
                     </div>
                 @endif
 
                 @if ($this->image)
-                    <div class="form-group col-12 col-md-6 dx-2">
+                    <div class="form-group col-12 col-md-6 dx-2 text-center">
                         <label for="img_up">Imagen subida</label>
-                        <div class="text-center">
+                        <div>
                             <img src="{{ $image->temporaryUrl() }}" id="img_up" class="rounded float-right"
-                                width="200">
+                                width="200" style="max-height: 300px;">
                         </div>
                     </div>
                 @endif

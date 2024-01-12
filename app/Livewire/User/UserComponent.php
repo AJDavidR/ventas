@@ -3,6 +3,7 @@
 namespace App\Livewire\User;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
@@ -90,20 +91,20 @@ class UserComponent extends Component
         ];
         $this->validate($rules);
 
-        $User = new User();
+        $user = new User();
 
-        $User->name = $this->name;
-        $User->email = $this->email;
-        $User->password = bcrypt($this->password);
-        $User->admin = $this->admin;
-        $User->active = $this->active;
+        $user->name = $this->name;
+        $user->email = $this->email;
+        $user->password = bcrypt($this->password);
+        $user->admin = $this->admin;
+        $user->active = $this->active;
 
-        $User->save();
+        $user->save();
 
         if ($this->image) {
             $newName = 'users/' . uniqid() . '.' . $this->image->extension();
             $this->image->storeAs('public', $newName);
-            $User->image()->create(['url' => $newName]);
+            $user->image()->create(['url' => $newName]);
         }
 
         $this->dispatch('close-modal', 'modalUser');
@@ -120,11 +121,53 @@ class UserComponent extends Component
         $this->Id = $user->id;
         $this->name = $user->name;
         $this->email = $user->email;
-        $this->password = $user->password;
         $this->admin = $user->admin ? true : false;
         $this->active = $user->active ? true : false;
         $this->imageModel = $user->image ? $user->image->url : null;
 
         $this->dispatch('open-modal', 'modalUser');
+    }
+
+    // Actualizar el usuario
+    public function update(User $user)
+    {
+        // dump($product);
+        $rules = [
+            'name' => 'required|min:5|max:255',
+            'email' => 'required|Email|max:255|unique:users,' . $this->Id,
+            'password' => 'nullable|min:5',
+            're_password' => 'same:password',
+            'image' => 'image|max:1024|nullable',
+
+        ];
+        $this->validate($rules);
+
+        $user->name = $this->name;
+        $user->email = $this->email;
+        $user->password = bcrypt($this->password);
+        $user->admin = $this->admin;
+        $user->active = $this->active;
+        // $user->imageModel = $this->image;
+
+        if ($this->password) {
+            $user->password = $this->password;
+        }
+
+        $user->update();
+
+        if ($this->image) {
+            if ($user->image != null) {
+                Storage::delete('public/' . $user->image->url);
+                $user->image()->delete();
+            }
+            $newName = 'products/' . uniqid() . '.' . $this->image->extension();
+            $this->image->storeAs('public', $newName);
+            $user->image()->create(['url' => $newName]);
+        }
+
+        $this->dispatch('close-modal', 'modalUser');
+        $this->dispatch('msg', 'Usuario editado correctamente');
+
+        $this->resetInputFields();
     }
 }

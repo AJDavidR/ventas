@@ -21,10 +21,10 @@
             </x-slot>
 
             @forelse ($users as $user)
-                <tr>
+                <tr class="tableCentrarY">
                     <td>{{ $user->id }}</td>
                     <td>
-                        <x-image :item="$user" />
+                        <x-image :item="$user" sizeY="70" />
                     </td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>

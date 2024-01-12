@@ -135,7 +135,7 @@
                     <div class="form-group col-12 col-md-6">
                         <label for="img_actual" class="d-block text-center">Imagen actual</label>
                         <div class="text-center">
-                            <x-image :item="$Product = App\Models\Product::find($Id)" id="img_actual" size="200" />
+                            <x-image :item="$Product = App\Models\Product::find($Id)" id="img_actual" size="200" sizeY="300" />
                         </div>
                     </div>
                 @endif
@@ -145,7 +145,7 @@
                         <label for="img_up" class="d-block text-center">Imagen subida</label>
                         <div class="text-center">
                             <img src="{{ $image->temporaryUrl() }}" id="img_up" class="rounded mx-auto d-block"
-                                width="200" style="position: relative;">
+                                width="200" style="max-height: 300px;" style="position: relative;">
                         </div>
                     </div>
                 @endif

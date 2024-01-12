@@ -1,3 +1,6 @@
 #list-search {
     position: absolute;
 }
+.tableCentrarY td {
+    vertical-align: middle !important;
+}
