@@ -6,6 +6,7 @@ use App\Livewire\Home\Inicio;
 use App\Livewire\Product\ProductComponent;
 use App\Livewire\Product\ProductShow;
 use App\Livewire\User\UserComponent;
+use App\Livewire\User\UserShow;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,3 +37,4 @@ Route::get('/productos', ProductComponent::class)->name('products');
 Route::get('/productos/{product}', ProductShow::class)->name('products.show');
 
 Route::get('/usuarios', UserComponent::class)->name('users');
+Route::get('/usuarios/{user}', UserShow::class)->name('users.show');
