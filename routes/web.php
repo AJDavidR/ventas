@@ -7,6 +7,7 @@ use App\Livewire\Product\ProductComponent;
 use App\Livewire\Product\ProductShow;
 use App\Livewire\User\UserComponent;
 use App\Livewire\User\UserShow;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,13 +29,15 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/inicio', Inicio::class)->name('inicio');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/inicio', Inicio::class)->name('inicio');
 
-Route::get('/categorias', CategoryComponent::class)->name('categories');
-Route::get('/categorias/{category}', CategoryShow::class)->name('categories.show');
+    Route::get('/categorias', CategoryComponent::class)->name('categories');
+    Route::get('/categorias/{category}', CategoryShow::class)->name('categories.show');
 
-Route::get('/productos', ProductComponent::class)->name('products');
-Route::get('/productos/{product}', ProductShow::class)->name('products.show');
+    Route::get('/productos', ProductComponent::class)->name('products');
+    Route::get('/productos/{product}', ProductShow::class)->name('products.show');
 
-Route::get('/usuarios', UserComponent::class)->name('users');
-Route::get('/usuarios/{user}', UserShow::class)->name('users.show');
+    Route::get('/usuarios', UserComponent::class)->name('users');
+    Route::get('/usuarios/{user}', UserShow::class)->name('users.show');
+});

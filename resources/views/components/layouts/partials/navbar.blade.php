@@ -19,7 +19,7 @@
 
         <li class="nav-item dropdown user-menu">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                <img src="{{ asset('Ashen-One.jpg') }}" class="user-image img-circle elevation-2"
+                <img src="{{ Auth()->user()->imagen }}" class="user-image img-circle elevation-2"
                     alt="{{ asset('no-image.png') }}">
                 <span class="d-none d-md-inline">
                     @auth
