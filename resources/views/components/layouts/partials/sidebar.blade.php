@@ -54,6 +54,15 @@
                 </li>
 
                 <li class="nav-item">
+                    <a href="{{ route('clients') }}" class="nav-link">
+                        <i class="nav-icon fas fa-user-friends"></i>
+                        <p>
+                            Clientes
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
                     <a href="{{ route('users') }}" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
