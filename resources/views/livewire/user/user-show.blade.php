@@ -1,39 +1,70 @@
-<div>
-    <x-card cardTitle="Detalles de usuario">
-        <x-slot:cardTools>
-            <a href="{{ route('users') }}" class="btn btn-primary">
-                <i class="fas fa-arrow-circle-left"></i> Regresar
-            </a>
+<x-card cardTitle="Detalles de usuario">
+    <x-slot:cardTools>
+        <a href="{{ route('users') }}" class="btn btn-primary">
+            <i class="fas fa-arrow-circle-left mr-2"></i>Regresar
+        </a>
 
-        </x-slot:cardTools>
+    </x-slot:cardTools>
 
-        <!-- Default box -->
-        <div class="card card-solid">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-12 col-sm-5">
-                        <div class="col-12  d-flex justify-content-center align-items-center">
-                            <img src="{{ $user->image ? asset('storage/' . $user->image->url) : asset('no-image.png') }}"
-                                class="img-fluid" style="max-height: 500px; max-width: 400px;">
-                        </div>
-
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card card-primary card-outline">
+                <div class="card-body box-profile">
+                    <div class="text-center">
+                        <x-image :item="$user" size="250" sizeY="350" />
                     </div>
-                    <div class="col-12 col-sm-7">
-                        <h3 class="my-3">{{ $user->name }}</h3>
-                        <p>{{ $user->email }}</p>
+                    <h2 class="profile-username text-center mb-2">{{ $user->name }}</h2>
+                    <p class="text-muted text-center">
+                        {!! $user->admin
+                            ? '<span class="badge badge-pill badge-warning">Administrador</span>'
+                            : '<span class="badge badge-pill badge-light">Vendedor</span>' !!}
+                    </p>
+                    <ul class="list-group mb-3">
+                        <li class="list-group-item">
+                            <b>Email</b> <a class="float-right">{{ $user->email }}</a>
+                        </li>
 
-                        <hr>
+                        <li class="list-group-item">
+                            <b>Estado</b> <a class="float-right">{!! $user->active
+                                ? '<span class="badge badge-success">Activo</span>'
+                                : '<span class="badge badge-warning">Inactivo</span>' !!}</a>
+                        </li>
 
-                        <div class="row">
-
-
-                        </div>
-                    </div>
-
+                        <li class="list-group-item">
+                            <b>Creado</b> <a class="float-right">{{ $user->created_at->format('Y-m-d') }}</a>
+                        </li>
+                    </ul>
                 </div>
-                <!-- /.card-body -->
             </div>
-            <!-- /.card -->
+        </div>
 
-    </x-card>
-</div>
+        <div class="col-md-8">
+            <table class="table text-center">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Imagen</th>
+                        <th>Producto</th>
+                        <th>Precio de venta</th>
+                        <th>Stock</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{-- @foreach ($category->products as $product)
+                        <tr>
+                            <td>{{ $product->id }}</td>
+                            <td>
+                                <x-image :item="$product" />
+                            </td>
+                            <td>{{ $product->name }}</td>
+                            <td>{!! $product->precio !!}</td>
+                            <td>{!! $product->stockLabel !!}</td>
+                        </tr>
+                    @endforeach --}}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</x-card>

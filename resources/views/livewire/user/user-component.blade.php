@@ -29,26 +29,14 @@
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     <td>
-                        @if ($user->admin == 1)
-                            <span class="badge badge-pill badge-warning">
-                                {{ 'Administrador' }}
-                            </span>
-                        @else
-                            <span class="badge badge-pill badge-light">
-                                {{ 'Vendedor' }}
-                            </span>
-                        @endif
+                        {!! $user->admin
+                            ? '<span class="badge badge-pill badge-warning">Administrador</span>'
+                            : '<span class="badge badge-pill badge-light">Vendedor</span>' !!}
                     </td>
                     <td>
-                        @if ($user->active == 1)
-                            <span class="badge badge-pill badge-success">
-                                {{ 'Activo' }}
-                            </span>
-                        @else
-                            <span class="badge badge-pill badge-secondary">
-                                {{ 'Inactivo' }}
-                            </span>
-                        @endif
+                        {!! $user->active
+                            ? '<span class="badge badge-success">Activo</span>'
+                            : '<span class="badge badge-warning">Inactivo</span>' !!}
                     </td>
                     <td>
                         <a href="{{ route('users.show', $user) }}" title="ver" class="btn btn-success btn-sm">

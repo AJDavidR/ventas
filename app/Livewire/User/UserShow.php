@@ -6,10 +6,11 @@ use App\Models\User;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-#[Title('Usuario')]
+#[Title('Ver usuario')]
 class UserShow extends Component
 {
     public User $user;
+
     public function render()
     {
         return view('livewire.user.user-show');

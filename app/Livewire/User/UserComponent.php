@@ -102,7 +102,7 @@ class UserComponent extends Component
         $user->save();
 
         if ($this->image) {
-            $newName = 'users/' . uniqid() . '.' . $this->image->extension();
+            $newName = 'users/'.uniqid().'.'.$this->image->extension();
             $this->image->storeAs('public', $newName);
             $user->image()->create(['url' => $newName]);
         }
@@ -134,7 +134,7 @@ class UserComponent extends Component
         // dump($product);
         $rules = [
             'name' => 'required|min:5|max:255',
-            'email' => 'required|Email|max:255|unique:users,' . $this->Id,
+            'email' => 'required|Email|max:255|unique:users,'.$this->Id,
             'password' => 'nullable|min:5',
             're_password' => 'same:password',
             'image' => 'image|max:1024|nullable',
@@ -157,10 +157,10 @@ class UserComponent extends Component
 
         if ($this->image) {
             if ($user->image != null) {
-                Storage::delete('public/' . $user->image->url);
+                Storage::delete('public/'.$user->image->url);
                 $user->image()->delete();
             }
-            $newName = 'products/' . uniqid() . '.' . $this->image->extension();
+            $newName = 'products/'.uniqid().'.'.$this->image->extension();
             $this->image->storeAs('public', $newName);
             $user->image()->create(['url' => $newName]);
         }
