@@ -51,7 +51,7 @@
                         @endif
                     </td>
                     <td>
-                        <a href="#" title="ver" class="btn btn-success btn-sm">
+                        <a href="{{ route('users.show', $user) }}" title="ver" class="btn btn-success btn-sm">
                             <i class="fas fa-eye"></i>
                         </a>
                     </td>
