@@ -51,7 +51,7 @@
                     <td>
                         <a wire:click="$dispatch('delete',{
                             id:{{ $user->id }},
-                            eventName: 'destroyProduct'
+                            eventName: 'destroyUser'
                         })"
                             title="eliminar" class="btn btn-danger btn-sm">
                             <i class="fas fa-trash-alt"></i>

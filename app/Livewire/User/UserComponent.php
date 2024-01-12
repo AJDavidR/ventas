@@ -4,6 +4,7 @@ namespace App\Livewire\User;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
@@ -131,7 +132,7 @@ class UserComponent extends Component
     // Actualizar el usuario
     public function update(User $user)
     {
-        // dump($product);
+        // dump($user);
         $rules = [
             'name' => 'required|min:5|max:255',
             'email' => 'required|Email|max:255|unique:users,'.$this->Id,
@@ -160,7 +161,7 @@ class UserComponent extends Component
                 Storage::delete('public/'.$user->image->url);
                 $user->image()->delete();
             }
-            $newName = 'products/'.uniqid().'.'.$this->image->extension();
+            $newName = 'users/'.uniqid().'.'.$this->image->extension();
             $this->image->storeAs('public', $newName);
             $user->image()->create(['url' => $newName]);
         }
@@ -169,5 +170,21 @@ class UserComponent extends Component
         $this->dispatch('msg', 'Usuario editado correctamente');
 
         $this->resetInputFields();
+    }
+
+    // eliminar Usuario
+    #[On('destroyUser')]
+    public function destroy($id)
+    {
+        // dump($id);
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        if ($user->image != null) {
+            Storage::delete('public/'.$user->image->url);
+            $user->image()->delete();
+        }
+
+        $this->dispatch('msg', 'Usero eliminado correctamente');
     }
 }

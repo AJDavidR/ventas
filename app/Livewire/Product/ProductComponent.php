@@ -207,7 +207,7 @@ class ProductComponent extends Component
         $this->dispatch('close-modal', 'modalProduct');
         $this->dispatch('msg', 'Producto editado correctamente');
 
-        // $this->resetInputFields();
+        $this->resetInputFields();
     }
 
     // eliminar producto
