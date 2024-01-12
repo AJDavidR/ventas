@@ -5,7 +5,7 @@
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="#" class="nav-link">Home</a>
+            <a href="{{ route('home') }}" class="nav-link">Home</a>
         </li>
 
     </ul>
@@ -22,31 +22,20 @@
                 <img src="{{ Auth()->user()->imagen }}" class="user-image img-circle elevation-2"
                     alt="{{ asset('no-image.png') }}">
                 <span class="d-none d-md-inline">
-                    @auth
-                        <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
-                    @else
-                        <span class="d-none d-md-inline">Invitado</span>
-                    @endauth
+                    <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
                 </span>
             </a>
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit; right: 0px;">
                 <!-- User image -->
                 <li class="user-header bg-gray">
-                    @auth
-                        <img src={{ asset('storage/' . Auth::user()->image->url) }} class="img-circle elevation-2">
-                    @else
-                        <img src={{ asset('no-image.png') }} class="img-circle elevation-2">
-                    @endauth
-
+                    <img src={{ Auth::user()->imagen }} class="img-circle elevation-2">
                     @auth
                         <p>
                             {{ Auth::user()->name }}
                             <small>
-                                @if (Auth::user()->admin == 1)
-                                    {{ 'Administrador' }}
-                                @else
-                                    {{ 'Usuario' }}
-                                @endif
+                                {!! Auth::user()->admin
+                                    ? '<span class="badge badge-pill badge-warning">Administrador</span>'
+                                    : '<span class="badge badge-pill badge-light">Vendedor</span>' !!}
                             </small>
                         </p>
                     @else
@@ -57,7 +46,7 @@
 
                 <!-- Menu Footer-->
                 <li class="user-footer">
-                    <a class="btn btn-default btn-flat">Perfil</a>
+                    <a href="{{ route('users.show', Auth::user()) }}" class="btn btn-default btn-flat">Perfil</a>
                     <a class="btn btn-default btn-flat float-right" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                   document.getElementById('logout-form').submit();">

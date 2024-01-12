@@ -11,18 +11,11 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                @auth
-                    <img src={{ asset('storage/' . Auth::user()->image->url) }} class="img-circle elevation-2">
-                @else
-                    <img src={{ asset('no-image.png') }} class="img-circle elevation-2">
-                @endauth
+                <img src="{{ Auth()->user()->imagen }}" class="user-image img-circle elevation-2"
+                    alt="{{ asset('no-image.png') }}">
             </div>
             <div class="info">
-                @auth
-                    <a href="#" class="d-block">{{ Auth::user()->name }}</a>
-                @else
-                    <a class="d-block">Invitado</a>
-                @endauth
+                <a href="{{ route('users.show', Auth::user()) }}" class="d-block">{{ Auth::user()->name }}</a>
             </div>
         </div>
 
