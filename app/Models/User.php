@@ -55,7 +55,7 @@ class User extends Authenticatable
     {
         return Attribute::make(
             get: function () {
-                return $this->image ? Storage::url('public/' . $this->image->url) : asset('no-image.png');
+                return $this->image ? Storage::url('public/'.$this->image->url) : asset('no-image.png');
             }
         );
     }

@@ -14,6 +14,7 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
+        // eliminar imagenes de productos
         Storage::deleteDirectory('public/products');
         Storage::makeDirectory('public/products');
 
