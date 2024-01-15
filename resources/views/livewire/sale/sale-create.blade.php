@@ -19,7 +19,7 @@
             </div>
             {{-- Columna productos --}}
             <div class="col-md-6">
-                Columna productos
+                @include('sales.list-products')
             </div>
         </div>
 
