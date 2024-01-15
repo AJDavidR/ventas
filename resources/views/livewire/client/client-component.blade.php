@@ -1,5 +1,5 @@
 <div>
-    <x-card cardTitle="Listado categorias ({{ $this->totalRegistros }})">
+    <x-card cardTitle="Listado categorias ({{ $totalRegistros }})">
         <x-slot:cardTools>
             <a href="#" class="btn btn-primary" wire:click='create'>
                 <i class="fas fa-plus-circle"></i> Crear
@@ -60,22 +60,6 @@
         </x-slot>
     </x-card>
 
-
-    <x-modal modalId="modalClient" modalTitle="Clients">
-        <form wire:submit={{ $Id == 0 ? 'store' : "update($Id)" }}>
-            <div class="form-row">
-                <div class="form-group col-12">
-                    <label for="name">Nombre:</label>
-                    <input wire:model='name' type="text" class="form-control" placeholder="Nombre" id="name">
-                    @error('name')
-                        <div class="alert alert-danger w-100 mt-2">{{ $message }}</div>
-                    @enderror
-                </div>
-            </div>
-
-            <hr>
-            <button class="btn btn-primary float-right">{{ $Id == 0 ? 'Guardar' : 'Editar' }}</button>
-        </form>
-    </x-modal>
+    @include('clients.modal')
 
 </div>

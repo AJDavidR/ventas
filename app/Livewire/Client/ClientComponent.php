@@ -24,6 +24,17 @@ class ClientComponent extends Component
     public $Id = 0;
 
     public $name;
+    
+    public $identificacion;
+    
+    public $telefono;
+    
+    public $email;
+    
+    public $empresa;
+    
+    public $nit;
+
 
     public function render()
     {
@@ -37,5 +48,27 @@ class ClientComponent extends Component
         return view('livewire.client.client-component', [
             'clients' => $clients,
         ]);
+    }
+
+    // resetear campos
+    public function resetInputFields()
+    {
+        $this->reset([
+            'name',
+            'identificacion',
+            'telefono',
+            'email',
+            'empresa',
+            'nit',
+        ]);
+        $this->resetErrorBag();
+    }
+
+    // Crear el cliente
+    public function create()
+    {
+        $this->Id = 0;
+        $this->resetInputFields();
+        $this->dispatch('open-modal', 'modalClient');
     }
 }
