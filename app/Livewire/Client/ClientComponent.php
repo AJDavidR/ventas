@@ -108,4 +108,18 @@ class ClientComponent extends Component
 
         $this->resetInputFields();
     }
+
+    // editar la categoria
+    public function edit(Client $client)
+    {
+        $this->resetInputFields();
+        $this->Id = $client->id;
+        $this->name = $client->name;
+        $this->identificacion = $client->identificacion;
+        $this->telefono = $client->telefono;
+        $this->email = $client->email;
+        $this->empresa = $client->empresa;
+        $this->nit = $client->nit;
+        $this->dispatch('open-modal', 'modalClient');
+    }
 }
