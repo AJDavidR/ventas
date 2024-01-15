@@ -80,7 +80,7 @@ class ClientComponent extends Component
             // 'identificacion' => 'required|max:999999999999999|unique:clients|numeric',
             // ^: Indica que la cadena debe comenzar aquí. // [0-9]: Representa cualquier dígito del 0 al 9.
             // {6,10}: Indica que debe haber de 6 a 10 dígitos. // $: Indica que la cadena debe terminar aquí.
-            'identificacion' => 'required|regex:/^[0-9]{6,10}$/|unique:clients|numeric',
+            'identificacion' => 'required|regex:/^[0-9]{6,10}$/|numeric|unique:clients',
             'telefono' => 'numeric|nullable',
             'email' => 'nullable|Email|max:255',
             'empresa' => 'nullable',
@@ -109,7 +109,7 @@ class ClientComponent extends Component
         $this->resetInputFields();
     }
 
-    // editar la categoria
+    // editar el Cliente
     public function edit(Client $client)
     {
         $this->resetInputFields();
@@ -121,5 +121,35 @@ class ClientComponent extends Component
         $this->empresa = $client->empresa;
         $this->nit = $client->nit;
         $this->dispatch('open-modal', 'modalClient');
+    }
+
+    // Actualizar el Cliente
+    public function update(Client $client)
+    {
+        $rules = [
+            'name' => 'required|min:5|max:255',
+            'identificacion' => 'required|regex:/^[0-9]{6,10}$/|numeric|unique:clients,id,' . $this->Id,
+            'telefono' => 'numeric|nullable',
+            'email' => 'nullable|Email|max:255',
+            'empresa' => 'nullable',
+            'nit' => 'numeric|nullable',
+        ];
+        $messages = [
+            'identificacion.regex' => 'El campo de identificación debe contener solo números y tener entre 6 y 10 dígitos.',
+        ];
+
+        $this->validate($rules, $messages);
+        $client->name = $this->name;
+        $client->identificacion = $this->identificacion;
+        $client->telefono = $this->telefono;
+        $client->email = $this->email;
+        $client->empresa = $this->empresa;
+        $client->nit = $this->nit;
+        $client->update();
+
+        $this->dispatch('close-modal', 'modalClient');
+        $this->dispatch('msg', 'Cliente editado correctamente');
+
+        $this->resetInputFields();
     }
 }
