@@ -1,3 +1,15 @@
 <div>
-    {{-- If your happiness depends on money, you will never be happy with yourself. --}}
+    <x-card cardTitle="Crear Venta">
+        <x-slot:cardTools>
+            <a href="#" class="btn btn-primary" wire:click='create'>
+                <i class="fas fa-plus-circle"></i> Crear
+            </a>
+        </x-slot>
+
+
+        <x-slot:cardFooter>
+
+        </x-slot>
+    </x-card>
+
 </div>

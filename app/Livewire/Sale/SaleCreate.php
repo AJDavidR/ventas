@@ -5,7 +5,7 @@ namespace App\Livewire\Sale;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-#[Title('Crear venta')]
+#[Title('Ventas')]
 class SaleCreate extends Component
 {
     public function render()
