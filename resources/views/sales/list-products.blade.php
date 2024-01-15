@@ -17,33 +17,44 @@
 
             </x-slot>
 
-            <tr>
-                <td scope="row"></td>
-                <td>
-                    <img src="">
+            @forelse ($products as $product)
+                <tr>
+                    <td>{{ $product->id }}</td>
+                    <td>
+                        <x-image :item="$product" />
 
-                </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>
+                    </td>
+                    <td>{{ $product->name }}</td>
+                    <td>
+                        <span style="color: rgb(2, 210, 2);">$</span>
+                        {!! '<b>' . number_format($product->precio_venta, 0, ',', '.') . '</b>' !!}
+                    </td>
+                    <td>
+                        @if ($product->stock >= $product->stock_minimo)
+                            <span class="badge badge-pill badge-success">{{ $product->stock }}</span>
+                        @else
+                            <span class="badge badge-pill badge-danger">{{ $product->stock }}</span>
+                        @endif
+                    </td>
+                    <td>
 
-                    <button class="btn btn-primary btn-sm" title="Agregar">
-                        <i class="fas fa-plus-circle"></i>
-                    </button>
-                </td>
+                        <button class="btn btn-primary btn-sm" title="Agregar">
+                            <i class="fas fa-plus-circle"></i>
+                        </button>
+                    </td>
 
-            </tr>
-
-            <tr>
-                <td colspan="10">Sin Registros</td>
-            </tr>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="10">Sin Registros</td>
+                </tr>
+            @endforelse
 
         </x-table>
 
     </div>
     <div class="card-footer">
-
+        {{ $products->links() }}
     </div>
 
 </div>
