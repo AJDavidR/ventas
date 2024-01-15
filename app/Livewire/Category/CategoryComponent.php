@@ -77,7 +77,7 @@ class CategoryComponent extends Component
         ];
         $this->validate($rules, $messages);
 
-        $category = new Category;
+        $category = new Category();
 
         $category->name = $this->name;
 
