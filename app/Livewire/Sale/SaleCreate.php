@@ -4,6 +4,7 @@ namespace App\Livewire\Sale;
 
 use App\Models\Product;
 use App\Models\Sale;
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
@@ -29,13 +30,20 @@ class SaleCreate extends Component
 
         $this->totalRegistros = Product::count();
 
-        $products = Product::query()
+
+
+        return view('livewire.sale.sale-create', [
+            'products' => $this->products,
+        ]);
+    }
+
+    // propiedad para obtener el listado de productos
+    #[Computed]
+    public function products()
+    {
+        return Product::query()
             ->where('name', 'like', "%{$this->search}%")
             ->orderby('id', 'desc')
             ->paginate($this->cant);
-
-        return view('livewire.sale.sale-create', [
-            'products' => $products,
-        ]);
     }
 }
