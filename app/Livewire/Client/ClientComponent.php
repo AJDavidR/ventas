@@ -3,6 +3,7 @@
 namespace App\Livewire\Client;
 
 use App\Models\Client;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
@@ -151,5 +152,15 @@ class ClientComponent extends Component
         $this->dispatch('msg', 'Cliente editado correctamente');
 
         $this->resetInputFields();
+    }
+
+    // eliminar cliente
+    #[On('destroyClient')]
+    public function destroy($id)
+    {
+        // dump($id);
+        $category = Client::findOrFail($id);
+        $category->delete();
+        $this->dispatch('msg', 'Cliente eliminado correctamente');
     }
 }
