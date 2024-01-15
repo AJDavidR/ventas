@@ -21,7 +21,7 @@
                 <tr>
                     <td>{{ $product->id }}</td>
                     <td>
-                        <x-image :item="$product" />
+                        <x-image :item="$product" size="60" />
 
                     </td>
                     <td>{{ $product->name }}</td>

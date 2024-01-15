@@ -15,7 +15,7 @@
         <div class="row">
             {{-- Detalles de la venta --}}
             <div class="col-md-6">
-                Detalles de la venta
+                @include('sales.card-details')
             </div>
             {{-- Columna productos --}}
             <div class="col-md-6">
