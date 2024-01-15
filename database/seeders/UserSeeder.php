@@ -22,6 +22,8 @@ class UserSeeder extends Seeder
         \App\Models\User::factory()->create([
             'name' => 'David Arrieta',
             'email' => 'test@gmail.com',
+            'admin' => true,
+            'active' => true,
         ]);
     }
 }
