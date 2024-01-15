@@ -27,7 +27,7 @@
                     <td>{{ $client->email }}</td>
                     <td>{{ $client->telefono }}</td>
                     <td>
-                        <a href="#" class="btn btn-success btn-sm" title="Ver">
+                        <a href="{{ route('clients.show', $client) }}" class="btn btn-success btn-sm" title="Ver">
                             <i class="far fa-eye"></i>
                         </a>
                     </td>
