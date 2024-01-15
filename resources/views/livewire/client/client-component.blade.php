@@ -10,6 +10,9 @@
             <x-slot:thead>
                 <th>ID</th>
                 <th>Nombre</th>
+                <th>Identificacion</th>
+                <th>Email</th>
+                <th>Telefono</th>
                 <th width="3%">...</th>
                 <th width="3%">...</th>
                 <th width="3%">...</th>
@@ -20,6 +23,9 @@
                 <tr>
                     <td>{{ $client->id }}</td>
                     <td>{{ $client->name }}</td>
+                    <td>{{ $client->identificacion }}</td>
+                    <td>{{ $client->email }}</td>
+                    <td>{{ $client->telefono }}</td>
                     <td>
                         <a href="{{ route('client.show', $client) }}" class="btn btn-success btn-sm" title="Ver">
                             <i class="far fa-eye"></i>
@@ -32,7 +38,7 @@
                         </a>
                     </td>
                     <td>
-                        <a wire:click="$dispatch('delete',{id: {{ $client->id }}, eventName:'destroyItem'})"
+                        <a wire:click="$dispatch('delete',{id: {{ $client->id }}, eventName:'destroyClient'})"
                             class="btn btn-danger btn-sm" title="Eliminar">
                             <i class="far fa-trash-alt"></i>
                         </a>
@@ -42,7 +48,7 @@
             @empty
 
                 <tr class="text-center">
-                    <td colspan="5">Sin registros</td>
+                    <td colspan="8">Sin registros</td>
                 </tr>
             @endforelse
 
@@ -55,7 +61,7 @@
     </x-card>
 
 
-    <x-modal modalId="modalItem" modalTitle="Items">
+    <x-modal modalId="modalClient" modalTitle="Clients">
         <form wire:submit={{ $Id == 0 ? 'store' : "update($Id)" }}>
             <div class="form-row">
                 <div class="form-group col-12">

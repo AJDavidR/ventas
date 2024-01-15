@@ -22,8 +22,12 @@ class ClientComponent extends Component
 
     // ----------> propiedades modelo
     public $Id = 0;
+
+    public $name;
+
     public function render()
     {
+        $this->totalRegistros = Client::count();
 
         $clients = Client::query()
             ->where('name', 'like', "%{$this->search}%")
