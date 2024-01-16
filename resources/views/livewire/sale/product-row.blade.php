@@ -19,7 +19,11 @@
     </td>
     <td>
 
-        <button wire:click='addProduct({{ $product->id }})' class="btn btn-primary btn-sm"
+        <button 
+            class="btn btn-primary btn-sm"
+            wire:click='addProduct({{ $product->id }})'
+            wire:loading.attr='disabled' 
+            wire:target='addProduct' 
             title="Agregar">
             <i class="fas fa-plus-circle"></i>
         </button>

@@ -24,7 +24,11 @@ class ProductRow extends Component
     // Agregar producto al carrito
     public function addProduct(Product $product)
     {
+        if($this->stock==0){
+            return;
+        }
         $this->dispatch('add-product', $product);
+        $this->stock--;
     }
 
     public function stockLabel(){
