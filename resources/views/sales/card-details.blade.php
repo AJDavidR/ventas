@@ -27,41 +27,45 @@
 
                 </thead>
                 <tbody>
+                    @forelse ($cart as $product)
+                        <tr>
+                            <td>{{ $product->id }}</td>
+                            <td>
+                                <x-image :item="$product->associatedModel" size="60" />
+                            </td>
+                            <td>{{ $product->name }}</td>
+                            <td>
+                                <b>{!! money($product->price) !!}</b>
+                            </td>
+                            <td>
+                                <!-- Botones para aumentar o disminuir la cantidad del producto en el carrito -->
+                                <button class="btn btn-primary btn-xs">
+                                    -
+                                </button>
 
-                    <tr>
-                        <td></td>
-                        <td>
-                            <img src="" width="50" class="img-fluid rounded">
+                                <span class="mx-1">{{ $product->quantity }}</span>
 
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <!-- Botones para aumentar o disminuir la cantidad del producto en el carrito -->
-                            <button class="btn btn-primary btn-xs">
-                                -
-                            </button>
+                                <button class="btn btn-primary btn-xs">
+                                    +
+                                </button>
 
-                            <span class="mx-1">0</span>
+                            </td>
+                            <td>
+                                <b>{!! money($product->quantity * $product->price) !!}</b>
+                            </td>
+                            <td>
+                                <!-- Boton para eliminar el producto del carrito -->
+                                <button class="btn btn-danger btn-xs" title="Eliminar">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </td>
 
-                            <button class="btn btn-primary btn-xs">
-                                +
-                            </button>
-
-                        </td>
-                        <td>0</td>
-                        <td>
-                            <!-- Boton para eliminar el producto del carrito -->
-                            <button class="btn btn-danger btn-xs" title="Eliminar">
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
-                        </td>
-
-                    </tr>
-
-                    <tr>
-                        <td colspan="10">Sin Registros</td>
-                    </tr>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="10">Sin Registros</td>
+                        </tr>
+                    @endforelse
 
                     <tr>
                         <td colspan="4"></td>

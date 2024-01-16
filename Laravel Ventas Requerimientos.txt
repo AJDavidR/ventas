@@ -1,0 +1,28 @@
+Laravel Ventas
+
+Añadir
+
+-Para .env(base de datos sqlite)[
+	DB_CONNECTION=sqlite
+	# DB_HOST=127.0.0.1
+	# DB_PORT=3306
+	# DB_DATABASE=ventas
+	# DB_USERNAME=root
+	# DB_PASSWORD=
+]
+
+-Para config/livewire.php(estilos de paginacion de bootstrap)[
+	    'pagination_theme' => 'bootstrap',
+]
+
+-Para helper.php(autoload de helper)[
+	    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
+        },
+        "files":[
+            "App/helper.php"
+        ]
+]

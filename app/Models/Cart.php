@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cart extends Model
 {
+    // Agregar producto al carrito
     public static function add(Product $product)
     {
 
@@ -18,6 +19,13 @@ class Cart extends Model
             'attributes' => array(),
             'associatedModel' => $product
         ));
-        dump(\Cart::getContent());
+        // dump(\Cart::getContent());
+    }
+
+    // obtener el contenido del carrito
+    public static function getCart()
+    {
+        $cart = \Cart::session(userID())->getContent();
+        return $cart->sort();
     }
 }
