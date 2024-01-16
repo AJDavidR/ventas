@@ -63,7 +63,7 @@
                             <td>
                                 <!-- Boton para eliminar el producto del carrito -->
                                 <button 
-                                    wire:click='removeItem({{ $product->id }})' 
+                                    wire:click='removeItem({{ $product->id }}, {{ $product->quantity }})' 
                                     class="btn btn-danger btn-xs"
                                     title="Eliminar">
                                     <i class="fas fa-trash-alt"></i>

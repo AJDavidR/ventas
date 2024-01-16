@@ -70,9 +70,10 @@ class SaleCreate extends Component
     }
 
     // Eliminar item del carrito
-    public function removeItem($id)
+    public function removeItem($id, $qty)
     {
         Cart::removeItem($id);
+        $this->dispatch("devolverStock.{$id}",$qty);
     }
 
     // Cancelar venta
