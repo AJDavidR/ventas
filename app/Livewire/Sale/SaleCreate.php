@@ -39,10 +39,18 @@ class SaleCreate extends Component
         ]);
     }
 
+    // Agregar producto al carrito
     public function addProduct(Product $product)
     {
         // dump($product);
         Cart::add($product);
+    }
+
+    // Decrementar cantidad del carrito
+    public function decrement($id)
+    {
+        // dump($product);
+        Cart::decrements($id);
     }
 
     // propiedad para obtener el listado de productos

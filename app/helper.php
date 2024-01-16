@@ -19,5 +19,6 @@ function money($number)
 // Convertir numeros a letras
 function numeroLetras($number)
 {
+    // 1-numero, 2-simbolo de moneda, 3-formato, 4-decimales
     return NumerosEnLetras::convertir($number, 'pesos', false, 'centavos');
 }

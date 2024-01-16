@@ -35,4 +35,12 @@ class Cart extends Model
     {
         return \Cart::session(userID())->getTotal();
     }
+
+    // Decrementar total
+    public static function decrements($id)
+    {
+        \Cart::session(userID())->update($id, [
+            'quantity' => -1
+        ]);
+    }
 }

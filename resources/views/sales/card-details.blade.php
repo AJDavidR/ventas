@@ -39,7 +39,7 @@
                             </td>
                             <td>
                                 <!-- Botones para aumentar o disminuir la cantidad del producto en el carrito -->
-                                <button class="btn btn-primary btn-xs">
+                                <button wire:click="decrement({{ $product->id }})" class="btn btn-primary btn-xs">
                                     -
                                 </button>
 
