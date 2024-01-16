@@ -16,6 +16,7 @@ class ProductRow extends Component
         return [
             "decrementStock.{$this->product->id}" => "decrementStock",
             "incrementStock.{$this->product->id}" => "incrementStock",
+            "refreshProduct" => "mount"
         ];
     }
     public function render()

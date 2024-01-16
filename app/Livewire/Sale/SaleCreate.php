@@ -80,6 +80,7 @@ class SaleCreate extends Component
     {
         Cart::clear();
         $this->dispatch('msg', 'Venta cancelada');
+        $this->dispatch('refreshProduct');
     }
 
     // propiedad para obtener el listado de productos
