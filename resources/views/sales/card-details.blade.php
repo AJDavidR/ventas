@@ -75,7 +75,8 @@
                         <td>
                             <h5>
                                 <span class="badge badge-pill badge-secondary">
-                                    0</span>
+                                    {!! money($total) !!}
+                                </span>
                             </h5>
                         </td>
                         <td></td>
@@ -84,7 +85,7 @@
 
                         <td colspan="7">
                             <strong>Total en letras:</strong>
-                            0
+                            {{ numeroLetras($total) }}
                         </td>
                     </tr>
                 </tbody>

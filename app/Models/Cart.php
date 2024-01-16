@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use PhpParser\Node\Stmt\Static_;
 
 class Cart extends Model
 {
@@ -27,5 +28,11 @@ class Cart extends Model
     {
         $cart = \Cart::session(userID())->getContent();
         return $cart->sort();
+    }
+
+    // Devolver total
+    public static function getTotal()
+    {
+        return \Cart::session(userID())->getTotal();
     }
 }
