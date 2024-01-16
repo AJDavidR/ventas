@@ -3,7 +3,7 @@
 namespace App\Livewire\Sale;
 
 use App\Models\Product;
-use App\Models\Sale;
+use App\Models\Cart;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -35,6 +35,12 @@ class SaleCreate extends Component
         return view('livewire.sale.sale-create', [
             'products' => $this->products,
         ]);
+    }
+
+    public function addProduct(Product $product)
+    {
+        // dump($product);
+        Cart::add($product);
     }
 
     // propiedad para obtener el listado de productos
