@@ -39,7 +39,10 @@
                             </td>
                             <td>
                                 <!-- Botones para aumentar o disminuir la cantidad del producto en el carrito -->
-                                <button wire:click="decrement({{ $product->id }})" class="btn btn-primary btn-xs">
+                                <button wire:click="decrement({{ $product->id }})" class="btn btn-primary btn-xs"
+                                    wire:loading.attr='disabled' 
+                                    wire:target='decrement' 
+                                    >
                                     -
                                 </button>
 
@@ -48,7 +51,8 @@
                                 <button wire:click="increment({{ $product->id }})" class="btn btn-primary btn-xs"
                                     wire:loading.attr='disabled' 
                                     wire:target='increment' 
-                                    {{ $product->quantity>=$product->associatedModel->stock ? 'disabled' : '' }}>
+                                    {{ $product->quantity>=$product->associatedModel->stock ? 'disabled' : '' }}
+                                    >
                                     +
                                 </button>
 

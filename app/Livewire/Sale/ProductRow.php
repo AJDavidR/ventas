@@ -14,7 +14,8 @@ class ProductRow extends Component
 
     protected function getListeners(){
         return [
-            "decrementStock.{$this->product->id}" => "decrementStock"
+            "decrementStock.{$this->product->id}" => "decrementStock",
+            "incrementStock.{$this->product->id}" => "incrementStock",
         ];
     }
     public function render()
@@ -38,9 +39,19 @@ class ProductRow extends Component
         $this->stock--;
     }
 
+    // escuchar decrementStock para disminuir el stock listado
     #[On('decrementStock')]
     public function decrementStock(){
         $this->stock--;
+    }
+
+    // escuchar incrementStock para aumentar el stock listado
+    #[On('incrementStock')]
+    public function incrementStock(){
+        if($this->stock==$this->product->stock-1){
+            return;
+        }
+        $this->stock++;
     }
 
     public function stockLabel(){

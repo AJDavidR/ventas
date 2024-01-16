@@ -32,13 +32,18 @@ class SaleCreate extends Component
         $this->totalRegistros = Product::count();
 
 
-
         return view('livewire.sale.sale-create', [
             'products' => $this->products,
             'cart' => Cart::getCart(),
             'total' => Cart::getTotal(),
             'totalArticulos' => Cart::totalArticulos(),
         ]);
+    }
+
+    public function mount()
+    {
+        // limpiar el carrito al iniciar el render
+        // $this->clear();
     }
 
     // Agregar producto al carrito
@@ -48,13 +53,15 @@ class SaleCreate extends Component
         Cart::add($product);
     }
     
-    // Decrementar cantidad del carrito
+    // Decrementar cantidad del carrito / aumentar el stock en productRow
     public function decrement($id)
     {
         Cart::decrements($id);
+
+        $this->dispatch("incrementStock.{$id}");
     }
     
-    // Incrementar cantidad del carrito
+    // Incrementar cantidad del carrito / disminuir el stock en productRow
     public function increment($id)
     {
         Cart::increments($id);
