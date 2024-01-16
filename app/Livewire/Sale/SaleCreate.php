@@ -53,6 +53,13 @@ class SaleCreate extends Component
         Cart::decrements($id);
     }
 
+    // Incrementar cantidad del carrito
+    public function increment($id)
+    {
+        // dump($product);
+        Cart::increments($id);
+    }
+
     // propiedad para obtener el listado de productos
     #[Computed]
     public function products()

@@ -45,7 +45,7 @@
 
                                 <span class="mx-1">{{ $product->quantity }}</span>
 
-                                <button class="btn btn-primary btn-xs">
+                                <button wire:click="increment({{ $product->id }})" class="btn btn-primary btn-xs">
                                     +
                                 </button>
 

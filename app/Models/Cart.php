@@ -43,4 +43,12 @@ class Cart extends Model
             'quantity' => -1
         ]);
     }
+
+    // Incrementar total
+    public static function increments($id)
+    {
+        \Cart::session(userID())->update($id, [
+            'quantity' => 1
+        ]);
+    }
 }
