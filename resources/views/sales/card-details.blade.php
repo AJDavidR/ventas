@@ -4,10 +4,10 @@
         <div class="card-tools">
             <!-- Conteo de productos -->
             <i class="fas fa-tshirt" title="Numero productos"></i>
-            <span class="badge badge-pill bg-purple">0 </span>
+            <span class="badge badge-pill bg-purple">{{ $cart->count() }}</span>
             <!-- Conteo de articulos -->
             <i class="fas fa-shopping-basket ml-2" title="Numero items"></i>
-            <span class="badge badge-pill bg-purple">0 </span>
+            <span class="badge badge-pill bg-purple">{{ $totalArticulos }}</span>
         </div>
     </div>
     <!-- card-body -->

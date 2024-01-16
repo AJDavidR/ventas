@@ -36,6 +36,7 @@ class SaleCreate extends Component
             'products' => $this->products,
             'cart' => Cart::getCart(),
             'total' => Cart::getTotal(),
+            'totalArticulos' => Cart::totalArticulos(),
         ]);
     }
 

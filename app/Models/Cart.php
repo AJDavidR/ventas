@@ -63,4 +63,10 @@ class Cart extends Model
     {
         \Cart::session(userID())->clear();
     }
+
+    // Total articulos
+    public static function totalArticulos()
+    {
+        return \Cart::session(userID())->getTotalQuantity();
+    }
 }
