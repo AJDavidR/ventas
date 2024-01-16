@@ -3,6 +3,7 @@
 namespace App\Livewire\Sale;
 
 use App\Models\Product;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class ProductRow extends Component
@@ -10,6 +11,12 @@ class ProductRow extends Component
     public Product $product;
     public $stock;
     public $stockLabel;
+
+    protected function getListeners(){
+        return [
+            "decrementStock.{$this->product->id}" => "decrementStock"
+        ];
+    }
     public function render()
     {
         $this->stockLabel = $this->stockLabel();
@@ -28,6 +35,11 @@ class ProductRow extends Component
             return;
         }
         $this->dispatch('add-product', $product);
+        $this->stock--;
+    }
+
+    #[On('decrementStock')]
+    public function decrementStock(){
         $this->stock--;
     }
 

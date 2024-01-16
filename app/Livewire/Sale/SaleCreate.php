@@ -47,17 +47,19 @@ class SaleCreate extends Component
     {
         Cart::add($product);
     }
-
+    
     // Decrementar cantidad del carrito
     public function decrement($id)
     {
         Cart::decrements($id);
     }
-
+    
     // Incrementar cantidad del carrito
     public function increment($id)
     {
         Cart::increments($id);
+
+        $this->dispatch("decrementStock.{$id}");
     }
 
     // Eliminar item del carrito
