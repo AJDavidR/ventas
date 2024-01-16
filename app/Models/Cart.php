@@ -57,4 +57,10 @@ class Cart extends Model
     {
         \Cart::session(userID())->remove($id);
     }
+
+    // Limpiar carrito
+    public static function clear()
+    {
+        \Cart::session(userID())->clear();
+    }
 }

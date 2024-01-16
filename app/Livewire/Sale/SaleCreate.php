@@ -42,29 +42,32 @@ class SaleCreate extends Component
     // Agregar producto al carrito
     public function addProduct(Product $product)
     {
-        // dump($product);
         Cart::add($product);
     }
 
     // Decrementar cantidad del carrito
     public function decrement($id)
     {
-        // dump($product);
         Cart::decrements($id);
     }
 
     // Incrementar cantidad del carrito
     public function increment($id)
     {
-        // dump($product);
         Cart::increments($id);
     }
 
     // Eliminar item del carrito
     public function removeItem($id)
     {
-        // dump($product);
         Cart::removeItem($id);
+    }
+
+    // Cancelar venta
+    public function clear()
+    {
+        Cart::clear();
+        $this->dispatch('msg', 'Venta cancelada');
     }
 
     // propiedad para obtener el listado de productos
