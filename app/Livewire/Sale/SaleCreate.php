@@ -5,6 +5,7 @@ namespace App\Livewire\Sale;
 use App\Models\Product;
 use App\Models\Cart;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
@@ -41,6 +42,7 @@ class SaleCreate extends Component
     }
 
     // Agregar producto al carrito
+    #[On('add-product')]
     public function addProduct(Product $product)
     {
         Cart::add($product);
