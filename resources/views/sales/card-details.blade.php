@@ -55,7 +55,10 @@
                             </td>
                             <td>
                                 <!-- Boton para eliminar el producto del carrito -->
-                                <button class="btn btn-danger btn-xs" title="Eliminar">
+                                <button 
+                                    wire:click='removeItem({{ $product->id }})' 
+                                    class="btn btn-danger btn-xs"
+                                    title="Eliminar">
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
                             </td>

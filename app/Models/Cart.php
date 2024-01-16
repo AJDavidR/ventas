@@ -51,4 +51,10 @@ class Cart extends Model
             'quantity' => 1
         ]);
     }
+
+    // Eliminar item
+    public static function removeItem($id)
+    {
+        \Cart::session(userID())->remove($id);
+    }
 }

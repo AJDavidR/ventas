@@ -60,6 +60,13 @@ class SaleCreate extends Component
         Cart::increments($id);
     }
 
+    // Eliminar item del carrito
+    public function removeItem($id)
+    {
+        // dump($product);
+        Cart::removeItem($id);
+    }
+
     // propiedad para obtener el listado de productos
     #[Computed]
     public function products()
