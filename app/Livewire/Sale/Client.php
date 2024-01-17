@@ -23,13 +23,26 @@ class Client extends Component
     public $empresa;
 
     public $nit;
-    public $client;
+
+    public $client = 1;
+
+    public $nameClient;
 
     public function render()
     {
         return view('livewire.sale.client', [
             'clients' => Cliente::all()
         ]);
+    }
+
+    public function mount(){
+        $this->nameClient();
+    }
+
+    // nombre del cliente
+    public function nameClient($id=1){
+        $findClient = Cliente::find($id);
+        $this->nameClient = $findClient->name;
     }
 
     // Abrir modal de clientes

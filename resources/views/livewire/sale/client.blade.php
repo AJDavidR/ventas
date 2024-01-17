@@ -1,7 +1,7 @@
 <div>
     <div class="card card-info">
         <div class="card-header">
-            <h3 class="card-title"><i class="fas fa-user"></i> Cliente: {{ $client }}</h3>
+            <h3 class="card-title"><i class="fas fa-user"></i> Cliente: {{ $nameClient }}</h3>
             <div class="card-tools">
                 <button wire:click="openModal" class="btn bg-purple btn-sm">Crear cliente</button>
             </div>
