@@ -49,7 +49,8 @@ class SaleCreate extends Component
         ]);
     }
 
-    // Actualizar el pago  y se devuelta
+    // Actualizar el pago  y su devuelta  / mediante set-pago mandar el valor del boton de currency
+    #[On('set-pago')]
     public function updatingPago($value)
     {
         $this->updating = 1;

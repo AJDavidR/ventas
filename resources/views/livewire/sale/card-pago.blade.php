@@ -4,9 +4,9 @@
 
         <div class="card-tools d-flex justify-content-center align-self-center">
 
-            <span class="mr-2">Total: <b>{!! money($total) !!}</b></span>
+            <span class="mr-2">Total: <b>{{ money($total) }}</b></span>
 
-            <!-- Incluir boton moneda -->
+            @livewire('sale.currency', ['total' => $total])
             
         </div>
     </div>
@@ -23,7 +23,6 @@
                     </div>
 
                     <input type="number" wire:model.live="pago" class="form-control" id="pago" min="{{$total}}">
-
                 </div>
                 <p>{{ numeroLetras($pago) }}</p>
             </div>

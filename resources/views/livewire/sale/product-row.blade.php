@@ -7,7 +7,7 @@
     <td>{{ $product->name }}</td>
     <td>
 
-        {!! money($product->precio_venta) !!}
+        {{ money($product->precio_venta) }}
     </td>
     <td>
         {!! $stockLabel !!}

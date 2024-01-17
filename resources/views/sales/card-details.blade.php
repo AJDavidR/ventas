@@ -35,7 +35,7 @@
                             </td>
                             <td>{{ $product->name }}</td>
                             <td>
-                                <b>{!! money($product->price) !!}</b>
+                                <b>{{ money($product->price) }}</b>
                             </td>
                             <td>
                                 <!-- Botones para aumentar o disminuir la cantidad del producto en el carrito -->
@@ -58,7 +58,7 @@
 
                             </td>
                             <td>
-                                <b>{!! money($product->quantity * $product->price) !!}</b>
+                                <b>{{ money($product->quantity * $product->price) }}</b>
                             </td>
                             <td>
                                 <!-- Boton para eliminar el producto del carrito -->
@@ -85,7 +85,7 @@
                         <td>
                             <h5>
                                 <span class="badge badge-pill badge-secondary">
-                                    {!! money($total) !!}
+                                    {{ money($total) }}
                                 </span>
                             </h5>
                         </td>

@@ -12,7 +12,7 @@ function userID()
 // Devolver número en formato moneda con opciones para personalización
 function money($number)
 {
-    return  '<span style="color: rgb(2, 210, 2);">$</span>' .
+    return  '$' .
             number_format($number, 0, ',', '.');
 }
 
