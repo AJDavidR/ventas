@@ -5,7 +5,7 @@
                 <i class="fas fa-arrow-circle-left mr-1"></i> Ir a ventas
             </a>
 
-            <a href="#" class="btn btn-danger btn-sm" wire:click='clear'>
+            <a href="#" class="btn btn-danger btn-sm" wire:click='cancel'>
                 <i class="fas fa-trash mr-1"></i> Cancelar venta
             </a>
 
@@ -15,10 +15,14 @@
         <div class="row">
             {{-- Detalles de la venta --}}
             <div class="col-md-6">
+                {{-- Card details --}}
                 @include('sales.card-details')
+                {{-- Card pago --}}
+                @include("livewire.sale.card-pago")
             </div>
             {{-- Columna productos --}}
             <div class="col-md-6">
+                {{-- List of products --}}
                 @include('sales.list-products')
             </div>
         </div>

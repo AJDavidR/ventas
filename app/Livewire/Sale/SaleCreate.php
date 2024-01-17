@@ -23,14 +23,23 @@ class SaleCreate extends Component
 
     public $cant = 5;
 
-    // ----------> propiedades modelo
-    public $Id = 0;
+    // ----------> propiedades pago
+    public $pago = 0;
+
+    public $devuelve = 0;
+
+    public $updating = 0;
+
 
     public function render()
     {
 
         $this->totalRegistros = Product::count();
 
+        if ($this->updating == 0) {
+            $this->pago = Cart::getTotal();
+            $this->devuelve = $this->pago - Cart::getTotal();
+        }
 
         return view('livewire.sale.sale-create', [
             'products' => $this->products,
@@ -40,10 +49,18 @@ class SaleCreate extends Component
         ]);
     }
 
+    // Actualizar el pago  y se devuelta
+    public function updatingPago($value)
+    {
+        $this->updating = 1;
+        $this->pago = $value;
+        $this->devuelve = (int)$this->pago - Cart::getTotal();
+    }
+
     public function mount()
     {
         // limpiar el carrito al iniciar el render
-        // $this->clear();
+        $this->clear();
     }
 
     // Agregar producto al carrito
@@ -51,36 +68,52 @@ class SaleCreate extends Component
     public function addProduct(Product $product)
     {
         Cart::add($product);
+
+        $this->updating = 0;
     }
-    
+
     // Decrementar cantidad del carrito / aumentar el stock en productRow
     public function decrement($id)
     {
         Cart::decrements($id);
 
         $this->dispatch("incrementStock.{$id}");
+
+        $this->updating = 0;
     }
-    
+
     // Incrementar cantidad del carrito / disminuir el stock en productRow
     public function increment($id)
     {
         Cart::increments($id);
 
         $this->dispatch("decrementStock.{$id}");
+
+        $this->updating = 0;
     }
 
     // Eliminar item del carrito
     public function removeItem($id, $qty)
     {
         Cart::removeItem($id);
-        $this->dispatch("devolverStock.{$id}",$qty);
+        $this->dispatch("devolverStock.{$id}", $qty);
     }
 
     // Cancelar venta
+    public function cancel()
+    {
+        $this->clear();
+        $this->dispatch('msg', 'Venta cancelada');
+    }
+
+    // Limpiar venta
     public function clear()
     {
+        $this->pago = 0;
+        $this->devuelve = 0;
+        $this->updating = 0;
         Cart::clear();
-        $this->dispatch('msg', 'Venta cancelada');
+        // reiniciar stock en productRow ↓↓↓
         $this->dispatch('refreshProduct');
     }
 

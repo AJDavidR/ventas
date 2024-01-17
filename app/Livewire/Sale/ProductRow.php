@@ -28,6 +28,7 @@ class ProductRow extends Component
 
     public function mount()
     {
+        // reiniciar stock
         $this->stock = $this->product->stock;
     }
 
@@ -62,6 +63,7 @@ class ProductRow extends Component
         $this->stock = $this->stock+$qty;
     }
 
+    // añadir badge color a stock dependiendo de stock minimo
     public function stockLabel(){
         if ($this->stock<=$this->product->stock_minimo) {
             return '<span class="badge badge-pill badge-danger">'.$this->stock.'</span>';
