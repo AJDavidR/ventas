@@ -26,14 +26,14 @@
             {{-- Columna productos --}}
             <div class="col-md-7">
                 {{-- List of products --}}
-                @include('sales.list-products')
+                @include('salesB.list-productsB')
             </div>
             {{-- Detalles de la venta --}}
             <div class="col-md-5">
                 {{-- Card details --}}
-                @include('sales.card-details')
+                @include('salesB.card-detailsB')
                 {{-- Card pago --}}
-                @include('sales.card-pago')
+                @include('salesB.card-pagoB')
                 {{-- Card cliente --}}
                 @livewire("sale.client")
             </div>

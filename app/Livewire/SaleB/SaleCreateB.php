@@ -11,7 +11,7 @@ use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
 use Livewire\WithPagination;
 
-#[Title('Ventas')]
+#[Title('Ventas alternativas')]
 class SaleCreateB extends Component
 {
     use WithFileUploads, WithPagination;
