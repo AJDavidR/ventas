@@ -10,3 +10,5 @@
 
     {{-- SweetAlert2 --}}
     <script src="{{ asset('plugins/sweetalert2/sweetalert2.js') }}"></script>
+
+    @yield('styles')

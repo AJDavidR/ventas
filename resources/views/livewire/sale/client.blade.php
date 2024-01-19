@@ -33,4 +33,11 @@
     @include("clients.modal")
     {{-- End Modal --}}
 
+    @section('styles')
+    <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
+    @endsection
+    @section('js')
+    <link rel="stylesheet" href="{{ asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.css') }}">
+    @endsection
+
 </div>
