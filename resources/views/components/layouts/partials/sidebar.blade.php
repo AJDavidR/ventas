@@ -52,6 +52,13 @@
                         </li>
 
                         <li class="nav-item">
+                            <a href="{{ route('sales.createB') }}" class="nav-link">
+                                <i class="fas fa-cart-plus nav-icon"></i>
+                                <p>Crear venta Alternativa</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
                             <a class="nav-link">
                                 <i class="fas fa-shopping-cart nav-icon"></i>
                                 <p>Mostrar ventas</p>
