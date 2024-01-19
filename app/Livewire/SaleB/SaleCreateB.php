@@ -21,7 +21,7 @@ class SaleCreateB extends Component
 
     public $totalRegistros = 0;
 
-    public $cant = 5;
+    public $cant = 10;
 
     // ----------> propiedades pago
     public $pago = 0;

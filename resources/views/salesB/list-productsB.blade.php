@@ -1,31 +1,43 @@
 <div class="card card-info">
     <div class="card-body">
 
-        <x-table classSelect="d-none">
+        {{-- buscador --}}
+        <div class="input-group">
 
-            <x-slot:thead>
-                <th scope="col">#</th>
-                <th scope="col"><i class="fas fa-image"></i></th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Precio.vt</th>
-                <th scope="col">Stock</th>
-                <th scope="col">...</th>
+            <div class="input-group-prepend">
+                <span class="input-group-text">
+                    <i class="fas fa-search"></i>
+                </span>
+            </div>
+    
+            <input type="text" wire:model.live.debounce.300ms='search' placeholder="Buscar" class="form-control">
+        </div>
 
-            </x-slot>
-
+        {{-- item --}}
+        <div class="d-flex flex-wrap">
             @forelse ($products as $product)
-                <livewire:sale.product-row :product="$product" :wire:key="$product->id" />
+                <livewire:saleB.product-itemB :product="$product" :wire:key="$product->id" />
+
             @empty
-                <tr>
-                    <td colspan="10">Sin Registros</td>
-                </tr>
+                <p class="w-100">Sin Registros</p>
             @endforelse
+        </div>
 
-        </x-table>
+        {{-- select paginator --}}
+        <div class="mt-3">
+            <div class="text-right">
+                <span>Mostrar</span>
+                <select wire:model.live='cant'>
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+                <span>Entradas</span>
+            </div>
+        </div>
+    </div>
 
-    </div>
-    <div class="card-footer">
-        {{ $products->links() }}
-    </div>
 
 </div>
