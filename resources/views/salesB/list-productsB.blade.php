@@ -9,9 +9,27 @@
                     <i class="fas fa-search"></i>
                 </span>
             </div>
-    
+
             <input type="text" wire:model.live.debounce.300ms='search' placeholder="Buscar" class="form-control">
         </div>
+
+        {{-- Categorizador --}}
+<div class="d-flex overflow-auto my-4">
+    @forelse ($categories as $category)
+        <div
+            class="btn btn-light btn-sm mr-3 mb-2" 
+            wire:click='selectCategory({{ $category->id }})'
+            wire:loading.attr='disabled' 
+            wire:target='selectCategory' 
+            style="cursor: pointer;"
+        >
+            {{ $category->name }}
+        </div>
+    @empty
+        <p class="w-100">Sin Categorías</p>
+    @endforelse
+</div>
+
 
         {{-- item --}}
         <div class="d-flex flex-wrap">

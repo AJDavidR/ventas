@@ -4,6 +4,7 @@ namespace App\Livewire\SaleB;
 
 use App\Models\Product;
 use App\Models\Cart;
+use App\Models\Category;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Title;
@@ -30,11 +31,18 @@ class SaleCreateB extends Component
 
     public $updating = 0;
 
+    public $categories;
+
+    public $categoryBtn;
+
+    public $selectedCategoryId;
+
 
     public function render()
     {
 
         $this->totalRegistros = Product::count();
+        $this->categories = Category::all();
 
         if ($this->updating == 0) {
             $this->pago = Cart::getTotal();
@@ -127,4 +135,23 @@ class SaleCreateB extends Component
             ->orderby('id', 'desc')
             ->paginate($this->cant);
     }
+
+
+        // Método para actualizar la categoría seleccionada y cargar los productos asociados
+        public function selectCategory($categoryId)
+    {
+        $this->selectedCategoryId = $categoryId;
+        $this->search = '';
+        dump([
+            Product::query()
+        ->where('category_id', 'like', "%{$this->selectedCategoryId}%")
+        ->orderby('id', 'desc')
+        ->paginate($this->cant)
+        ]);
+        return Product::query()
+            ->where('name', 'like', "%{$this->search}%")
+            ->orderby('id', 'asc')
+            ->paginate($this->cant);
+    }
+
 }
