@@ -121,7 +121,9 @@ class SaleCreateB extends Component
         $this->pago = 0;
         $this->devuelve = 0;
         $this->updating = 0;
+
         Cart::clear();
+
         // reiniciar stock en productRow ↓↓↓
         $this->dispatch('refreshProduct');
     }
@@ -132,11 +134,9 @@ class SaleCreateB extends Component
     {
         return Product::query()
             ->where('name', 'like', "%{$this->search}%")
-            ->orWhere('category_id', '=', $this->selectedCategoryId)
             ->orderby('id', 'desc')
             ->paginate($this->cant);
     }
-
 
         // Método para actualizar la categoría seleccionada y cargar los productos asociados
     public function selectCategory($categoryId)
@@ -150,6 +150,7 @@ class SaleCreateB extends Component
     }
 
     public function resetCategory(){
+        $this->search = '';
         $this->products();
     }
 
