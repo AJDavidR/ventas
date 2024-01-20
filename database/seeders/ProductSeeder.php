@@ -18,7 +18,7 @@ class ProductSeeder extends Seeder
         Storage::deleteDirectory('public/products');
         Storage::makeDirectory('public/products');
 
-        Product::factory()->count(250)->create()->each(function (Product $product) {
+        Product::factory()->count(20)->create()->each(function (Product $product) {
 
             $faker = Faker::create();
 
