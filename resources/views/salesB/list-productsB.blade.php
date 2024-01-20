@@ -15,6 +15,15 @@
 
         {{-- Categorizador --}}
 <div class="d-flex overflow-auto my-4">
+        <div
+            class="btn btn-light btn-sm mr-3 mb-2" 
+            wire:click='resetCategory()'
+            wire:loading.attr='disabled' 
+            wire:target='selectCategory' 
+            style="cursor: pointer;"
+        >
+            Todas
+        </div>
     @forelse ($categories as $category)
         <div
             class="btn btn-light btn-sm mr-3 mb-2" 

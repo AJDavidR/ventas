@@ -32,10 +32,10 @@ class SaleCreateB extends Component
     public $updating = 0;
 
     public $categories;
-
+    
     public $categoryBtn;
 
-    public $selectedCategoryId;
+    public $selectedCategoryId = '';
 
 
     public function render()
@@ -132,26 +132,25 @@ class SaleCreateB extends Component
     {
         return Product::query()
             ->where('name', 'like', "%{$this->search}%")
+            ->orWhere('category_id', '=', $this->selectedCategoryId)
             ->orderby('id', 'desc')
             ->paginate($this->cant);
     }
 
 
         // Método para actualizar la categoría seleccionada y cargar los productos asociados
-        public function selectCategory($categoryId)
+    public function selectCategory($categoryId)
     {
         $this->selectedCategoryId = $categoryId;
         $this->search = '';
-        dump([
-            Product::query()
-        ->where('category_id', 'like', "%{$this->selectedCategoryId}%")
+        $this->products = Product::query()
+        ->where('category_id', '=', $this->selectedCategoryId)
         ->orderby('id', 'desc')
-        ->paginate($this->cant)
-        ]);
-        return Product::query()
-            ->where('name', 'like', "%{$this->search}%")
-            ->orderby('id', 'asc')
-            ->paginate($this->cant);
+        ->paginate($this->cant);
+    }
+
+    public function resetCategory(){
+        $this->products();
     }
 
 }
