@@ -30,6 +30,8 @@ class SaleCreate extends Component
 
     public $updating = 0;
 
+    public $client = 1;
+
 
     public function render()
     {
@@ -47,6 +49,12 @@ class SaleCreate extends Component
             'total' => Cart::getTotal(),
             'totalArticulos' => Cart::totalArticulos(),
         ]);
+    }
+
+    
+    #[On('client_id')]
+    public function client_id($id=1){
+        $this->client = $id;
     }
 
     // Actualizar el pago  y su devuelta  / mediante set-pago mandar el valor del boton de currency
