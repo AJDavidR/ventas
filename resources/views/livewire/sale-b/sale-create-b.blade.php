@@ -34,8 +34,6 @@
                 @include('salesB.card-detailsB')
                 {{-- Card pago --}}
                 @include('salesB.card-pagoB')
-                {{-- Card cliente --}}
-                @livewire("sale.client")
             </div>
         </div>
     </div>

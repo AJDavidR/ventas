@@ -16,6 +16,10 @@
     </div>
     <!-- card-body -->
     <div class="card-body">
+        
+        {{-- Card cliente --}}
+        @livewire("saleB.client-b")
+
         <div class="table-responsive">
             <table class="table table-hover table-sm table-striped text-center">
                 <thead>
