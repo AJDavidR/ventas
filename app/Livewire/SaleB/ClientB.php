@@ -4,6 +4,7 @@
 namespace App\Livewire\SaleB;
 
 use App\Models\Client as Cliente;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class ClientB extends Component
@@ -33,6 +34,12 @@ class ClientB extends Component
         return view('livewire.sale-b.client-b', [
             'clients' => Cliente::all()
         ]);
+    }
+
+    #[On('client_id')]
+    public function client_id($id=1){
+        $this->client = $id;
+        $this->nameClient($id);
     }
 
     public function mount(){
