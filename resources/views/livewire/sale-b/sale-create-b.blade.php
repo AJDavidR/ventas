@@ -32,14 +32,13 @@
             <div class="col-md-5">
                 {{-- Card details --}}
                 @include('salesB.card-detailsB')
-                {{-- Card pago --}}
-                @include('salesB.card-pagoB')
             </div>
         </div>
     </div>
-    <div class="card-footer">
-        <div class="float-right">
-            {{-- {{ $cardFooter }} --}}
+    <div class="main-footer">
+        <div class="px-3">
+            {{-- Card pago --}}
+            @include('salesB.card-pagoB')
         </div>
     </div>
 </div>

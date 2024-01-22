@@ -71,7 +71,7 @@
                         </tr>
                     @endforelse
 
-                    <tr>
+                    {{-- <tr>
                         <td colspan="2"></td>
                         <td>
                             <h5>Total:</h5>
@@ -90,7 +90,7 @@
                         <td colspan="7">
                             <strong>Total en letras:</strong>
                             {{ numeroLetras($total) }}
-                        </td>
+                        </td> --}}
                     </tr>
                 </tbody>
             </table>

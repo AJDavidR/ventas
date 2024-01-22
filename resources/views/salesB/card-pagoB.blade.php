@@ -1,46 +1,47 @@
-<div class="card card-info">
-    <div class="card-header">
-        <h3 class="card-title"><i class="fas fa-wallet"></i> Pago </h3>
-
-        <div class="card-tools d-flex justify-content-center align-self-center">
-
-            <span class="mr-2">Total: <b>{{ money($total) }}</b></span>
-
-            @livewire('sale.currency', ['total' => $total])
-            
+<div class="card">
+    <div class="px-3 d-flex justify-content-between align-items-center">
+        <div>
+            <div>
+                {{ Auth::user()->name }}
+                ( {{ config('app.name', 'Laravel') }} )
+            </div>
+            <div>
+                {{ \Carbon\Carbon::now()->format('d-m-Y, H:i:s') }}
+            </div>
         </div>
-    </div>
-    <div class="card-body">
-        <div class="row">
-            <div class="col-6">
-                <label for="pago">Pago:</label>
-                <div class="input-group ">
 
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">
-                            <i class="fas fa-dollar-sign"></i>
-                        </span>
-                    </div>
-
-                    <input type="number" wire:model.live="pago" class="form-control" id="pago" min="{{$total}}">
+        {{-- tabla --}}
+        <div class="d-flex">
+            <div class="d-flex flex-column align-items-center border border-white">
+                <div class="">
+                    Subtotal: <b>{{ money($total) }}</b>
                 </div>
-                <p>{{ numeroLetras($pago) }}</p>
-            </div>
-            <div class="col-6">
-                <label for="pago">Devuelve:</label>
-                <div class="input-group ">
-
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">
-                            <i class="fas fa-dollar-sign"></i>
-                        </span>
-                    </div>
-                    <input type="number" wire:model='devuelve' class="form-control" min="0" readonly>
-
-
+                <div class="border-top border-white mx-2">
+                    Retenciones: <b>$0</b>
                 </div>
-                <p>{{ numeroLetras($devuelve) }}</p>
             </div>
+        
+            <div class="d-flex flex-column align-items-center border border-white">
+                <div class="">
+                    Iva: <b>$0</b>
+                </div>
+                <div class="border-top border-white mx-2">
+                    Inc: <b>$0</b>
+                </div>
+            </div>
+        
+            <div class="d-flex align-items-center border border-white p-2">
+                <h3>
+                    <span class="">Total: <b>{{ money($total) }}</b></span>
+                </h3>
+            </div>
+        </div>
+        
+        {{-- btn --}}
+        <div>
+            <a href="#" class="btn btn-danger btn-sm align-middle" wire:click='cancel'>
+                <i class="fas fa-trash mr-1"></i> Cancelar venta
+            </a>
         </div>
     </div>
 </div>

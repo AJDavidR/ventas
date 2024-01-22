@@ -13,9 +13,8 @@
                     <option value="{{ $client->id }}">{{ $client->name }}</option>
                 @endforeach
             </select>
-
             <div class="input-group-append">
-                <button wire:click="openModal" class="btn bg-blue btn-sm input-group-text">
+                <button wire:click="openModal" id="btn-client-add" class="btn bg-blue btn-sm input-group-text">
                     <i class="fas fa-plus"></i>
                 </button>
             </div>

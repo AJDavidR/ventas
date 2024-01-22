@@ -1,7 +1,9 @@
-<footer class="main-footer">
-    <strong>Copyright &copy; 2023 <a href="#">EMPRESA.io</a>.</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-        <b>Version</b> 1.0.0
+{{-- <footer class="main-footer">
+    <div class="px-3">
+        <strong>Copyright &copy; 2023 <a href="#">EMPRESA.io</a>.</strong>
+        All rights reserved.
+        <div class="float-right d-none d-sm-inline-block">
+            <b>Version</b> 1.0.0
+        </div>
     </div>
-</footer>
+</footer> --}}
