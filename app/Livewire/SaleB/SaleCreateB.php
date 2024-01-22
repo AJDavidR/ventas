@@ -38,6 +38,8 @@ class SaleCreateB extends Component
 
     public $selectedCategoryId = '';
 
+    public $client;
+
 
     public function render()
     {
@@ -56,6 +58,12 @@ class SaleCreateB extends Component
             'total' => Cart::getTotal(),
             'totalArticulos' => Cart::totalArticulos(),
         ]);
+    }
+
+    // obtener id de cliente
+    #[On('client_id')]
+    public function client_id($id=1){
+        $this->client = $id;
     }
 
     // Actualizar el pago  y su devuelta  / mediante set-pago mandar el valor del boton de currency

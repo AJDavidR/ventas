@@ -94,6 +94,8 @@ class ClientB extends Component
         $this->dispatch('close-modal', 'modalClient');
         $this->dispatch('msg', 'Cliente creado correctamente');
 
+        $this->dispatch('client_id', $client->id);
+
         $this->resetInputFields();
     }
 
