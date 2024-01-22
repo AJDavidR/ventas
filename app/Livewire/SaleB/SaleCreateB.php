@@ -5,6 +5,7 @@ namespace App\Livewire\SaleB;
 use App\Models\Product;
 use App\Models\Cart;
 use App\Models\Category;
+use App\Models\Sale;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Title;
@@ -41,7 +42,7 @@ class SaleCreateB extends Component
     public function render()
     {
 
-        $this->totalRegistros = Product::count();
+        $this->totalRegistros = Sale::count();
         $this->categories = Category::all();
 
         if ($this->updating == 0) {

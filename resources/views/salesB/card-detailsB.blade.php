@@ -1,6 +1,10 @@
 <div class="card card-info">
     <div class="card-header">
-        <h3 class="card-title"><i class="fas fa-cart-plus"></i> Detalles venta </h3>
+        <h3 class="card-title">
+            <i class="fas fa-cart-plus"></i>
+            Detalles venta 
+            # {{ $totalRegistros }}
+        </h3>
         <div class="card-tools">
             <!-- Conteo de productos -->
             <i class="fas fa-tshirt" title="Numero productos"></i>
@@ -16,30 +20,24 @@
             <table class="table table-hover table-sm table-striped text-center">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col"><i class="fas fa-image"></i></th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Precio.vt</th>
+                        <th scope="col">Producto</th>
+                        <th scope="col">Precio</th>
                         <th scope="col" width="15%">Qty</th>
                         <th scope="col">Sub total</th>
-                        <th scope="col">...</th>
+                        <th scope="col">Accion</th>
                     </tr>
 
                 </thead>
                 <tbody>
                     @forelse ($cart as $product)
                         <tr>
-                            <td>{{ $product->id }}</td>
-                            <td>
-                                <x-image :item="$product->associatedModel" size="60" />
-                            </td>
                             <td>{{ $product->name }}</td>
                             <td>
                                 <b>{{ money($product->price) }}</b>
                             </td>
                             <td>
                                 <!-- Botones para aumentar o disminuir la cantidad del producto en el carrito -->
-                                <button wire:click="decrement({{ $product->id }})" class="btn btn-primary btn-xs"
+                                <button wire:click="decrement({{ $product->id }})" class="btn btn-primary btn-xs bg-red"
                                     wire:loading.attr='disabled' 
                                     wire:target='decrement' 
                                     >
@@ -48,7 +46,7 @@
 
                                 <span class="mx-1">{{ $product->quantity }}</span>
 
-                                <button wire:click="increment({{ $product->id }})" class="btn btn-primary btn-xs"
+                                <button wire:click="increment({{ $product->id }})" class="btn btn-primary btn-xs bg-green"
                                     wire:loading.attr='disabled' 
                                     wire:target='increment' 
                                     {{ $product->quantity>=$product->associatedModel->stock ? 'disabled' : '' }}
@@ -73,12 +71,12 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="10">Sin Registros</td>
+                            <td colspan="5">Sin Registros</td>
                         </tr>
                     @endforelse
 
                     <tr>
-                        <td colspan="4"></td>
+                        <td colspan="2"></td>
                         <td>
                             <h5>Total:</h5>
                         </td>
