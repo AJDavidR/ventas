@@ -19,11 +19,6 @@
                     <i class="fas fa-plus"></i>
                 </button>
             </div>
-            <div class="input-group-append">
-                <button wire:click="openModal" class="btn bg-blue btn-sm input-group-text">
-                    <i class="fas fa-plus"></i>
-                </button>
-            </div>
         </div>
         <!-- /.input group -->
     </div>
