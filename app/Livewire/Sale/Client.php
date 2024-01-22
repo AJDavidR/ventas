@@ -4,6 +4,7 @@
 namespace App\Livewire\Sale;
 
 use App\Models\Client as Cliente;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class Client extends Component
@@ -35,6 +36,12 @@ class Client extends Component
         ]);
     }
 
+    #[On('client_id')]
+    public function client_id($id=1){
+        $this->client = $id;
+        $this->nameClient($id);
+    }
+
     public function mount(){
         $this->nameClient();
     }
@@ -58,9 +65,6 @@ class Client extends Component
     {
         $rules = [
             'name' => 'required|min:5|max:255',
-            // 'identificacion' => 'required|max:999999999999999|unique:clients|numeric',
-            // ^: Indica que la cadena debe comenzar aquí. // [0-9]: Representa cualquier dígito del 0 al 9.
-            // {6,10}: Indica que debe haber de 6 a 10 dígitos. // $: Indica que la cadena debe terminar aquí.
             'identificacion' => 'required|regex:/^[0-9]{6,10}$/|numeric|unique:clients',
             'telefono' => 'numeric|nullable',
             'email' => 'nullable|Email|max:255',
