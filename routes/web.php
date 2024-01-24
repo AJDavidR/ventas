@@ -50,6 +50,5 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/ventas/crear', SaleCreate::class)->name('sales.create');
 
-
     Route::get('/ventas/comprar', SaleCreateB::class)->name('sales.createB');
 });

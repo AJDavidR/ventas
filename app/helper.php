@@ -6,13 +6,13 @@ use App\Models\NumerosEnLetras;
 
 function userID()
 {
-    return  Auth()->user()->id;
+    return Auth()->user()->id;
 }
 
 // Devolver número en formato moneda con opciones para personalización
 function money($number)
 {
-    return  '$' .
+    return '$'.
             number_format($number, 0, ',', '.');
 }
 

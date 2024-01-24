@@ -10,7 +10,8 @@ class Item extends Model
     use HasFactory;
 
     // Relaciones
-    public function sales(){
+    public function sales()
+    {
         return $this->belongsToMany(Sale::class);
     }
 }

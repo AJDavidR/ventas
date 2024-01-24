@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use PhpParser\Node\Stmt\Static_;
 
 class Cart extends Model
 {
@@ -12,14 +11,14 @@ class Cart extends Model
     {
 
         // add the product to cart
-        \Cart::session(userID())->add(array(
+        \Cart::session(userID())->add([
             'id' => $product->id,
             'name' => $product->name,
             'price' => $product->precio_venta,
             'quantity' => 1,
-            'attributes' => array(),
-            'associatedModel' => $product
-        ));
+            'attributes' => [],
+            'associatedModel' => $product,
+        ]);
         // dump(\Cart::getContent());
     }
 
@@ -27,6 +26,7 @@ class Cart extends Model
     public static function getCart()
     {
         $cart = \Cart::session(userID())->getContent();
+
         return $cart->sort();
     }
 
@@ -40,7 +40,7 @@ class Cart extends Model
     public static function decrements($id)
     {
         \Cart::session(userID())->update($id, [
-            'quantity' => -1
+            'quantity' => -1,
         ]);
     }
 
@@ -48,7 +48,7 @@ class Cart extends Model
     public static function increments($id)
     {
         \Cart::session(userID())->update($id, [
-            'quantity' => 1
+            'quantity' => 1,
         ]);
     }
 

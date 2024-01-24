@@ -18,8 +18,9 @@ class Client extends Model
         'nit',
     ];
 
-        // Relaciones
-        public function sales(){
-            return $this->hasMany(Sale::class);
-        }
+    // Relaciones
+    public function sales()
+    {
+        return $this->hasMany(Sale::class);
+    }
 }

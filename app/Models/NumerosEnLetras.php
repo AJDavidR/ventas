@@ -2,11 +2,8 @@
 
 namespace App\Models;
 
-
 class NumerosEnLetras
-
 {
-
     private static $UNIDADES = [
 
         '',
@@ -49,11 +46,9 @@ class NumerosEnLetras
 
         'diecinueve ',
 
-        'veinte '
+        'veinte ',
 
     ];
-
-
 
     private static $DECENAS = [
 
@@ -73,11 +68,9 @@ class NumerosEnLetras
 
         'noventa ',
 
-        'cien '
+        'cien ',
 
     ];
-
-
 
     private static $CENTENAS = [
 
@@ -97,14 +90,11 @@ class NumerosEnLetras
 
         'ochocientos ',
 
-        'novecientos '
+        'novecientos ',
 
     ];
 
-
-
     public static function convertir($number, $currency = '', $format = false, $decimals = '')
-
     {
 
         $base_number = $number;
@@ -113,27 +103,21 @@ class NumerosEnLetras
 
         $decimales = '';
 
-
-
         if (($base_number < 0) || ($base_number > 999999999)) {
 
             return 'No es posible convertir el numero en letras';
 
         }
 
+        $div_decimales = explode('.', $base_number);
 
-
-        $div_decimales = explode('.',$base_number);
-
-
-
-        if(count($div_decimales) > 1){
+        if (count($div_decimales) > 1) {
 
             $base_number = $div_decimales[0];
 
             $decNumberStr = (string) $div_decimales[1];
 
-            if(strlen($decNumberStr) == 2){
+            if (strlen($decNumberStr) == 2) {
 
                 $decNumberStrFill = str_pad($decNumberStr, 9, '0', STR_PAD_LEFT);
 
@@ -145,8 +129,6 @@ class NumerosEnLetras
 
         }
 
-
-
         $numberStr = (string) $base_number;
 
         $numberStrFill = str_pad($numberStr, 9, '0', STR_PAD_LEFT);
@@ -157,15 +139,13 @@ class NumerosEnLetras
 
         $cientos = substr($numberStrFill, 6);
 
-
-
         if (intval($millones) > 0) {
 
             if ($millones == '001') {
 
                 $converted .= 'un millon ';
 
-            } else if (intval($millones) > 0) {
+            } elseif (intval($millones) > 0) {
 
                 $converted .= sprintf('%smillones ', self::convertGroup($millones));
 
@@ -173,15 +153,13 @@ class NumerosEnLetras
 
         }
 
-
-
         if (intval($miles) > 0) {
 
             if ($miles == '001') {
 
                 $converted .= 'mil ';
 
-            } else if (intval($miles) > 0) {
+            } elseif (intval($miles) > 0) {
 
                 $converted .= sprintf('%smil ', self::convertGroup($miles));
 
@@ -189,15 +167,13 @@ class NumerosEnLetras
 
         }
 
-
-
         if (intval($cientos) > 0) {
 
             if ($cientos == '001') {
 
                 $converted .= 'un ';
 
-            } else if (intval($cientos) > 0) {
+            } elseif (intval($cientos) > 0) {
 
                 $converted .= sprintf('%s ', self::convertGroup($cientos));
 
@@ -205,64 +181,52 @@ class NumerosEnLetras
 
         }
 
+        if ($format) {
 
+            if (empty($decimales)) {
 
-        if($format){
-
-            if(empty($decimales)){
-
-                $valor_convertido = number_format($number, 2, ',', '.') . ' (' . ucfirst($converted) . '00/100 '.$currency.')';
+                $valor_convertido = number_format($number, 2, ',', '.').' ('.ucfirst($converted).'00/100 '.$currency.')';
 
             } else {
 
-                $valor_convertido = number_format($number, 2, ',', '.') . ' (' . ucfirst($converted) . $decNumberStr . '/100 '.$currency.')';
+                $valor_convertido = number_format($number, 2, ',', '.').' ('.ucfirst($converted).$decNumberStr.'/100 '.$currency.')';
 
             }
 
-        }else{
+        } else {
 
-            if(empty($decimales)){
+            if (empty($decimales)) {
 
-                $valor_convertido = ucfirst($converted) . $currency;
+                $valor_convertido = ucfirst($converted).$currency;
 
             } else {
 
-                $valor_convertido = ucfirst($converted) . $currency. ' con ' . $decimales . $decimals;
+                $valor_convertido = ucfirst($converted).$currency.' con '.$decimales.$decimals;
 
             }
 
         }
 
-
-        return $valor_convertido !='Pesos' ? $valor_convertido : 'Cero Pesos';
+        return $valor_convertido != 'Pesos' ? $valor_convertido : 'Cero Pesos';
 
     }
 
-
-
     private static function convertGroup($n)
-
     {
 
         $output = '';
 
-
-
         if ($n == '100') {
 
-            $output = "cien ";
+            $output = 'cien ';
 
-        } else if ($n[0] !== '0') {
+        } elseif ($n[0] !== '0') {
 
             $output = self::$CENTENAS[$n[0] - 1];
 
         }
 
-
-
-        $k = intval(substr($n,1));
-
-
+        $k = intval(substr($n, 1));
 
         if ($k <= 20) {
 
@@ -270,7 +234,7 @@ class NumerosEnLetras
 
         } else {
 
-            if(($k > 30) && ($n[2] !== '0')) {
+            if (($k > 30) && ($n[2] !== '0')) {
 
                 $output .= sprintf('%sy %s', self::$DECENAS[intval($n[1]) - 2], self::$UNIDADES[intval($n[2])]);
 
@@ -282,10 +246,7 @@ class NumerosEnLetras
 
         }
 
-
-
         return $output;
 
     }
-
 }

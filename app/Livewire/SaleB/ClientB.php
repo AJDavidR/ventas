@@ -1,4 +1,5 @@
 <?php
+
 // lo mejor es poner los metodos de clientComponent en un trait para reutilizarlos aqui y en clientComponent sin duplicar codigo
 
 namespace App\Livewire\SaleB;
@@ -32,22 +33,25 @@ class ClientB extends Component
     public function render()
     {
         return view('livewire.sale-b.client-b', [
-            'clients' => Cliente::all()
+            'clients' => Cliente::all(),
         ]);
     }
 
     #[On('client_id')]
-    public function client_id($id=1){
+    public function client_id($id = 1)
+    {
         $this->client = $id;
         $this->nameClient($id);
     }
 
-    public function mount(){
+    public function mount()
+    {
         $this->nameClient();
     }
 
     // nombre del cliente
-    public function nameClient($id=1){
+    public function nameClient($id = 1)
+    {
         $findClient = Cliente::find($id);
         $this->nameClient = $findClient->name;
     }

@@ -2,9 +2,9 @@
 
 namespace App\Livewire\SaleB;
 
-use App\Models\Product;
 use App\Models\Cart;
 use App\Models\Category;
+use App\Models\Product;
 use App\Models\Sale;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
@@ -33,13 +33,12 @@ class SaleCreateB extends Component
     public $updating = 0;
 
     public $categories;
-    
+
     public $categoryBtn;
 
     public $selectedCategoryId = '';
 
     public $client;
-
 
     public function render()
     {
@@ -62,7 +61,8 @@ class SaleCreateB extends Component
 
     // obtener id de cliente
     #[On('client_id')]
-    public function client_id($id=1){
+    public function client_id($id = 1)
+    {
         $this->client = $id;
     }
 
@@ -72,7 +72,7 @@ class SaleCreateB extends Component
     {
         $this->updating = 1;
         $this->pago = $value;
-        $this->devuelve = (int)$this->pago - Cart::getTotal();
+        $this->devuelve = (int) $this->pago - Cart::getTotal();
     }
 
     public function mount()
@@ -147,20 +147,20 @@ class SaleCreateB extends Component
             ->paginate($this->cant);
     }
 
-        // Método para actualizar la categoría seleccionada y cargar los productos asociados
+    // Método para actualizar la categoría seleccionada y cargar los productos asociados
     public function selectCategory($categoryId)
     {
         $this->selectedCategoryId = $categoryId;
         $this->search = '';
         $this->products = Product::query()
-        ->where('category_id', '=', $this->selectedCategoryId)
-        ->orderby('id', 'desc')
-        ->paginate($this->cant);
+            ->where('category_id', '=', $this->selectedCategoryId)
+            ->orderby('id', 'desc')
+            ->paginate($this->cant);
     }
 
-    public function resetCategory(){
+    public function resetCategory()
+    {
         $this->search = '';
         $this->products();
     }
-
 }

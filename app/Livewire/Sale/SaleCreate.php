@@ -2,9 +2,9 @@
 
 namespace App\Livewire\Sale;
 
+use App\Models\Cart;
 use App\Models\Item;
 use App\Models\Product;
-use App\Models\Cart;
 use App\Models\Sale;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Computed;
@@ -35,7 +35,6 @@ class SaleCreate extends Component
 
     public $client = 1;
 
-
     public function render()
     {
 
@@ -63,6 +62,7 @@ class SaleCreate extends Component
         if (count($cart) == 0) {
             // danger es el para el color del mensaje
             $this->dispatch('msg', 'No hay productos', 'danger');
+
             return;
         }
 
@@ -127,7 +127,7 @@ class SaleCreate extends Component
     {
         $this->updating = 1;
         $this->pago = $value;
-        $this->devuelve = (int)$this->pago - Cart::getTotal();
+        $this->devuelve = (int) $this->pago - Cart::getTotal();
     }
 
     public function mount()

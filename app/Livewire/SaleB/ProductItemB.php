@@ -9,22 +9,26 @@ use Livewire\Component;
 class ProductItemB extends Component
 {
     public Product $product;
+
     public $stock;
+
     public $stockLabel;
 
     protected function getListeners()
     {
         return [
-            "decrementStock.{$this->product->id}" => "decrementStock",
-            "incrementStock.{$this->product->id}" => "incrementStock",
-            "refreshProduct" => "mount",
-            "devolverStock.{$this->product->id}" => "devolverStock",
+            "decrementStock.{$this->product->id}" => 'decrementStock',
+            "incrementStock.{$this->product->id}" => 'incrementStock',
+            'refreshProduct' => 'mount',
+            "devolverStock.{$this->product->id}" => 'devolverStock',
         ];
     }
+
     public function render()
     {
         return view('livewire.sale-b.product-item-b');
     }
+
     public function mount()
     {
         // reiniciar stock
@@ -69,9 +73,9 @@ class ProductItemB extends Component
     public function stockLabel()
     {
         if ($this->stock <= $this->product->stock_minimo) {
-            return '<span class="badge badge-pill badge-danger">' . $this->stock . '</span>';
+            return '<span class="badge badge-pill badge-danger">'.$this->stock.'</span>';
         } else {
-            return '<span class="badge badge-pill badge-success">' . $this->stock . '</span>';
+            return '<span class="badge badge-pill badge-success">'.$this->stock.'</span>';
         }
     }
 }

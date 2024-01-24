@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Client;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class ClientSeeder extends Seeder
@@ -16,7 +15,7 @@ class ClientSeeder extends Seeder
         // Client::factory()->count(15)->create();
         Client::create([
             'name' => 'General',
-            'identificacion' => '----'
+            'identificacion' => '----',
         ]);
     }
 }

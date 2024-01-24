@@ -103,7 +103,7 @@ class CategoryComponent extends Component
     {
         // dump($category);
         $rules = [
-            'name' => 'required|min:5|max:255|unique:categories,id,' . $this->Id,
+            'name' => 'required|min:5|max:255|unique:categories,id,'.$this->Id,
         ];
         $messages = [
             'name.required' => 'El nombre es requerido',

@@ -21,7 +21,7 @@ class Currency extends Component
     public function mount()
     {
         $this->valores = [
-            1000, 2000, 5000, 10000, 20000, 50000, 100000
+            1000, 2000, 5000, 10000, 20000, 50000, 100000,
         ];
     }
 
@@ -38,7 +38,8 @@ class Currency extends Component
     }
 
     // setear pago
-    public function setPago($valor){
+    public function setPago($valor)
+    {
         $this->dispatch('set-pago', $valor);
         $this->closeModal();
     }

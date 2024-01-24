@@ -36,7 +36,6 @@ class ClientComponent extends Component
 
     public $nit;
 
-
     public function render()
     {
         $this->totalRegistros = Client::count();
@@ -129,7 +128,7 @@ class ClientComponent extends Component
     {
         $rules = [
             'name' => 'required|min:5|max:255',
-            'identificacion' => 'required|regex:/^[0-9]{6,10}$/|numeric|unique:clients,id,' . $this->Id,
+            'identificacion' => 'required|regex:/^[0-9]{6,10}$/|numeric|unique:clients,id,'.$this->Id,
             'telefono' => 'numeric|nullable',
             'email' => 'nullable|Email|max:255',
             'empresa' => 'nullable',
