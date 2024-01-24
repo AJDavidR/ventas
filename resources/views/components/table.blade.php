@@ -1,20 +1,11 @@
 {{-- ----------------------> Tabla esquema general <---------------------- --}}
-@props(['classSelect' => 'w-25'])
+@props(['classSelect' => 'w-50', 'inputClass' => 'w-25'])
 <div class="mb-3 d-flex justify-content-between">
 
-    <div class="input-group ">
-
-        <div class="input-group-prepend">
-            <span class="input-group-text">
-                <i class="fas fa-search"></i>
-            </span>
-        </div>
-
-        <input type="text" wire:model.live.debounce.300ms='search' placeholder="Buscar" class="form-control">
-    </div>
+    
 
     <div class="{{ $classSelect }}">
-        <div class="text-right">
+        <div class="text-left">
             <span>Mostrar</span>
             <select wire:model.live='cant'>
                 <option value="5">5</option>
@@ -25,6 +16,17 @@
             </select>
             <span>Entradas</span>
         </div>
+    </div>
+
+    <div class="input-group {{ $inputClass }}">
+
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                <i class="fas fa-search"></i>
+            </span>
+        </div>
+
+        <input type="text" wire:model.live.debounce.300ms='search' placeholder="Buscar" class="form-control">
     </div>
     
 

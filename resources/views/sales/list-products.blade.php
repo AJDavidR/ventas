@@ -5,7 +5,7 @@
 
     <div class="card-body">
 
-        <x-table>
+        <x-table inputClass="w-50">
 
             <x-slot:thead>
                 <th scope="col">#</th>
