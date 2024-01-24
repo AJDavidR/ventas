@@ -8,6 +8,7 @@ use App\Livewire\Home\Inicio;
 use App\Livewire\Product\ProductComponent;
 use App\Livewire\Product\ProductShow;
 use App\Livewire\Sale\SaleCreate;
+use App\Livewire\Sale\SaleList;
 use App\Livewire\SaleB\SaleCreateB;
 use App\Livewire\User\UserComponent;
 use App\Livewire\User\UserShow;
@@ -49,6 +50,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/clientes/{client}', ClientShow::class)->name('clients.show');
 
     Route::get('/ventas/crear', SaleCreate::class)->name('sales.create');
+    Route::get('/ventas', SaleList::class)->name('sales.list');
 
+    // pagina de ventas alternativa
     Route::get('/ventas/comprar', SaleCreateB::class)->name('sales.createB');
 });

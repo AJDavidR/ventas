@@ -59,7 +59,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link">
+                            <a href="{{ route("sales.list") }}" class="nav-link">
                                 <i class="fas fa-shopping-cart nav-icon"></i>
                                 <p>Mostrar ventas</p>
                             </a>
