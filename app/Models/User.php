@@ -59,4 +59,10 @@ class User extends Authenticatable
             }
         );
     }
+
+    // Relaciones
+
+    public function sales(){
+        return $this->hasMany(Sale::class);
+    }
 }
