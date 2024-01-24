@@ -4,6 +4,8 @@ namespace App\Livewire\Sale;
 
 use App\Models\Product;
 use App\Models\Cart;
+use App\Models\Sale;
+use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Title;
@@ -56,11 +58,27 @@ class SaleCreate extends Component
     {
         $cart = Cart::getCart();
 
+        // si el carrito esta vacio
         if (count($cart) == 0) {
 
             $this->dispatch('msg', 'No hay productos', 'danger');
             return;
         }
+
+        // si el pago es menor que el total
+        if ($this->pago< Cart::getTotal()) {
+            $this->pago = Cart::getTotal();
+            $this->devuelve = 0;
+        }
+
+        DB::transaction(function(){
+            $sale = new Sale();
+            $sale->total = Cart::getTotal();
+            $sale->pago = $this->pago;
+            $sale->fecha = date('Y-m-d');
+            $sale->client_id = $this->client;
+            $sale->user_id = userID();
+        });
         // dump('works');
     }
 
