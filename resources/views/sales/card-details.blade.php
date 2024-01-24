@@ -2,12 +2,21 @@
     <div class="card-header">
         <h3 class="card-title"><i class="fas fa-cart-plus"></i> Detalles venta </h3>
         <div class="card-tools">
+
             <!-- Conteo de productos -->
             <i class="fas fa-tshirt" title="Numero productos"></i>
             <span class="badge badge-pill bg-purple">{{ $cart->count() }}</span>
+
             <!-- Conteo de articulos -->
             <i class="fas fa-shopping-basket ml-2" title="Numero items"></i>
             <span class="badge badge-pill bg-purple">{{ $totalArticulos }}</span>
+
+            {{-- Boton crear venta --}}
+            <button wire:click='createSale' class="btn bg-purple ml-2">
+                <i class="fas fa-cart-plus mr-1"></i>
+                Crear venta
+            </button>
+
         </div>
     </div>
     <!-- card-body -->

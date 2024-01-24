@@ -51,9 +51,23 @@ class SaleCreate extends Component
         ]);
     }
 
-    
+    // Crear venta
+    public function createSale()
+    {
+        $cart = Cart::getCart();
+
+        if (count($cart) == 0) {
+
+            $this->dispatch('msg', 'No hay productos');
+            return;
+        }
+        // dump('works');
+    }
+
+    // recibir el id del cliente
     #[On('client_id')]
-    public function client_id($id=1){
+    public function client_id($id = 1)
+    {
         $this->client = $id;
     }
 
