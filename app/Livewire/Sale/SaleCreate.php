@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Sale;
 
+use App\Models\Item;
 use App\Models\Product;
 use App\Models\Cart;
 use App\Models\Sale;
@@ -58,28 +59,59 @@ class SaleCreate extends Component
     {
         $cart = Cart::getCart();
 
-        // si el carrito esta vacio
+        // Verificar si el carrito esta vacio
         if (count($cart) == 0) {
-
+            // danger es el para el color del mensaje
             $this->dispatch('msg', 'No hay productos', 'danger');
             return;
         }
 
-        // si el pago es menor que el total
-        if ($this->pago< Cart::getTotal()) {
+        // Ajustar el pago si es menor que el total
+        if ($this->pago < Cart::getTotal()) {
             $this->pago = Cart::getTotal();
             $this->devuelve = 0;
         }
 
-        DB::transaction(function(){
+        // Iniciar una transaccion en base de datos
+        DB::transaction(function () {
             $sale = new Sale();
             $sale->total = Cart::getTotal();
             $sale->pago = $this->pago;
             $sale->fecha = date('Y-m-d');
             $sale->client_id = $this->client;
             $sale->user_id = userID();
+            $sale->save();
+
+            // global $cart;
+            // dump(\Cart::session(userID())->getContent());
+
+            // Agregar items a la venta
+            foreach (\Cart::session(userID())->getContent() as $product) {
+                $item = new Item;
+                $item->name = $product->name;
+                $item->image = $product->associatedModel->imagen;
+                $item->price = $product->price;
+                $item->qty = $product->quantity;
+                $item->fecha = date('Y-m-d');
+                $item->product_id = $product->id;
+                $item->save();
+
+                // añadir a la tabla intermedia
+                $sale->items()->attach($item->id, [
+                    'qty' => $product->quantity,
+                    'fecha' => date('Y-m-d'),
+                ]);
+
+                // Buscar el producto y restar del stock la cantidad vendida
+                Product::find($product->id)->decrement('stock', $product->quantity);
+            }
+
+            // Limpiar
+            $this->clear();
+
+            $this->dispatch('msg', 'Venta creada correctamente');
         });
-        // dump('works');
+
     }
 
     // recibir el id del cliente
@@ -147,6 +179,16 @@ class SaleCreate extends Component
         $this->dispatch('msg', 'Venta cancelada');
     }
 
+    // propiedad para obtener el listado de productos
+    #[Computed]
+    public function products()
+    {
+        return Product::query()
+            ->where('name', 'like', "%{$this->search}%")
+            ->orderby('id', 'desc')
+            ->paginate($this->cant);
+    }
+
     // Limpiar venta
     public function clear()
     {
@@ -156,15 +198,5 @@ class SaleCreate extends Component
         Cart::clear();
         // reiniciar stock en productRow ↓↓↓
         $this->dispatch('refreshProduct');
-    }
-
-    // propiedad para obtener el listado de productos
-    #[Computed]
-    public function products()
-    {
-        return Product::query()
-            ->where('name', 'like', "%{$this->search}%")
-            ->orderby('id', 'desc')
-            ->paginate($this->cant);
     }
 }
