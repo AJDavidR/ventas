@@ -58,7 +58,7 @@ class SaleCreate extends Component
 
         if (count($cart) == 0) {
 
-            $this->dispatch('msg', 'No hay productos');
+            $this->dispatch('msg', 'No hay productos', 'danger');
             return;
         }
         // dump('works');
