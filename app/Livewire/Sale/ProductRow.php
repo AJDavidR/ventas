@@ -21,6 +21,7 @@ class ProductRow extends Component
             "incrementStock.{$this->product->id}" => 'incrementStock',
             'refreshProduct' => 'mount',
             "devolverStock.{$this->product->id}" => 'devolverStock',
+            "igualarStock.{$this->product->id}" => 'igualarStock',
         ];
     }
 
@@ -71,14 +72,22 @@ class ProductRow extends Component
         $this->stock = $this->stock + $qty;
     }
 
+    // escuchar igualarStock para quitar del stock los que ya estan en el carrito
+    #[On('igualarStock')]
+    public function igualarStock($qty)
+    {
+        dump('hola');
+        // $this->dispatch('msg',"hola");
+        // $this->stock = $this->stock - $qty;
+    }
+
     // añadir badge color a stock dependiendo de stock minimo
     public function stockLabel()
     {
         if ($this->stock <= $this->product->stock_minimo) {
-            return '<span class="badge badge-pill badge-danger">'.$this->stock.'</span>';
+            return '<span class="badge badge-pill badge-danger">' . $this->stock . '</span>';
         } else {
-            return '<span class="badge badge-pill badge-success">'.$this->stock.'</span>';
+            return '<span class="badge badge-pill badge-success">' . $this->stock . '</span>';
         }
-
     }
 }

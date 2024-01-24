@@ -133,7 +133,9 @@ class SaleCreate extends Component
     public function mount()
     {
         // limpiar el carrito al iniciar el render
-        $this->clear();
+        // $this->clear();
+
+        // $this->igualarStock();
     }
 
     // Agregar producto al carrito
@@ -198,5 +200,22 @@ class SaleCreate extends Component
         Cart::clear();
         // reiniciar stock en productRow ↓↓↓
         $this->dispatch('refreshProduct');
+    }
+    public function igualarStock(){
+        $cart = Cart::getCart();
+        if (count($cart) == 0) {
+            // danger es el para el color del mensaje
+            // $this->dispatch('msg', 'No hay productos', 'danger');
+
+            return;
+        }
+        foreach ($cart as $product) {
+            $qty = $product->quantity;
+            // $this->dispatch('msg',"igualarStock.{$product->id}".",". $qty);
+            // dump($product->id);
+
+
+            // $this->dispatch("igualarStock.{$product->id}", $qty);
+        }
     }
 }

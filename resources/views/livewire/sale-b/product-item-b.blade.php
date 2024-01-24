@@ -16,10 +16,7 @@
                 {{-- nombre --}}
                 <div style="max-width: 170px;" class="d-flex flex-wrap">
                     <div class="text-white w-100">
-                        <div class="d-flex justify-content-between">
                             <p>{{ $product->name }}</p>
-                            <p>{{ $product->stock }}</p>
-                        </div>
                     </div>
                 </div>
 
