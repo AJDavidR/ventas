@@ -1,6 +1,14 @@
 <div>
     <x-card cardTitle="Listado ventas ({{ $totalRegistros }})">
         <x-slot:cardTools>
+
+        {{-- selector de fechas --}}
+        <span class="badge badge-info" style="font-size: 1.2rem">
+            Total: 0
+        </span>
+        Selector Fechas
+
+
             <a href="{{ route('sales.create') }}" class="btn btn-primary">
                 <i class="fas fa-cart-plus"></i>
                 Crear venta
