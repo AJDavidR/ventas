@@ -26,43 +26,43 @@
                                 <li class="list-group-item">
                                     <b>Documento</b>
                                     <a class="float-right">
-
+                                        {{ $sale->client->identificacion }}
                                     </a>
                                 </li>
                                 <li class="list-group-item">
                                     <b>Telefono</b>
                                     <a class="float-right">
-
+                                        {{ $sale->client->telefono }}
                                     </a>
                                 </li>
                                 <li class="list-group-item">
                                     <b>Email</b>
                                     <a class="float-right">
-
+                                        {{ $sale->client->email }}
                                     </a>
                                 </li>
 
                                 <li class="list-group-item">
                                     <b>Empresa</b>
                                     <a class="float-right">
-
+                                        {{ $sale->client->empresa }}
                                     </a>
                                 </li>
                                 <li class="list-group-item">
                                     <b>NIT</b> <a class="float-right">
-
+                                        {{ $sale->client->nit }}
                                     </a>
                                 </li>
 
                                 <li class="list-group-item">
                                     <b>Creado</b>
                                     <a class="float-right">
-
+                                        {{ $sale->client->created_at }}
                                     </a>
                                 </li>
                             </ul>
 
-                            <a class="btn btn-primary btn-block"><b>Ver</b></a>
+                            <a href="{{ route("clients.show", $sale->client->id) }}" class="btn btn-primary btn-block"><b>Ver</b></a>
                         </div>
                         <!-- /.card-body -->
                     </div>
