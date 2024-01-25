@@ -10,17 +10,31 @@
         <x-table>
             <x-slot:thead>
                 <th>ID</th>
-                <th>Nombre</th>
-                <th width="3%">...</th>
-                <th width="3%">...</th>
-                <th width="3%">...</th>
+                <th>Cliente</th>
+                <th>Total</th>
+                <th>Productos</th>
+                <th>Articulos</th>
+                <th>Fecha</th>
+                <th width="3%">Pdf</th>
+                <th width="3%">Ver</th>
+                <th width="3%">Editar</th>
+                <th width="3%">Borrar</th>
 
             </x-slot>
 
             @forelse ($sales as $sale)
                 <tr>
-                    <td>{{ $sale->id }}</td>
-                    <td>{{ $sale->total }}</td>
+                    <td>FV--{{ $sale->id }}</td>
+                    <td>{{ $sale->client->name }}</td>
+                    <td>{{ money($sale->total) }}</td>
+                    <td>{{ $sale->items->count() }}</td>
+                    <td>{{ $sale->items->sum('pivot.qty') }}</td>
+                    <td>{{ $sale->fecha }}</td>
+                    <td>
+                        <a href="" class="btn bg-navy btn-sm" title="Pdf">
+                            <i class="fas fa-file-pdf fa-lg"></i>
+                        </a>
+                    </td>
                     <td>
                         <a href="" class="btn btn-success btn-sm" title="Ver">
                             <i class="far fa-eye"></i>
@@ -43,7 +57,7 @@
             @empty
 
                 <tr class="text-center">
-                    <td colspan="5">Sin registros</td>
+                    <td colspan="10">Sin registros</td>
                 </tr>
             @endforelse
 
