@@ -1,7 +1,7 @@
 <div>
     <x-card cardTitle="Listado ventas ({{ $totalRegistros }})">
         <x-slot:cardTools>
-            <a href="{{ route("sales.create") }}" class="btn btn-primary">
+            <a href="{{ route('sales.create') }}" class="btn btn-primary">
                 <i class="fas fa-cart-plus"></i>
                 Crear venta
             </a>
@@ -15,23 +15,39 @@
                 <th>Productos</th>
                 <th>Articulos</th>
                 <th>Fecha</th>
-                <th width="3%">Pdf</th>
-                <th width="3%">Ver</th>
-                <th width="3%">Editar</th>
-                <th width="3%">Borrar</th>
+                <th width="3%">...</th>
+                <th width="3%">...</th>
+                <th width="3%">...</th>
+                <th width="3%">...</th>
 
             </x-slot>
 
             @forelse ($sales as $sale)
                 <tr>
-                    <td>FV--{{ $sale->id }}</td>
+                    <td>
+                        <span class="badge badge-primary">
+                            FV--{{ $sale->id }}
+                        </span>
+                    </td>
                     <td>{{ $sale->client->name }}</td>
-                    <td>{{ money($sale->total) }}</td>
-                    <td>{{ $sale->items->count() }}</td>
-                    <td>{{ $sale->items->sum('pivot.qty') }}</td>
+                    <td>
+                        <span class="badge badge-secondary">
+                            {{ money($sale->total) }}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="badge badge-pill bg-purple">
+                            {{ $sale->items->count() }}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="badge badge-pill bg-purple">
+                            {{ $sale->items->sum('pivot.qty') }}
+                        </span>
+                    </td>
                     <td>{{ $sale->fecha }}</td>
                     <td>
-                        <a href="" class="btn bg-navy btn-sm" title="Pdf">
+                        <a href="" class="btn bg-navy btn-sm" title="Generar PDF">
                             <i class="fas fa-file-pdf fa-lg"></i>
                         </a>
                     </td>
