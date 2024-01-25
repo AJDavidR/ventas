@@ -1,7 +1,7 @@
 <div>
     <x-card cardTitle="Crear Venta">
         <x-slot:cardTools>
-            <a href="#" class="btn btn-primary btn-sm mr-2">
+            <a href="{{ route("sales.list") }}" class="btn btn-primary btn-sm mr-2">
                 <i class="fas fa-arrow-circle-left mr-1"></i> Ir a ventas
             </a>
 

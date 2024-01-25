@@ -46,6 +46,7 @@
                         </span>
                     </td>
                     <td>{{ $sale->fecha }}</td>
+                    {{-- Botones --}}
                     <td>
                         <a href="" class="btn bg-navy btn-sm" title="Generar PDF">
                             <i class="fas fa-file-pdf fa-lg"></i>
