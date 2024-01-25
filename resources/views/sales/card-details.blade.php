@@ -1,6 +1,6 @@
 <div class="card card-info">
     <div class="card-header">
-        <h3 class="card-title"><i class="fas fa-cart-plus"></i> Detalles venta </h3>
+        <h3 class="card-title"><i class="fas fa-cart-plus"></i> Detalles venta {{ ' # '.$totalRegistros+1 }}</h3>
         <div class="card-tools">
 
             <!-- Conteo de productos -->
@@ -67,7 +67,9 @@
 
                             </td>
                             <td>
-                                <b>{{ money($product->quantity * $product->price) }}</b>
+                                <b>
+                                    {{ money($product->getPriceSum()) }}
+                                </b>
                             </td>
                             <td>
                                 <!-- Boton para eliminar el producto del carrito -->
