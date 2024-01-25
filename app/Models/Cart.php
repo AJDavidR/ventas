@@ -9,6 +9,15 @@ class Cart extends Model
     // Agregar producto al carrito
     public static function add(Product $product)
     {
+        $iva = 19;
+
+                // solo ejemplo para hacer la prueba
+        // $itemCondition1 = new \Darryldecode\Cart\CartCondition(array(
+        //     'name' => 'IVA 19%',
+        //     'type' => 'tax',
+        //     'value' => -$iva.'%',
+        // ));
+
 
         // add the product to cart
         \Cart::session(userID())->add([
@@ -18,6 +27,7 @@ class Cart extends Model
             'quantity' => 1,
             'attributes' => [],
             'associatedModel' => $product,
+            // 'conditions' => [$itemCondition1]
         ]);
         // dump(\Cart::getContent());
     }
@@ -34,6 +44,12 @@ class Cart extends Model
     public static function getTotal()
     {
         return \Cart::session(userID())->getTotal();
+    }
+
+    // Devolver subTotal
+    public static function getSubTotal()
+    {
+        return \Cart::session(userID())->getSubTotal();
     }
 
     // Decrementar total
@@ -69,4 +85,5 @@ class Cart extends Model
     {
         return \Cart::session(userID())->getTotalQuantity();
     }
+
 }

@@ -14,7 +14,7 @@
         <div class="d-flex">
             <div class="d-flex flex-column align-items-center border border-white">
                 <div class="">
-                    Subtotal: <b>{{ money($total) }}</b>
+                    Subtotal: <b>{{ money($subTotal) }}</b>
                 </div>
                 <div class="border-top border-white mx-2">
                     Retenciones: <b>$0</b>

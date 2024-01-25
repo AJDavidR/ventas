@@ -17,9 +17,11 @@
                 <thead>
                     <tr>
                         <th scope="col">Producto</th>
-                        <th scope="col">Precio</th>
                         <th scope="col" width="15%">Qty</th>
+                        <th scope="col">IVA</th>
+                        <th scope="col">Precio</th>
                         <th scope="col">Sub total</th>
+                        <th scope="col">Total</th>
                         <th scope="col">Accion</th>
                     </tr>
 
@@ -28,9 +30,6 @@
                     @forelse ($cart as $product)
                         <tr>
                             <td>{{ $product->name }}</td>
-                            <td>
-                                <b>{{ money($product->price) }}</b>
-                            </td>
                             <td>
                                 <!-- Botones para aumentar o disminuir la cantidad del producto en el carrito -->
                                 <button wire:click="decrement({{ $product->id }})" class="btn btn-primary btn-xs bg-red"
@@ -52,8 +51,22 @@
 
                             </td>
                             <td>
-                                <b>{{ money($product->quantity * $product->price) }}</b>
+                                <b>{{ money(19 * $product->price/ 100) }}</b>                          
                             </td>
+                            <td>
+                                <b>{{ money($product->price-(19 * $product->price/ 100)) }}</b>
+                            </td>
+                            <td>
+                                <b>
+                                    {{ money($product->getPriceSumWithConditions()) }}
+                                </b>
+                            </td>
+                            <td>
+                                <b>
+                                    {{ money($product->getPriceSum()) }}
+                                </b>
+                            </td>
+                            
                             <td>
                                 <!-- Boton para eliminar el producto del carrito -->
                                 <button 

@@ -6,6 +6,7 @@ use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Sale;
+use Darryldecode\Cart\CartConditionCollection;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Title;
@@ -54,6 +55,7 @@ class SaleCreateB extends Component
         return view('livewire.sale-b.sale-create-b', [
             'products' => $this->products,
             'cart' => Cart::getCart(),
+            'subTotal' => Cart::getSubTotal(),
             'total' => Cart::getTotal(),
             'totalArticulos' => Cart::totalArticulos(),
         ]);
@@ -85,6 +87,33 @@ class SaleCreateB extends Component
     #[On('add-product')]
     public function addProduct(Product $product)
     {
+
+        // $itemCondition1 = new \Darryldecode\Cart\CartCondition(array(
+        //     'name' => 'SALE 5%',
+        //     'type' => 'sale',
+        //     'value' => '-5%',
+        // ));
+        // $itemCondition2 = new CartConditionCollection(array(
+        //     'name' => 'Item Gift Pack 25.00',
+        //     'type' => 'promo',
+        //     'value' => '-25',
+        // ));
+        // $itemCondition3 = new \Darryldecode\Cart\CartCondition(array(
+        //     'name' => 'MISC',
+        //     'type' => 'misc',
+        //     'value' => '+10',
+        // ));
+
+        // $product = array(
+        //     'id' => $product->id,
+        //     'name' => $product->name,
+        //     'price' => $product->precio_venta,
+        //     'quantity' => $product->qty,
+        //     'attributes' => array(),
+        //     'conditions' => [$itemCondition1, $itemCondition2, $itemCondition3]
+        // );
+        // $conditions = [$itemCondition1, $itemCondition2, $itemCondition3];
+
         Cart::add($product);
 
         $this->updating = 0;
@@ -116,6 +145,12 @@ class SaleCreateB extends Component
         Cart::removeItem($id);
         $this->dispatch("devolverStock.{$id}", $qty);
     }
+
+    // public function subTotal()
+    // {
+    //     $subTotal = Cart::getSubTotal();
+    //     $this->subTotal = $subTotal;
+    // }
 
     // Cancelar venta
     public function cancel()
