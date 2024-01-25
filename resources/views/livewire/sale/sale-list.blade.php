@@ -61,7 +61,7 @@
                         </a>
                     </td>
                     <td>
-                        <a href="" class="btn btn-success btn-sm" title="Ver">
+                        <a href="{{ route("sales.show",$sale) }}" class="btn btn-success btn-sm" title="Ver">
                             <i class="far fa-eye"></i>
                         </a>
                     </td>

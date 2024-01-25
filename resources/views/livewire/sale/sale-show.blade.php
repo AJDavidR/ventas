@@ -1,0 +1,226 @@
+<x-card title="Ver venta">
+    <x-slot:btn>
+
+        <a href="{{ route('sales.list') }}" class="btn btn-primary">
+            <i class="fas fa-arrow-left"></i> Volver
+        </a>
+
+
+    </x-slot>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <h5 class="card-header">Cliente</h5>
+                <div class="card-body">
+                    {{-- card datos cliente --}}
+                    <div class="card card-primary card-outline">
+                        <div class="card-body box-profile">
+                            <div class="text-center" style="font-size: 4rem">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+
+                            <h3 class="profile-username text-center my-3"></h3>
+
+                            <ul class="list-group  mb-3">
+                                <li class="list-group-item">
+                                    <b>Documento</b>
+                                    <a class="float-right">
+
+                                    </a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Telefono</b>
+                                    <a class="float-right">
+
+                                    </a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Email</b>
+                                    <a class="float-right">
+
+                                    </a>
+                                </li>
+
+                                <li class="list-group-item">
+                                    <b>Empresa</b>
+                                    <a class="float-right">
+
+                                    </a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>NIT</b> <a class="float-right">
+
+                                    </a>
+                                </li>
+
+                                <li class="list-group-item">
+                                    <b>Creado</b>
+                                    <a class="float-right">
+
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <a class="btn btn-primary btn-block"><b>Ver</b></a>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    {{-- end card datos cliente --}}
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Factura: <b>FV-{{ $sale->id }}</b> </h3>
+                    <div class="card-tools">
+                        <!-- Buttons, labels, and many other things can be placed here! -->
+                        <!-- Here is a label for example -->
+                        <i class="fas fa-tshirt" title="Numero productos"></i>
+                        <span class="badge badge-pill badge-primary mr-2">
+                            0
+                        </span>
+                        <i class="fas fa-shopping-basket" title="Numero items"></i>
+                        <span class="badge badge-pill badge-primary mr-2">
+                            0
+                        </span>
+                        <i class="fas fa-clock" title="Fecha y hora de creacion"></i>
+
+                    </div>
+                    <!-- /.card-tools -->
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-sm table-striped text-center">
+
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col"><i class="fas fa-image"></i></th>
+                                    <th scope="col">Producto</th>
+                                    <th scope="col">Precio venta</th>
+                                    <th scope="col" width="15%">Qty</th>
+                                    <th scope="col">Sub total</th>
+
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                @forelse ($sale->items as $product)
+                                    <tr>
+                                        <th scope="row"></th>
+                                        <td>
+                                            <img src="" width="50" class="img-fluid rounded">
+
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>
+                                            <span class="badge badge-pill badge-primary">
+
+                                            </span>
+                                        </td>
+
+                                        <td></td>
+
+
+                                    </tr>
+
+                                @empty
+
+                                    <tr>
+                                        <td colspan="10">Sin Registros</td>
+                                    </tr>
+                                @endforelse
+                                <tr>
+                                    <td colspan="4"></td>
+                                    <td>
+                                        <h5>Total:</h5>
+                                    </td>
+                                    <td>
+                                        <h5>
+                                            <span class="badge badge-pill badge-secondary">
+                                            </span>
+                                        </h5>
+                                    </td>
+
+                                </tr>
+                                <tr>
+
+                                    <td colspan="7">
+                                        <strong>Total en letras:</strong>
+                                        0
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+
+            </div>
+            <!-- /.card -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Vendedor</h3>
+                    <div class="card-tools">
+
+                    </div>
+                    <!-- /.card-tools -->
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table class="table table-hover table-sm table-striped text-center">
+
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col"><i class="fas fa-image"></i></th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Perfil</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">...</th>
+
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row"></th>
+                                <td>
+                                    <img src="" width="50" class="img-fluid rounded">
+
+                                </td>
+                                <td></td>
+                                <td></td>
+
+                                <td></td>
+                                <td>
+                                    <button class="btn btn-success btn-xs">
+                                        <i class="far fa-eye"></i>
+                                    </button>
+                                </td>
+
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+
+            </div>
+            <!-- /.card -->
+
+        </div>
+    </div>
+
+
+    <x-slot:cardFooter>
+
+    </x-slot>
+
+</x-card>
