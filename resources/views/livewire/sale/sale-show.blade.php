@@ -62,7 +62,7 @@
                                 </li>
                             </ul>
 
-                            <a href="{{ route("clients.show", $sale->client->id) }}" class="btn btn-primary btn-block"><b>Ver</b></a>
+                            <a href="{{ route("clients.show", $sale->client) }}" class="btn btn-primary btn-block"><b>Ver</b></a>
                         </div>
                         <!-- /.card-body -->
                     </div>
@@ -80,13 +80,14 @@
                         <!-- Here is a label for example -->
                         <i class="fas fa-tshirt" title="Numero productos"></i>
                         <span class="badge badge-pill badge-primary mr-2">
-                            0
+                            {{ $sale->items->count() }}
                         </span>
                         <i class="fas fa-shopping-basket" title="Numero items"></i>
                         <span class="badge badge-pill badge-primary mr-2">
-                            0
+                            {{ $sale->items->sum('pivot.qty') }}
                         </span>
                         <i class="fas fa-clock" title="Fecha y hora de creacion"></i>
+                        {{ $sale->created_at }}
 
                     </div>
                     <!-- /.card-tools -->
@@ -111,20 +112,20 @@
                             <tbody>
                                 @forelse ($sale->items as $product)
                                     <tr>
-                                        <th scope="row"></th>
+                                        <th scope="row">{{ $product->id }}</th>
                                         <td>
-                                            <img src="" width="50" class="img-fluid rounded">
+                                            <img src="{{ $product->image }}" width="50" class="img-fluid rounded">
 
                                         </td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>{{ $product->name }}</td>
+                                        <td>{{ money($product->price) }}</td>
                                         <td>
                                             <span class="badge badge-pill badge-primary">
-
+                                                {{ $product->qty }}
                                             </span>
                                         </td>
 
-                                        <td></td>
+                                        <td>{{ money($product->qty * $product->price) }}</td>
 
 
                                     </tr>
@@ -143,6 +144,7 @@
                                     <td>
                                         <h5>
                                             <span class="badge badge-pill badge-secondary">
+                                                {{ $sale->total }}
                                             </span>
                                         </h5>
                                     </td>
@@ -152,7 +154,7 @@
 
                                     <td colspan="7">
                                         <strong>Total en letras:</strong>
-                                        0
+                                        {{ numeroLetras($sale->total) }}
                                     </td>
                                 </tr>
                             </tbody>
