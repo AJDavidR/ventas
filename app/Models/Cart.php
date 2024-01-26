@@ -11,13 +11,12 @@ class Cart extends Model
     {
         $iva = 19;
 
-                // solo ejemplo para hacer la prueba
+        // solo ejemplo para hacer la prueba
         // $itemCondition1 = new \Darryldecode\Cart\CartCondition(array(
         //     'name' => 'IVA 19%',
         //     'type' => 'tax',
         //     'value' => -$iva.'%',
         // ));
-
 
         // add the product to cart
         \Cart::session(userID())->add([
@@ -85,5 +84,4 @@ class Cart extends Model
     {
         return \Cart::session(userID())->getTotalQuantity();
     }
-
 }

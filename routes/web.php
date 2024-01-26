@@ -54,8 +54,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/sales', SaleList::class)->name('sales.list');
     Route::get('/sales/{sale}', SaleShow::class)->name('sales.show');
 
-    
-
     // pagina de ventas alternativa
     Route::get('/ventas/comprar', SaleCreateB::class)->name('sales.createB');
 });

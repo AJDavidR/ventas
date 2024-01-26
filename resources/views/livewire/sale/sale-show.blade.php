@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-md-4">
             <div class="card">
-                <h5 class="card-header">Cliente</h5>
+                <h5 class="card-header">Cliente: {{ $sale->client->name }}</h5>
                 <div class="card-body">
                     {{-- card datos cliente --}}
                     <div class="card card-primary card-outline">
@@ -115,7 +115,6 @@
                                         <th scope="row">{{ $product->id }}</th>
                                         <td>
                                             <img src="{{ $product->image }}" width="50" class="img-fluid rounded">
-
                                         </td>
                                         <td>{{ $product->name }}</td>
                                         <td>{{ money($product->price) }}</td>
@@ -124,14 +123,9 @@
                                                 {{ $product->qty }}
                                             </span>
                                         </td>
-
                                         <td>{{ money($product->qty * $product->price) }}</td>
-
-
                                     </tr>
-
                                 @empty
-
                                     <tr>
                                         <td colspan="10">Sin Registros</td>
                                     </tr>
@@ -144,7 +138,7 @@
                                     <td>
                                         <h5>
                                             <span class="badge badge-pill badge-secondary">
-                                                {{ $sale->total }}
+                                                {{ money($sale->total) }}
                                             </span>
                                         </h5>
                                     </td>
@@ -190,18 +184,20 @@
 
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row"></th>
+                            <tr class="tableCentrarY">
+                                <td scope="row">{{ $sale->user->id }}</td>
                                 <td>
-                                    <img src="" width="50" class="img-fluid rounded">
-
+                                    <img src="{{ $sale->user->imagen }}" width="50" class="img-fluid rounded">
                                 </td>
-                                <td></td>
-                                <td></td>
-
-                                <td></td>
+                                <td>{{ $sale->user->name }}</td>
                                 <td>
-                                    <button class="btn btn-success btn-xs">
+                                    {!! $sale->user->admin
+                                        ? '<span class="badge badge-pill badge-warning">Administrador</span>'
+                                        : '<span class="badge badge-pill badge-light">Vendedor</span>' !!}
+                                </td>
+                                <td>{{ $sale->user->email }}</td>
+                                <td>
+                                    <button href="{{ route("users.show", $sale->user) }}" class="btn btn-success btn-xs">
                                         <i class="far fa-eye"></i>
                                     </button>
                                 </td>

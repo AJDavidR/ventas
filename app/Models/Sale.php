@@ -23,6 +23,6 @@ class Sale extends Model
     public function items()
     {
         // withPivot es para traer de la tabla intermedia
-        return $this->belongsToMany(Item::class)->withPivot(['qty','fecha']);
+        return $this->belongsToMany(Item::class)->withPivot(['qty', 'fecha']);
     }
 }

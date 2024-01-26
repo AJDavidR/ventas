@@ -3,8 +3,8 @@
 namespace App\Livewire\Sale;
 
 use App\Models\Sale;
-use Livewire\Component;
 use Livewire\Attributes\Title;
+use Livewire\Component;
 use Livewire\WithPagination;
 
 #[Title('Ventas')]
@@ -12,12 +12,12 @@ class SaleList extends Component
 {
     use WithPagination;
 
-        // propiedades clase
-        public $search = '';
+    // propiedades clase
+    public $search = '';
 
-        public $totalRegistros = 0;
-    
-        public $cant = 5;
+    public $totalRegistros = 0;
+
+    public $cant = 5;
 
     public function render()
     {

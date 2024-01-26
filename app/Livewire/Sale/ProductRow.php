@@ -85,9 +85,9 @@ class ProductRow extends Component
     public function stockLabel()
     {
         if ($this->stock <= $this->product->stock_minimo) {
-            return '<span class="badge badge-pill badge-danger">' . $this->stock . '</span>';
+            return '<span class="badge badge-pill badge-danger">'.$this->stock.'</span>';
         } else {
-            return '<span class="badge badge-pill badge-success">' . $this->stock . '</span>';
+            return '<span class="badge badge-pill badge-success">'.$this->stock.'</span>';
         }
     }
 }

@@ -201,7 +201,9 @@ class SaleCreate extends Component
         // reiniciar stock en productRow ↓↓↓
         $this->dispatch('refreshProduct');
     }
-    public function igualarStock(){
+
+    public function igualarStock()
+    {
         $cart = Cart::getCart();
         if (count($cart) == 0) {
             // danger es el para el color del mensaje
@@ -213,7 +215,6 @@ class SaleCreate extends Component
             $qty = $product->quantity;
             // $this->dispatch('msg',"igualarStock.{$product->id}".",". $qty);
             // dump($product->id);
-
 
             // $this->dispatch("igualarStock.{$product->id}", $qty);
         }
