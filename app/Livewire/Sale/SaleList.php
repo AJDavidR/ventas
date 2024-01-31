@@ -40,7 +40,7 @@ class SaleList extends Component
     {
         $sale = Sale::findOrFail($id);
 
-        // Restaurar el stock y borrar cada item
+        // Restaurar el stock y borrar cada item, no incrementa
         foreach($sale->items as $item){
             Product::find($item->id)->increment('stock', $item->qty);
 
