@@ -1,9 +1,9 @@
 <?php
 
-// Devuelve el id del usuario autenticado
 
 use App\Models\NumerosEnLetras;
 
+// Devuelve el id del usuario autenticado
 function userID()
 {
     return Auth()->user()->id;
