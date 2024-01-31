@@ -4,15 +4,16 @@
 
             <div class="d-flex align-items-center ">
                 <span class="badge badge-info" style="font-size: 1.2rem">
-                    Total: 0
+                    Total: {{ money($this->totalVentas) }}
                 </span>
 
                 {{-- selector de fechas --}}
                 <div class="mx-2">
-                    <button class="btn btn-default" id="daterange-btn">
+                    {{-- {{ $dateInicio. ' - ' . $dateFinal }} --}}
+                    <button class="btn btn-default" id="daterange-btn" wire:ignore>
                         <i class="fas fa-calendar-alt"></i>
                         <span>
-                            D-M-A - D-M-A
+                            A-M-D - A-M-D
                         </span>
                         <i class="fas fa-caret-down"></i>
 
@@ -131,10 +132,10 @@
                     endDate: moment()
                 },
                 function(start, end) {
-                    dateStart = start.format('DD-MM-YYYY');
-                    dateEnd = end.format('DD-MM-YYYY');
+                    dateStart = start.format('YYYY-MM-DD');
+                    dateEnd = end.format('YYYY-MM-DD');
 
-                    $('#daterange-btn span').html(start.format('DD-MM-YYYY') + ' - ' + end.format('DD-MM-YYYY'));
+                    $('#daterange-btn span').html(start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD'));
 
                     Livewire.dispatch("setDates", {
                         fechaInicio: dateStart,

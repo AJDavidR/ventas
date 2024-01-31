@@ -27,8 +27,16 @@ class SaleList extends Component
     {
         $this->totalRegistros = Sale::count();
 
-        $sales = Sale::query()
-            ->where('name', 'like', "%{$this->search}%")
+        $salesQuery = Sale::where('name', 'like', "%{$this->search}%");
+
+        if ($this->dateInicio && $this->dateFinal) {
+            $salesQuery = $salesQuery->whereBetween('fecha', [$this->dateInicio, $this->dateFinal]);
+            $this->totalVentas = $salesQuery->sum('total');
+        } else {
+            $this->totalVentas = Sale::sum('total');
+        }
+
+        $sales = $salesQuery
             ->orderby('id', 'desc')
             ->paginate($this->cant);
 
@@ -43,12 +51,12 @@ class SaleList extends Component
         $sale = Sale::findOrFail($id);
 
         // Restaurar el stock y borrar cada item, no incrementa
-        foreach($sale->items as $item){
+        foreach ($sale->items as $item) {
             Product::find($item->id)->increment('stock', $item->qty);
 
             $item->delete();
         }
-        
+
         $sale->delete();
         $this->dispatch('msg', 'Venta eliminada');
     }
@@ -60,7 +68,5 @@ class SaleList extends Component
 
         $this->dateInicio = $fechaInicio;
         $this->dateFinal = $fechaFinal;
-
-        
     }
 }
