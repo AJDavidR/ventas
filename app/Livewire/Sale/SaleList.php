@@ -16,10 +16,12 @@ class SaleList extends Component
 
     // propiedades clase
     public $search = '';
-
     public $totalRegistros = 0;
-
     public $cant = 5;
+
+    public $totalVentas = 0;
+    public $dateInicio;
+    public $dateFinal;
 
     public function render()
     {
@@ -49,5 +51,16 @@ class SaleList extends Component
         
         $sale->delete();
         $this->dispatch('msg', 'Venta eliminada');
+    }
+
+    #[On('setDates')]
+    public function setDates($fechaInicio, $fechaFinal)
+    {
+        // dump($fechaInicio, $fechaFinal);
+
+        $this->dateInicio = $fechaInicio;
+        $this->dateFinal = $fechaFinal;
+
+        
     }
 }

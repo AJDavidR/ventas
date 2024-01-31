@@ -131,7 +131,15 @@
                     endDate: moment()
                 },
                 function(start, end) {
+                    dateStart = start.format('DD-MM-YYYY');
+                    dateEnd = end.format('DD-MM-YYYY');
+
                     $('#daterange-btn span').html(start.format('DD-MM-YYYY') + ' - ' + end.format('DD-MM-YYYY'));
+
+                    Livewire.dispatch("setDates", {
+                        fechaInicio: dateStart,
+                        fechaFinal: dateEnd,
+                    })
                 }
             );
         </script>
