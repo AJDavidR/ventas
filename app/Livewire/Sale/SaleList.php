@@ -2,7 +2,9 @@
 
 namespace App\Livewire\Sale;
 
+use App\Models\Product;
 use App\Models\Sale;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -31,5 +33,21 @@ class SaleList extends Component
         return view('livewire.sale.sale-list', [
             'sales' => $sales,
         ]);
+    }
+
+    #[On('destroySale')]
+    public function destroy($id)
+    {
+        $sale = Sale::findOrFail($id);
+
+        // Restaurar el stock y borrar cada item
+        foreach($sale->items as $item){
+            Product::find($item->id)->increment('stock', $item->qty);
+
+            $item->delete();
+        }
+        
+        $sale->delete();
+        $this->dispatch('msg', 'Venta eliminada');
     }
 }
