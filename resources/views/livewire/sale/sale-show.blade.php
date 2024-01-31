@@ -1,5 +1,5 @@
 <x-card title="Ver venta">
-    <x-slot:btn>
+    <x-slot:cardTools>
 
         <a href="{{ route('sales.list') }}" class="btn btn-primary">
             <i class="fas fa-arrow-left"></i> Volver
@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-md-4">
             <div class="card">
-                <h5 class="card-header">Cliente: {{ $sale->client->name }}</h5>
+                <h5 class="card-header">Cliente</h5>
                 <div class="card-body">
                     {{-- card datos cliente --}}
                     <div class="card card-primary card-outline">
@@ -20,7 +20,9 @@
                                 <i class="fas fa-user-circle"></i>
                             </div>
 
-                            <h3 class="profile-username text-center my-3"></h3>
+                            <h3 class="profile-username text-center my-3">
+                                {{ $sale->client->name }}
+                            </h3>
 
                             <ul class="list-group  mb-3">
                                 <li class="list-group-item">
@@ -112,9 +114,9 @@
                             <tbody>
                                 @forelse ($sale->items as $product)
                                     <tr>
-                                        <th scope="row">{{ $product->id }}</th>
+                                        <th scope="row">{{ ++$loop->index }}</th>
                                         <td>
-                                            <img src="{{ $product->image }}" width="50" class="img-fluid rounded">
+                                            <img src="{{ asset($product->image) }}" width="50" class="img-fluid rounded">
                                         </td>
                                         <td>{{ $product->name }}</td>
                                         <td>{{ money($product->price) }}</td>
@@ -187,19 +189,19 @@
                             <tr class="tableCentrarY">
                                 <td scope="row">{{ $sale->user->id }}</td>
                                 <td>
-                                    <img src="{{ $sale->user->imagen }}" width="50" class="img-fluid rounded">
+                                    <x-image :item="$sale->user" />
                                 </td>
                                 <td>{{ $sale->user->name }}</td>
                                 <td>
                                     {!! $sale->user->admin
-                                        ? '<span class="badge badge-pill badge-warning">Administrador</span>'
-                                        : '<span class="badge badge-pill badge-light">Vendedor</span>' !!}
+                                        ? "<span class='badge badge-pill badge-warning'>Administrador</span>"
+                                        : "<span class='badge badge-pill badge-light'>Vendedor</span>" !!}
                                 </td>
                                 <td>{{ $sale->user->email }}</td>
                                 <td>
-                                    <button href="{{ route("users.show", $sale->user) }}" class="btn btn-success btn-xs">
+                                    <a href="{{ route("users.show", $sale->user) }}" class="btn btn-success btn-xs">
                                         <i class="far fa-eye"></i>
-                                    </button>
+                                    </a>
                                 </td>
 
 
