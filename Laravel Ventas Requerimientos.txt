@@ -26,3 +26,9 @@ Añadir
             "App/helper.php"
         ]
 ]
+
+
+
+Errores/Falta
+
+al eliminar una venta el stock de productos no se renueva

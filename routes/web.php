@@ -11,6 +11,7 @@ use App\Livewire\Sale\SaleCreate;
 use App\Livewire\Sale\SaleList;
 use App\Livewire\Sale\SaleShow;
 use App\Livewire\SaleB\SaleCreateB;
+use App\Livewire\Shop\ShopComponent;
 use App\Livewire\User\UserComponent;
 use App\Livewire\User\UserShow;
 use Illuminate\Support\Facades\Auth;
@@ -56,4 +57,6 @@ Route::middleware(['auth'])->group(function () {
 
     // pagina de ventas alternativa
     Route::get('/ventas/comprar', SaleCreateB::class)->name('sales.createB');
+
+    Route::get('/tienda', ShopComponent::class)->name('tienda');
 });
