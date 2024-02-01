@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Shop extends Model
 {
     use HasFactory;
+
+    // relacion polimorfica de imagen
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
 }
