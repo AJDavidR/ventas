@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PdfController;
 use App\Livewire\Category\CategoryComponent;
 use App\Livewire\Category\CategoryShow;
 use App\Livewire\Client\ClientComponent;
@@ -59,4 +60,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/ventas/comprar', SaleCreateB::class)->name('sales.createB');
 
     Route::get('/tienda', ShopComponent::class)->name('tienda');
+
+    Route::get('/sales/invoice/{sale}', [PdfController::class, 'invoice'])->name('sales.invoice');
+
 });
