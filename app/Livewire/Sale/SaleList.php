@@ -52,7 +52,7 @@ class SaleList extends Component
 
         // Restaurar el stock y borrar cada item, no incrementa
         foreach ($sale->items as $item) {
-            Product::find($item->id)->increment('stock', $item->qty);
+            // Product::find($item->id)->increments('stock', $item->qty);
 
             $item->delete();
         }
