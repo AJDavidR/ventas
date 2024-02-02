@@ -70,7 +70,7 @@
                     <td>{{ $sale->fecha }}</td>
                     {{-- Botones --}}
                     <td>
-                        <a href="" class="btn bg-navy btn-sm" title="Generar PDF">
+                        <a href="{{ route("sales.invoice", $sale) }}" class="btn bg-navy btn-sm" title="Generar PDF" target="_blank">
                             <i class="fas fa-file-pdf fa-lg"></i>
                         </a>
                     </td>
