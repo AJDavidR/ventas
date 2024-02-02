@@ -10,8 +10,9 @@
         </x-slot:cardTools>
 
         {{-- row cards ventas hoy --}}
-
         @include("home.row-cards-sales")
 
-        
+        {{-- Card grafica --}}
+        @include("home.card-graph")
+
     </x-card>
