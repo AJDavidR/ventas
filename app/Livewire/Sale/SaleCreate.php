@@ -109,7 +109,7 @@ class SaleCreate extends Component
             // Limpiar
             $this->clear();
 
-            $this->dispatch('msg', 'Venta creada correctamente');
+            $this->dispatch('msg', 'Venta creada correctamente', 'success' ,$sale->id);
         });
 
     }
