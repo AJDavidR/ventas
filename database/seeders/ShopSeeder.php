@@ -23,7 +23,7 @@ class ShopSeeder extends Seeder
             
             $faker = Faker::create();
 
-            $shop->image()->create(['url' => 'shop/'.$faker->image('public/storage/shop', 640, 480, 'shop', false)]);
+            $shop->image()->create(['url' => 'shops/'.$faker->image('public/storage/shop', 640, 480, 'shop', false)]);
             
         });
     }

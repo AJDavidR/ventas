@@ -107,7 +107,7 @@ class ShopComponent extends Component
         $shop->save();
 
         if ($this->image) {
-            $newName = 'shop/' . uniqid() . '.' . $this->image->extension();
+            $newName = 'shops/' . uniqid() . '.' . $this->image->extension();
             $this->image->storeAs('public', $newName);
             $shop->image()->create(['url' => $newName]);
         }
