@@ -15,4 +15,7 @@
         {{-- Card grafica --}}
         @include("home.card-graph")
 
+        {{-- cajas de reportes --}}
+        @include("home.boxes-reports")
+
     </x-card>

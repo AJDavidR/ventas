@@ -18,7 +18,7 @@
             <img class="animation__wobble rounded-circle" src="{{ asset('Logo-B.jpeg') }}" alt="{{ asset('Logo.jpeg') }}"
                 height="80">
         </div>
-
+        
         <!-- Navbar -->
         @include('components.layouts.partials.navbar')
         <!-- /.navbar -->
@@ -33,6 +33,7 @@
 
             <!-- Main content -->
             <section class="content">
+                
                 <div class="container-fluid">
                     @livewire('messages')
                     {{ $slot }}
