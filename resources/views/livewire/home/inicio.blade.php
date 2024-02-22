@@ -18,4 +18,7 @@
         {{-- cajas de reportes --}}
         @include("home.boxes-reports")
 
+        {{-- Tablas reportes productos--}}
+        @include("home.tables-report")
+
     </x-card>
