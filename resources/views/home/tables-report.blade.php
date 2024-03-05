@@ -194,7 +194,7 @@
                                 <tr>
                                     <th>{{ $product->id }}</th>
                                     <th>
-                                        <x-image :item="$product" />
+                                        <x-image :item="$product" size="50" />
                                     </th>
                                     <th>{{ $product->name }}</th>
                                     <th>{{ money($product->precio_venta) }}</th>
