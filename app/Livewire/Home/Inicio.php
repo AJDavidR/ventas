@@ -7,6 +7,7 @@ use App\Models\Client;
 use App\Models\Item;
 use App\Models\Product;
 use App\Models\Sale;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -43,15 +44,49 @@ class Inicio extends Component
     public $productosMasVendidos;
     public $productosRecientes;
 
+    // Propiedades: mejores vendedores y compradores
+
+    public $bestSellers = 0;
+    public $bestBuyers = 0;
+
 
     public function render()
     {
         $this->salesToday();
-        $this->calVentasMes();
+        $this->GraficVentasMes();
         $this->boxes_reports();
         $this->set_products_reports();
+        $this->set_best_seller_buyers();
 
         return view('livewire.home.inicio');
+    }
+
+    public function set_best_seller_buyers()
+    {
+        $this->bestSellers = $this->bestSellers();
+        $this->bestBuyers = $this->bestBuyers();
+    }
+
+    public function bestBuyers()
+    {
+        return Client::select('clients.id', 'clients.name', DB::raw('SUM(sales.total) as total'))
+            ->join('sales', 'sales.client_id', '=', 'clients.id')
+            ->whereYear('sales.fecha', date('Y'))
+            ->groupBy('clients.id', 'clients.name')
+            ->orderBy('total', 'desc')
+            ->take(5)
+            ->get();
+    }
+
+    public function bestSellers()
+    {
+        return User::select('users.id', 'users.name', 'users.admin', DB::raw('SUM(sales.total) as total'))
+            ->join('sales', 'sales.user_id', '=', 'users.id')
+            ->whereYear('sales.fecha', date('Y'))
+            ->groupBy('users.id', 'users.name')
+            ->orderBy('total', 'desc')
+            ->take(5)
+            ->get();
     }
 
     // Cargar propiedades de productos mas vendidos
@@ -64,7 +99,7 @@ class Inicio extends Component
 
     }
 
-    public function products_reports($filtrarDia=0, $filtrarMes=0)
+    public function products_reports($filtrarDia = 0, $filtrarMes = 0)
     {
         $productsQuery = Item::select('items.id', 'items.name', 'items.price', 'items.image', 'items.product_id', DB::raw('SUM(items.qty) as total_quantity'))->groupBy('product_id')->whereYear('items.fecha', date('Y'));
 
@@ -76,8 +111,8 @@ class Inicio extends Component
         }
 
         $productsQuery = $productsQuery->orderBy('total_quantity', 'desc')
-                                        ->take(5)
-                                        ->get();
+            ->take(5)
+            ->get();
         return $productsQuery;
     }
 
@@ -89,7 +124,7 @@ class Inicio extends Component
         $this->productosHoy = count(Item::whereDate('fecha', Date('Y-m-d'))->groupBy('product_id')->get());
     }
 
-    public function calVentasMes()
+    public function GraficVentasMes()
     {
         for ($i = 1; $i <= 12; $i++) {
             $this->listTotalVentasMes .= Sale::whereMonth('fecha', '=', $i)->sum('total') . ',';
@@ -108,5 +143,5 @@ class Inicio extends Component
         $this->cantidadCategories = Category::count();
         $this->cantidadClients = Client::count();
     }
-    
+
 }
